@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Ejericio de html</h1>
+        <p>Debes crear un documento que contenga un formulario para mandar un correo electrónico al profesor</p>
+        <hr>
+    
+    <h2>Formularios</h2>
+    
+    <p>Agredecemos tus comentarios</p>
+    
+    <form encrypted="text/plain" method="post" action="mailto:ie706937@iteso.com?subject=Ejercicio%20Formulario">
+    
+    <ol>
+    <li> <label for="nombre"> Nombre: </label>
+         <input id="nombre" type="text" name="name"> <br> </li>
+    <li> <label for="edad"> Edad: </label>
+         <input id="edad" type="number" name="age"> <br> </li>
+    <li> <label for="fecha"> Fecha: </label>
+         <input id="fecha" type="date" name="date" value="2019-01-23"> <br> </li>
+    <li> ¿Cuál es tu carrera? <br> </li>
+        <!-- El valor de name es el nombre del checkbox, el de value es el valor que se manda si está seleccionada -->
+        <input type="checkbox" name="chkbx_ISC" value="yes"> ISC
+        <input type="checkbox" name="chkbx_ISI" value="yes" checked> IE <br>
+    <li> ¿Qué cosa ya sabes de desarrollo web? <br> </li>
+        <input type="checkbox" name="chkbx_html" value="yes" checked> html <br>
+        <input type="checkbox" name="chkbx_css" value="yes"> css <br>
+        <input type="checkbox" name="chkbx_JS" value="yes"> JS <br>
+        <input type="checkbox" name="chkbx_Node" value="yes"> Node.js <br>
+        <label for="otro"> Otro: </label>
+        <input id="otro" type="text" name="otro" title="Perl, React..."> <br>
+    <li> ¿Cómo evaluas al profesor en sus primeras sesiones? <br> </li>
+        0 <input type="range" name="evaluacion" value="8" min="0" max="10"> 10
+    <li> Sugerencias, comentarios, expectativas: <br> </li>
+        <textarea name="comentarios" rows="2" cols="30"> Más prácticas y tareas </textarea>
+    </ol>
+    
+    <input type="submit" value="Guardar">
+    </form>
+    
+    <strong><pre>.  .   .   .   .</pre></strong>
+  
+</body>
+</html>
