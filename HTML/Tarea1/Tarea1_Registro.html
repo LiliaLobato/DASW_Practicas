@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script> 
+  function dateCheck(form) {
+    var email = form.email.value;
+    var valid = (email.lenght == 0);
+
+    if (!valid) {
+      form.email.focus();
+      form.email.placeholder = "example@iteso.mx";
+    }
+
+    return false;
+  }
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,15 +46,15 @@
             <td rowspan="10" width="20%" colspan="2"></td>
             <td colspan="3"><hr></td>    
         </tr>
-        <form encrypted="text/plain" method="post" action="mailto:ie706937@iteso.com?subject=Tarea%20HTML">
+        <form encrypted="text/plain" method="post" action="mailto:ie706937@iteso.com?subject=Tarea%20HTML" onsubmit="return dateCheck(this)">
         <tr>
             <td rowspan="5"><img src="https://cdn1.iconfinder.com/data/icons/scenarium-vol-12/128/012_029_mail_love_valentine_heart-512.png" alt="estudio" width="100%"></td> 
             <td style="text-align:center"><label for="nombre"> Nombre: </label>  <br></td>
             <td style="text-align:center"><input id="nombre" type="text" name="name"> <br></td>  
         </tr>
         <tr>
-            <td style="text-align:center"><label for="email"> Email: </label>  <br></td> 
-            <td style="text-align:center"> <input id="email" type="email" name="email"> <br></td>  
+            <td style="text-align:center"><label for="email"> @iteso.mx email: </label>  <br></td> 
+            <td style="text-align:center"> <input id="email" type="email" name="email" pattern=".+@iteso\.mx" placeholder="example@iteso.mx"> <br></td>  
         </tr>
         <tr> 
             <td style="text-align:center"><label for="educacion"> Nivel de educacion: </label> <br></td>
