@@ -15,7 +15,7 @@
           <tr>
             <th width="15%"><a href="Tarea1_Home.html">Home</a></th>
             <th><img src="https://cdn0.iconfinder.com/data/icons/bold-purple/32/Home_Direction_Building_Internet_Place_Live-512.png" alt="home" height="24px"></th>
-            <th colspan="2" rowspan="3" >
+            <th colspan="3" rowspan="3" >
                 <h1> Registro  </h1>
               </th>
           </tr>
@@ -29,41 +29,43 @@
           </tr>
         </tr>
         <tr>
-            <td rowspan="4" width="20%" colspan="2"></td>
-            <td colspan="2"><hr></td>    
+            <td rowspan="10" width="20%" colspan="2"></td>
+            <td colspan="3"><hr></td>    
+        </tr>
+        <form encrypted="text/plain" method="post" action="mailto:ie706937@iteso.com?subject=Tarea%20HTML">
+        <tr>
+            <td rowspan="5"><img src="https://cdn1.iconfinder.com/data/icons/scenarium-vol-12/128/012_029_mail_love_valentine_heart-512.png" alt="estudio" width="100%"></td> 
+            <td style="text-align:center"><label for="nombre"> Nombre: </label>  <br></td>
+            <td style="text-align:center"><input id="nombre" type="text" name="name"> <br></td>  
         </tr>
         <tr>
-            <td width="40%"><img src="https://cdn1.iconfinder.com/data/icons/scenarium-vol-12/128/012_036-512.png" alt="estudio" width="100%"></td>
-            <td >
-              <ul>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mi pellentesque, molestie odio vitae, ornare ex. </li>
-                <li><a href="Tarea1_Registro.html">Registrate ahora</a></li>
-              </ul>
-            <i>En este curso aprenderas:</i>
-              <ol type="I">
-                <li><mark>Friday</mark></li>
-                  <ol type="a">
-                    <li>Coffee</li>
-                    <li>Tea</li>
-                    <li>Milk</li>
-                  </ol>
-                <li><u>mispeled</u></li>
-                  <ol type="a">
-                    <li>Coffee</li>
-                  </ol>
-                <li>Milk</li>
-                  <ol type="a">
-                    <li>Coffee</li>
-                    <li>Tea</li>
-                    <li>Milk</li>
-                    <li>Coffee</li>
-                    <li>Tea</li>
-                    <li>Milk</li>
-                  </ol>
-              </ol>
-            </td>
+            <td style="text-align:center"><label for="email"> Email: </label>  <br></td> 
+            <td style="text-align:center"> <input id="email" type="email" name="email"> <br></td>  
         </tr>
+        <tr> 
+            <td style="text-align:center"><label for="educacion"> Nivel de educacion: </label> <br></td>
+            <td style="text-align:center"><input list="educacion" name="educacion" placeholder="Ninguna">
+                  <datalist id="educacion">
+                    <option value="Secundaria">
+                    <option value="Preparatoria">
+                    <option value="Universidad">
+                    <option value="Posgrado">
+                  </datalist>
+                <br></td>  
+        </tr>
+        <tr>
+            <td style="text-align:center"><label for="comentario"> Comentario: </label>  <br></td>
+            <td style="text-align:center"><textarea id="comentario" name="comentario" rows="2" cols="30"> Escribe aqui tu comentario </textarea>  <br></td>  
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <input type="submit" value="Enviar Solicitud">
+            </td>
+
+        </tr>
+        </form>
     </table>
+
   
 </body>
 </html>
