@@ -42,9 +42,11 @@
 
         /* --- AÑADE AQUI TUS SELECTORES --- */
 
-        /* Ocultar los filtros (opciónes de búsqueda) */
+        /* Ocultar los filtros (opciónes de búsqueda) */        
         input[id="show"]:not(:checked)  ~ #main>div[id="filters"]>input,
-        input[id="show"]:not(:checked)  ~ #main>div[id="filters"]>label{
+        input[id="show"]:not(:checked)  ~ #main>div[id="filters"]>label,
+        input[id="show"]:not(:checked)  ~ #main>div[id="filters"]>br,
+        input[id="show"]:not(:checked)  ~ #main>div[id="filters"]>hr{
             display: none;
         }
 
@@ -53,10 +55,39 @@
         [id="grade"]:checked ~ [id="grade1"]:not(:checked) ~ table tr[data-info$="A"]{
             color: lightgrey;
         }
+        [id="grade"]:checked ~ [id="grade1"]:checked ~ [for="grade1"]::after{
+            content: "\1F33A";
+        }
         /*REPROBADOS*/
         [id="grade"]:checked ~ [id="grade2"]:not(:checked) ~ table tr[data-info$="R"]{
             color: lightgrey;
         }
+        [id="grade"]:checked ~ [id="grade2"]:checked ~ [for="grade2"]::after{
+            content: "\1F33A";
+        }
+
+        /*ISC*/
+        .category[name="career"]:checked ~ [id="isc"]:not(:checked) ~ table tr[data-info^="ISC"]{
+            color: lightgrey;
+        }
+        .category[name="career"]:checked ~ [id="isc"]:checked ~ [for="r2"]::after{
+            content: "\1F33A";
+        }
+        /*ISI*/
+        .category[name="career"]:checked ~ [id="isi"]:not(:checked) ~ table tr[data-info^="ISI"]{
+            color: lightgrey;
+        }
+        .category[name="career"]:checked ~ [id="isi"]:checked ~ [for="r3"]::after{
+            content: "\1F33A";
+        }
+        /*IE*/
+        .category[name="career"]:checked ~ [id="ie"]:not(:checked) ~ table tr[data-info^="IE"]{
+            color: lightgrey;
+        }
+        .category[name="career"]:checked ~ [id="ie"]:checked ~ [for="r4"]::after{
+            content: "\1F33A";
+        }
+
 
         /* Mostrar / ocultar columnas seleccionadas de la tabla */
         /*NOMBRE*/
@@ -64,25 +95,40 @@
         [name="col"]:checked ~ [name="col1"]:not(:checked) ~ table th:nth-child(1) {
             display: none;
         }
+        [name="col"]:checked ~ [name="col1"]:checked ~ [for="col1"]::after{
+            content: "\1F33A";
+        }
         /*CORREO*/
         [name="col"]:checked ~ [name="col2"]:not(:checked) ~ table td:nth-child(2) , 
         [name="col"]:checked ~ [name="col2"]:not(:checked) ~ table th:nth-child(2) {
             display: none;
+        }
+        [name="col"]:checked ~ [name="col2"]:checked ~ [for="col2"]::after{
+            content: "\1F33A";
         }
         /*CARRERA*/
         [name="col"]:checked ~ [name="col3"]:not(:checked) ~ table td:nth-child(3) , 
         [name="col"]:checked ~ [name="col3"]:not(:checked) ~ table th:nth-child(3) {
             display: none;
         }
+        [name="col"]:checked ~ [name="col3"]:checked ~ [for="col3"]::after{
+            content: "\1F33A";
+        }
         /*CREDITOS*/
         [name="col"]:checked ~ [name="col4"]:not(:checked) ~ table td:nth-child(4) , 
         [name="col"]:checked ~ [name="col4"]:not(:checked) ~ table th:nth-child(4) {
             display: none;
         }
+        [name="col"]:checked ~ [name="col4"]:checked ~ [for="col4"]::after{
+            content: "\1F33A";
+        }
         /*PROMEDIO*/
         [name="col"]:checked ~ [name="col5"]:not(:checked) ~ table td:nth-child(5) , 
         [name="col"]:checked ~ [name="col5"]:not(:checked) ~ table th:nth-child(5) {
             display: none;
+        }
+        [name="col"]:checked ~ [name="col5"]:checked ~ [for="col5"]::after{
+            content: "\1F33A";
         }
 
         /* Cambiar el tamaño de letra a 1.8em a los labels inmediatamente después de la clase category */
@@ -117,7 +163,7 @@
             <input class="career" type="radio" name="career" id="isi">
             <label class="career" for="r3"> Ing. en Seguridad Informática </label> <br>
             <input class="career" type="radio" name="career" id="ie" checked>
-            <label class="career" for="r3"> Ing. Electrónica </label> <br>
+            <label class="career" for="r4"> Ing. Electrónica </label> <br>
 
             <!-- Clasificación por Calificación clase .grade -->
 
