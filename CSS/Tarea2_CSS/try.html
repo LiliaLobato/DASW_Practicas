@@ -1,0 +1,21 @@
+<div class="radio-custom">
+     <input type="radio" name="test" id="test" value="test" />
+     <label>Test</label>
+</div>
+
+<style type="text/css">
+.radio-custom input[type="radio"]:checked ~ label:after {
+  content: 'heeeelp';
+  position: absolute;
+  top: 50%;
+  left: 10.5px;
+  margin-top: -5px;
+  display: inline-block;
+  font-size: 11px;
+  line-height: 1;
+  width: 10px;
+  height: 10px;
+  background-color: #117efd;
+  border-radius: 50px;
+}
+</style>

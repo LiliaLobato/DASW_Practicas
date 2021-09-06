@@ -43,14 +43,29 @@
         /* --- AÑADE AQUI TUS SELECTORES --- */
 
         /* Ocultar los filtros (opciónes de búsqueda) */
+        input[id="show"]:not(:checked)  ~ #main>div[id="filters"]>input{
+          background-color: orangered;
+          display: none;
+        }
+        input[id="show"]:not(:checked)  ~ #main>div[id="filters"]>label{
+          background-color: orangered;
+          display: none;
+        }
 
         /* Cambiar color a gris cuando no sean de interés para los filtros aplicados */
+
 
         /* Mostrar / ocultar columnas seleccionadas de la tabla */
 
         /* Cambiar el tamaño de letra a 1.8em a los labels inmediatamente después de la clase category */
+        .category + label, #show + label{
+            font-size: 1.8em;
+        }
 
         /* Si es un input de tipo radio o si es de clase columnas aplicar margin-left: 25px */
+        input[type="radio"], input[class="columns"] {
+            margin-left: 25px
+        }
 
     </style>
 
