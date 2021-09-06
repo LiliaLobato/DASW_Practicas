@@ -16,7 +16,6 @@
         }
 
         th {
-            text-align: left;
             background-color: #2980b9;
             color: white;
             font-size: 2em;
@@ -26,6 +25,7 @@
             width: 50%;
             border-collapse: collapse;
             background-color: #f6f6f6;
+            text-align: center;
         }
 
         tr {
@@ -43,19 +43,47 @@
         /* --- AÑADE AQUI TUS SELECTORES --- */
 
         /* Ocultar los filtros (opciónes de búsqueda) */
-        input[id="show"]:not(:checked)  ~ #main>div[id="filters"]>input{
-          background-color: orangered;
-          display: none;
-        }
+        input[id="show"]:not(:checked)  ~ #main>div[id="filters"]>input,
         input[id="show"]:not(:checked)  ~ #main>div[id="filters"]>label{
-          background-color: orangered;
-          display: none;
+            display: none;
         }
 
         /* Cambiar color a gris cuando no sean de interés para los filtros aplicados */
-
+        /*APROBADOS*/
+        [id="grade"]:checked ~ [id="grade1"]:not(:checked) ~ table tr[data-info$="A"]{
+            color: lightgrey;
+        }
+        /*REPROBADOS*/
+        [id="grade"]:checked ~ [id="grade2"]:not(:checked) ~ table tr[data-info$="R"]{
+            color: lightgrey;
+        }
 
         /* Mostrar / ocultar columnas seleccionadas de la tabla */
+        /*NOMBRE*/
+        [name="col"]:checked ~ [name="col1"]:not(:checked) ~ table td:nth-child(1) , 
+        [name="col"]:checked ~ [name="col1"]:not(:checked) ~ table th:nth-child(1) {
+            display: none;
+        }
+        /*CORREO*/
+        [name="col"]:checked ~ [name="col2"]:not(:checked) ~ table td:nth-child(2) , 
+        [name="col"]:checked ~ [name="col2"]:not(:checked) ~ table th:nth-child(2) {
+            display: none;
+        }
+        /*CARRERA*/
+        [name="col"]:checked ~ [name="col3"]:not(:checked) ~ table td:nth-child(3) , 
+        [name="col"]:checked ~ [name="col3"]:not(:checked) ~ table th:nth-child(3) {
+            display: none;
+        }
+        /*CREDITOS*/
+        [name="col"]:checked ~ [name="col4"]:not(:checked) ~ table td:nth-child(4) , 
+        [name="col"]:checked ~ [name="col4"]:not(:checked) ~ table th:nth-child(4) {
+            display: none;
+        }
+        /*PROMEDIO*/
+        [name="col"]:checked ~ [name="col5"]:not(:checked) ~ table td:nth-child(5) , 
+        [name="col"]:checked ~ [name="col5"]:not(:checked) ~ table th:nth-child(5) {
+            display: none;
+        }
 
         /* Cambiar el tamaño de letra a 1.8em a los labels inmediatamente después de la clase category */
         .category + label, #show + label{
@@ -72,6 +100,7 @@
 </head>
 
 <body>
+
     <h1> Filtros de alumnos </h1>
 
     <input type="checkbox" id="show" checked>

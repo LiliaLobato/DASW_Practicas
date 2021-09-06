@@ -1,21 +1,28 @@
-<div class="radio-custom">
-     <input type="radio" name="test" id="test" value="test" />
-     <label>Test</label>
+<input type="checkbox" name="1">
+<input type="checkbox" name="2">
+<div data-text="some string"></div>
+
+<div>
+  <input type="checkbox" class="check-with-label" id="idinput" />
+  <label class="label-for-check" for="idinput">My Label</label>
 </div>
 
 <style type="text/css">
-.radio-custom input[type="radio"]:checked ~ label:after {
-  content: 'heeeelp';
-  position: absolute;
-  top: 50%;
-  left: 10.5px;
-  margin-top: -5px;
+div {
+  width: 100px;
+  height: 100px;
+  background: red;
+}
+
+input[name="1"]:checked + input[name="2"]:checked + div {
+  background: blue;
+}
+input[type=checkbox]:checked + input[type=checkbox]:checked + div:after {
   display: inline-block;
-  font-size: 11px;
-  line-height: 1;
-  width: 10px;
-  height: 10px;
-  background-color: #117efd;
-  border-radius: 50px;
+  content: attr(data-text);
+  color: #fff;
+}
+.check-with-label:checked + .label-for-check {
+  font-weight: bold;
 }
 </style>
