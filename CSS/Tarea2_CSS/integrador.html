@@ -51,83 +51,39 @@
         }
 
         /* Cambiar color a gris cuando no sean de interés para los filtros aplicados */
-        /*APROBADOS*/
-        [id="grade"]:checked ~ [id="grade1"]:not(:checked) ~ table tr[data-info$="A"]{
+        [id="grade"]:checked ~ [id="grade1"]:not(:checked) ~ table tr[data-info$="A"], /*APROBADOS*/
+        [id="grade"]:checked ~ [id="grade2"]:not(:checked) ~ table tr[data-info$="R"], /*REPROBADOS*/
+        .category[name="career"]:checked ~ [id="isc"]:not(:checked) ~ table tr[data-info^="ISC"], /*ISC*/
+        .category[name="career"]:checked ~ [id="isi"]:not(:checked) ~ table tr[data-info^="ISI"], /*ISI*/
+        .category[name="career"]:checked ~ [id="ie"]:not(:checked) ~ table tr[data-info^="IE"]{   /*IE*/
             color: lightgrey;
-        }
-        [id="grade"]:checked ~ [id="grade1"]:checked ~ [for="grade1"]::after{
-            content: "\1F33A";
-        }
-        /*REPROBADOS*/
-        [id="grade"]:checked ~ [id="grade2"]:not(:checked) ~ table tr[data-info$="R"]{
-            color: lightgrey;
-        }
-        [id="grade"]:checked ~ [id="grade2"]:checked ~ [for="grade2"]::after{
-            content: "\1F33A";
         }
 
-        /*ISC*/
-        .category[name="career"]:checked ~ [id="isc"]:not(:checked) ~ table tr[data-info^="ISC"]{
-            color: lightgrey;
-        }
-        .category[name="career"]:checked ~ [id="isc"]:checked ~ [for="r2"]::after{
-            content: "\1F33A";
-        }
-        /*ISI*/
-        .category[name="career"]:checked ~ [id="isi"]:not(:checked) ~ table tr[data-info^="ISI"]{
-            color: lightgrey;
-        }
-        .category[name="career"]:checked ~ [id="isi"]:checked ~ [for="r3"]::after{
-            content: "\1F33A";
-        }
-        /*IE*/
-        .category[name="career"]:checked ~ [id="ie"]:not(:checked) ~ table tr[data-info^="IE"]{
-            color: lightgrey;
-        }
-        .category[name="career"]:checked ~ [id="ie"]:checked ~ [for="r4"]::after{
-            content: "\1F33A";
-        }
-
-
-        /* Mostrar / ocultar columnas seleccionadas de la tabla */
-        /*NOMBRE*/
-        [name="col"]:checked ~ [name="col1"]:not(:checked) ~ table td:nth-child(1) , 
-        [name="col"]:checked ~ [name="col1"]:not(:checked) ~ table th:nth-child(1) {
-            display: none;
-        }
-        [name="col"]:checked ~ [name="col1"]:checked ~ [for="col1"]::after{
-            content: "\1F33A";
-        }
-        /*CORREO*/
-        [name="col"]:checked ~ [name="col2"]:not(:checked) ~ table td:nth-child(2) , 
-        [name="col"]:checked ~ [name="col2"]:not(:checked) ~ table th:nth-child(2) {
-            display: none;
-        }
-        [name="col"]:checked ~ [name="col2"]:checked ~ [for="col2"]::after{
-            content: "\1F33A";
-        }
-        /*CARRERA*/
-        [name="col"]:checked ~ [name="col3"]:not(:checked) ~ table td:nth-child(3) , 
-        [name="col"]:checked ~ [name="col3"]:not(:checked) ~ table th:nth-child(3) {
-            display: none;
-        }
-        [name="col"]:checked ~ [name="col3"]:checked ~ [for="col3"]::after{
-            content: "\1F33A";
-        }
-        /*CREDITOS*/
-        [name="col"]:checked ~ [name="col4"]:not(:checked) ~ table td:nth-child(4) , 
-        [name="col"]:checked ~ [name="col4"]:not(:checked) ~ table th:nth-child(4) {
-            display: none;
-        }
-        [name="col"]:checked ~ [name="col4"]:checked ~ [for="col4"]::after{
-            content: "\1F33A";
-        }
-        /*PROMEDIO*/
-        [name="col"]:checked ~ [name="col5"]:not(:checked) ~ table td:nth-child(5) , 
+        /* Mostrar / ocultar columnas seleccionadas de la tabla */        
+        [name="col"]:checked ~ [name="col1"]:not(:checked) ~ table td:nth-child(1) , /*NOMBRE*/
+        [name="col"]:checked ~ [name="col1"]:not(:checked) ~ table th:nth-child(1) ,
+        [name="col"]:checked ~ [name="col2"]:not(:checked) ~ table td:nth-child(2) , /*CORREO*/
+        [name="col"]:checked ~ [name="col2"]:not(:checked) ~ table th:nth-child(2) ,
+        [name="col"]:checked ~ [name="col3"]:not(:checked) ~ table td:nth-child(3) , /*CARRERA*/
+        [name="col"]:checked ~ [name="col3"]:not(:checked) ~ table th:nth-child(3) ,
+        [name="col"]:checked ~ [name="col4"]:not(:checked) ~ table td:nth-child(4) , /*CREDITOS*/
+        [name="col"]:checked ~ [name="col4"]:not(:checked) ~ table th:nth-child(4) ,
+        [name="col"]:checked ~ [name="col5"]:not(:checked) ~ table td:nth-child(5) , /*PROMEDIO*/
         [name="col"]:checked ~ [name="col5"]:not(:checked) ~ table th:nth-child(5) {
             display: none;
         }
-        [name="col"]:checked ~ [name="col5"]:checked ~ [for="col5"]::after{
+        
+        /* Mostrar / ocultar simbolo en las opciones activadas */
+        .category[name="career"]:checked ~ [id="ie"]:checked ~ [for="r4"]::after,
+        .category[name="career"]:checked ~ [id="isi"]:checked ~ [for="r3"]::after,
+        .category[name="career"]:checked ~ [id="isc"]:checked ~ [for="r2"]::after,
+        [id="grade"]:checked ~ [id="grade2"]:checked ~ [for="grade2"]::after,
+        [id="grade"]:checked ~ [id="grade1"]:checked ~ [for="grade1"]::after,
+        [name="col"]:checked ~ [name="col5"]:checked ~ [for="col5"]::after,
+        [name="col"]:checked ~ [name="col4"]:checked ~ [for="col4"]::after,
+        [name="col"]:checked ~ [name="col3"]:checked ~ [for="col3"]::after,
+        [name="col"]:checked ~ [name="col2"]:checked ~ [for="col2"]::after,
+        [name="col"]:checked ~ [name="col1"]:checked ~ [for="col1"]::after{
             content: "\1F33A";
         }
 
