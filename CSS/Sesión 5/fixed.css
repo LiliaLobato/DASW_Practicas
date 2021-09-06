@@ -1,0 +1,36 @@
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+h2 {
+    color: white;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 500px;
+    max-height: 500px;
+    overflow: auto;
+}
+
+.fixed-aux {
+    position: absolute;
+}
+
+.fixed {
+    position: fixed;
+    background: red;
+    top: 50px;
+    left: 50px;
+}
+
+.content {
+    color: white;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+}
