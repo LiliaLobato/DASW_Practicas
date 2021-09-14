@@ -15,6 +15,18 @@
   width:100%;
 }
 
+.shop-img {
+  max-width: 100px;
+  width:100%;
+}
+
 .card-img-top {
   margin:0 auto;
+}
+
+.cards_pad  {
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
 }
