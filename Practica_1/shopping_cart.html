@@ -28,7 +28,7 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <form class="form-inline mt-2 mt-md-0">
           <div class= "search">
-            <input class="form-control search" type="text" placeholder="Encuentra de todo comienza a buscar" aria-label="Search">
+            <input class="form-control search" type="text" placeholder="Encuentra de todo" aria-label="Search">
           </div>
           <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -48,37 +48,102 @@
       </div>
     </nav>
 
-<div class="card text-center mb-4 cards_pad">
-  <div class="row row-cols-2 row-cols-sm-1 row-cols-md-2">
-    <div class="col mb-4">
-      <ul class="list-unstyled ">
-        <li class="media">
-          <img class="mr-3 shop-img" src="https://images.freeimages.com/images/large-previews/3cd/apple-1327446.jpg" alt="Generic placeholder image">
-          <div class="media-body">
-            <h5 class="mt-0 mb-1">List-based media object</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-          </div>
-        </li>
-        <li class="media my-4">
-          <img class="mr-3 shop-img" src="https://images.freeimages.com/images/large-previews/3cd/apple-1327446.jpg" alt="Generic placeholder image">
-          <div class="media-body">
-            <h5 class="mt-0 mb-1">List-based media object</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="col mb-4">
+  <div class="row p-3 row-cols-1  row-cols-md-2">
+    <div class="col-sm-6 col-md-8">
       <div class="card">
-        <img src="https://images.freeimages.com/images/large-previews/3cd/apple-1327446.jpg" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <div class="media">
+            <div class="media-body">
+              <h5 class="mt-0 mb-1">
+                Producto 1
+                <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+              </h5>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Cantidad:</span>
+                </div>
+                <input type="number" class="form-control" placeholder="1" id="quantity" name="quantity" min="1" max="5">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-success" type="button"><i class="fas fa-pencil-alt"></i></button>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Precio:</span>
+                </div>
+                <span class="form-control" id="precio" align="center">152.00</span>
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">$ mxn</span>
+                </div>
+              </div>
+            </div>
+              <div class="media-right">
+                <img class="ml-3 shop-img" src="https://image.freepik.com/free-psd/beauty-care-cosmetic-product-mock-up_23-2148891566.jpg" alt="Generic placeholder image">
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="media">
+            <div class="media-body">
+              <h5 class="mt-0 mb-1">
+                Producto 2
+                <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+              </h5>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Cantidad:</span>
+                </div>
+                <input type="number" class="form-control" placeholder="1" id="quantity" name="quantity" min="1" max="5">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-success" type="button"><i class="fas fa-pencil-alt"></i></button>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Precio:</span>
+                </div>
+                <span class="form-control" id="precio" align="center">152.00</span>
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">$ mxn</span>
+                </div>
+              </div>
+            </div>
+              <div class="media-right">
+                <img class="ml-3 shop-img" src="https://image.freepik.com/free-psd/beauty-care-cosmetic-product-mock-up_23-2148891545.jpg" alt="Generic placeholder image">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <h5 class="card-title">Total de Compra</h5>
+            </li>
+            <li class="list-group-item">
+              <p>Producto 1: $XXXX.xx</p>
+              <p>Producto 2: $XXXX.xx</p>
+              <p>Costo de envio: $XX.xx</p>
+            </li>
+            <li class="list-group-item">
+              <p>Monto a pagar: $XXXX.xx</p>
+              <button type="button" class="btn btn-outline-success btn-lg btn-block">Pagar</button>
+              <a href="Home.html" class="btn btn-outline-danger btn-block" role="button" aria-disabled="true">Cancelar</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+
+    
+  
+
 
 <!-- Modal Login -->
 <div class="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -92,35 +157,31 @@
         </button>
       </div>
       <div class="modal-body mx-3">
-
-
         <form>
           <fieldset class="form-group">
-            <label data-error="wrong" data-success="right" for="defaultForm-email">Correo</label>
+            <label data-error="wrong" data-success="right" for="emailLogin">Correo</label>
             <div class="input-group mb-3">
-              <input type="email" class="form-control validate" id="defaultForm-email">
+              <input type="email" class="form-control validate" id="emailLogin" required>
               <div class="input-group-append">
                 <span class="input-group-text"><i class="fas fa-envelope prefix grey-text"></i></span>
               </div>
             </div>
           </fieldset>
           <fieldset class="form-group">
-            <label data-error="wrong" data-success="right" for="defaultForm-pass">Password</label>
+            <label data-error="wrong" data-success="right" for="passLogin">Password</label>
             <div class="input-group mb-3">
-              <input type="password" class="form-control validate" id="defaultForm-pass">
+              <input type="password" class="form-control validate" id="passLogin" required>
               <div class="input-group-append">
                 <span class="input-group-text"><i class="fas fa-lock prefix grey-text"></i></span>
               </div>
             </div>
           </fieldset>
-          <button type="button" class="btn btn-dark btn-lg btn-block">Login</button>
+          <button type="submit" class="btn btn-dark btn-lg btn-block">Login</button>
         </form>
-
-
       </div>
       <div class="modal-footer d-flex justify-content-center .justify-content-end">
         <p>No tienes cuenta?</p>
-        <a href="#" data-dismiss="modal" data-toggle="modal" id="forgotPassword" data-target="#Registro" class="form-check-label">Registrate Aqui</a>
+        <a href="#" data-dismiss="modal" data-toggle="modal" id="registerLink" data-target="#Registro" class="form-check-label">Registrate Aqui</a>
       </div>
     </div>
   </div>
@@ -138,21 +199,19 @@
         </button>
       </div>
       <div class="modal-body mx-3">
-
-
         <form>
           <fieldset class="form-group">
               <div class="row">
                 <div class="input-group mb-2 display-2 col-6" >
-                  <input type="text" class="form-control validate" id="defaultForm-pass" placeholder="Nombre(s)">
+                  <input required type="text" class="form-control validate" id="name" placeholder="Nombre(s)">
                 </div>
                 <div class="input-group mb-2 display-2 col-6" >
-                  <input type="text" class="form-control validate" id="defaultForm-pass" placeholder="Apellido">
+                  <input required type="text" class="form-control validate" id="lastname" placeholder="Apellido">
                 </div>
               </div>
-              <input type="email" class="form-control validate mb-2" id="defaultForm-pass" placeholder="Correo">
-              <input type="password" class="form-control validate mb-2" id="defaultForm-pass" placeholder="Contraseña">
-              <input type="passwordConf" class="form-control validate mb-2" id="defaultForm-pass" placeholder="Confirmar Contraseña">
+              <input required type="email" class="form-control validate mb-2" id="email" placeholder="Correo">
+              <input required type="password" class="form-control validate mb-2" id="pass" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" oninvalid="this.setCustomValidity('Debe contener al menos un número, una letra mayúscula y minúscula y un tamaño mínimo de 6 caracteres')">
+              <input required type="passwordConf" class="form-control validate mb-2" id="confPass" placeholder="Confirmar Contraseña">
           </fieldset>
           <button type="submit" class="btn btn-dark btn-lg btn-block">Registrarse</button>
         </form>

@@ -6,22 +6,17 @@
   height:30px;
 }
 
-.search{
-	width: 300px;
-}
-
 .card-img-top {
   max-width: 200px;
   width:100%;
+  margin:0 auto;
 }
+
 
 .shop-img {
-  max-width: 100px;
+  max-width: 200px;
+  min-width: 150px;
   width:100%;
-}
-
-.card-img-top {
-  margin:0 auto;
 }
 
 .cards_pad  {
