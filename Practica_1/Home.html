@@ -219,8 +219,8 @@
                 </div>
               </div>
               <input required type="email" class="form-control validate mb-2" id="email" placeholder="Correo">
-              <input required type="password" class="form-control validate mb-2" id="pass" placeholder="Contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" oninvalid="this.setCustomValidity('Debe contener al menos un número, una letra mayúscula y minúscula y un tamaño mínimo de 6 caracteres')">
-              <input required type="passwordConf" class="form-control validate mb-2" id="confPass" placeholder="Confirmar Contraseña">
+              <input required type="password" class="form-control validate mb-2" id="pass" placeholder="Contraseña" pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}" oninvalid="this.setCustomValidity('Debe contener al menos un número, una letra mayúscula y minúscula y un tamaño mínimo de 6 caracteres')">
+              <input required type="password" class="form-control validate mb-2" id="confPass" placeholder="Confirmar Contraseña">
           </fieldset>
           <button type="submit" class="btn btn-dark btn-lg btn-block">Registrarse</button>
         </form>
