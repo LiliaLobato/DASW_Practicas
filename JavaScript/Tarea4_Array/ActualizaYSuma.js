@@ -26,7 +26,6 @@ Sample Output 1
 21
 Explanation 1
 0+6+13+1+1=21
-
 */
 
 function processData(input) {

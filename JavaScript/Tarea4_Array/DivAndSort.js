@@ -29,42 +29,32 @@ Sample Output 1
 []
 [{"n":92,"a":17,"d":"c"},{"n":90},{"n":88,"e":13}]
 
-TODO: NO CUMPLE CON LOS REQUISITOS DE IMPLEMENTACION
 */
 
 function processData(input) {
     //Enter your code here
-    let inputLines= input.split('\n'); 
+    let inputLines= input.split('\n');
     objArray=JSON.parse(inputLines[0]);
     valUpdate=inputLines[1].split(' ');
-    var ascArray=[]; var desArray=[];
-    des=false;
     
-    for (let i = 0; i<objArray.length;i++){
-        current = objArray[i];
-        
-        for (var key in current){
-            if (key == valUpdate[0] && current[key] == valUpdate[1]){
-                des=true; 
-            }
-        }
-        if(des){
-            desArray.push(current);
-        } else {
-            ascArray.push(current);
-        }        
-    }
     
-    desArray.sort(function(a,b) {
+    //la idea es obtener el index    
+    var index = objArray.findIndex(x => x[valUpdate[0]] == valUpdate[1]);
+    
+    //del 0 al index es desc, del index al final es asc
+    var asc = objArray.splice(0, index);
+    var des = objArray.splice(0,objArray.length);
+    
+    des.sort(function(a,b) {
         return b[valUpdate[0]] - a[valUpdate[0]];
     });
     
-    ascArray.sort(function(a,b) {
+    asc.sort(function(a,b) {
         return a[valUpdate[0]] - b[valUpdate[0]];
     });
     
-    console.log(JSON.stringify(ascArray));
-    console.log(JSON.stringify(desArray));
+    console.log(JSON.stringify(asc));
+    console.log(JSON.stringify(des));
 } 
 
 process.stdin.resume();
