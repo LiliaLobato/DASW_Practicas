@@ -95,19 +95,37 @@ class Product{
         this._category = val;
     }
 
-    
+    //Convertimos el String de JSON recibido 
+    //en una nueva instancia de producto
     static createFromJson(jsonValue){
     	let obj = JSON.parse(jsonValue);
     	return Product.createFromObject(obj);
     }
 
+    //Convertimos el objeto recibido en una
+    //nueva instancia de producto
+
+    //le entra algo como let a = {'stock': 15};
     static createFromObject(obj){
+    	let newProduct = {};
+    	Object.assign(newProduct, obj); //clone object and handle
+    	Product.cleanObject(newProduct);
+
+    	//Falta ir pasando los valores a un producto que pertenezca a la clase
+
     	let product = new Product();
     	return product;
     }
 
+    //Limpiamos el objeto recibido de todos
+    //aquellos valores ajenos a la clase Product
     static cleanObject(obj){
-    	
+    	const productProperties = ['uuid','title', 'description', 'imageUrl', 'unit', 'stock', 'pricePerUnit', 'category'];
+    	for (let prop in obj){
+    		//if prop not in productPrperties
+    			//delete obj[prop];
+    	}
+
     }
 
 
