@@ -6,7 +6,7 @@ function getProducts(){
 	return products;
 }
 
-function getProductByIs(uuid){
+function getProductById(uuid){
 
 }
 
