@@ -111,14 +111,10 @@ class Product{
     	Object.assign(newProduct, obj); //clone object and handle
     	Product.cleanObject(newProduct);
     	//Falta ir pasando los valores a un producto que pertenezca a la clase
-        console.log('GET PROP TITLE',newProduct['title'])
-
-
     	let product = new Product(newProduct['title'],newProduct['description'],
                                   newProduct['imageUrl'],newProduct['unit'],
                                   newProduct['stock'],newProduct['pricePerUnit'],
-                                  newProduct['category']
-            );
+                                  newProduct['category']);
     	return product;
     }
 
@@ -132,16 +128,7 @@ class Product{
             	delete obj[prop];
             }
     	}
-        console.log(obj)
     }
 
 
 }
-
-//TEST
-let prodTest = new Product('Platano', 'description', 'html://imageUrl.jpg', 'pieza', 15, 3.6, 'Fruta') ;
-console.log(prodTest);
-
-let a = {"try":3129312,"uuid":"df2008a5-1c40-4dd1-9db7-8aacc03ae2fb","title":"Platano","description":"Los mejores platanos de México, directo desde Tabasco.","imageUrl":"https://images.freeimages.com/images/large-previews/4ec/banana-s-1326714.jpg","unit":"pieza","stock":15,"pricePerUnit":3.6,"category":"Fruta"};
-console.log(a);
-console.log("TRST",Product.createFromObject(a));

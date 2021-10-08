@@ -7,3 +7,7 @@ function generateUUID(){
 		return v.toString(16);
 	});
 }
+
+const random = (min, max) =>  {
+return Math.floor(Math.random() * (max - min) + min);
+  };

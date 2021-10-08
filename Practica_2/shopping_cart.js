@@ -16,7 +16,7 @@ class ProductProxy{
 
 class ShoppingCart{
 	constructor(){
-		this.product = []; //real value 
+		this.products = []; //real value 
 		this._productProxies = []; //UUID, amount
 	}
 
@@ -28,22 +28,34 @@ class ShoppingCart{
     	throw new ShoppingCartException('Proxies can not be set manually.');
     }
 
-	//product
-    get product() {
-        return this._product;
+	//products
+    get products() {
+        return this._products;
     }
 
-    set product(val) {
+    set products(val) {
     	//creamos arreglo vacio
+        this._products = [];
     	if(typeof val === 'String'){
     		val = JSON.parse(val);
     	}
-        this._product="try";
-    	//if val is array? 
-    		//for product of val
-    			//Product.createFromObject();
-    	//else
-    		//Product.createFromObject();
+
+        if(Array.isArray(val)){
+            for(let product of val){
+                //remove first char of every prop
+                if(product instanceof Product){
+                    this._products.push(product);
+                } else {
+                    this._products.push(Product.createFromObject(product));
+                }
+            }
+        } else {
+            if(product instanceof Product){
+                this._products.push(val);
+            } else {
+                this._products.push(Product.createFromObject(val));
+            }
+        }
     }
 
     addItem(productUUID, newAmount){
@@ -68,7 +80,7 @@ class ShoppingCart{
     }
 
     updateItem(productUUID, newAmount){
-    	if (newAmount == 0) this. removeItem(productUUID);
+    	if (newAmount == 0) this.removeItem(productUUID);
     	if (newAmount < 0) throw new ShoppingCartException('Amount of items to update must be a positive number');
         let agregado = false;
 
@@ -81,9 +93,9 @@ class ShoppingCart{
                 break;
             }
         }
-        //if not, throw exception indicating to use addItem
+        //if not, add it 
         if(!agregado){
-            throw new ShoppingCartException('No product with given UUID, please use addItem()');
+            this.addItem(productUUID, newAmount);
         }
     }
     
@@ -92,23 +104,24 @@ class ShoppingCart{
         for (let prox in this._productProxies){ 
             if(productUUID == this._productProxies[prox].productUUID){
                 this._productProxies.splice(prox,1);
+                break;
             }
         }
     }
     
     calculateTotal(){
-    	let total = 0;        
+    	let total = 0;
+        //creamos el products[]
+        this._products = (getProducts());
+        for(let prox in this._productProxies){
+            for(let prod in this.products){
+                if(this.products[prod].uuid == this.productProxies[prox].productUUID ){
+                    console.log(this.products[prod].title, ": ", this.products[prod].pricePerUnit,"x",this.productProxies[prox].amount)
+                    total = total + (this.products[prod].pricePerUnit * this.productProxies[prox].amount)
+                }
+            }
+        }
+        //buscamos el valor en products y lo multiplicamos por la cantidad del proxy
     	return total;
     }
 }
-
-//TEST
-let cart = new ShoppingCart;
-cart.addItem(6789,1);
-cart.addItem(1234,2);
-cart.addItem(6789,3);
-cart.addItem(54321,4);
-console.log(cart.productProxies);
-cart.updateItem(54321,100000);
-//cart.updateItem(9876,100000); //return exception
-cart.removeItem(1234);
