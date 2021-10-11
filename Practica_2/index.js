@@ -32,7 +32,7 @@ let PrdD = {"title":"Lechuga D",
 			"stock":15,
 			"pricePerUnit":80,
 			"category":"Verdura"};
-let PrdE = {"title":"Manzana",
+let PrdE = {"title":"Manzana E",
 			"description":"Aqui hice un update de producto",
 			"imageUrl":"https://images.freeimages.com/images/large-previews/4ec/banana-s-1326714.jpg",
 			"unit":"pieza",
@@ -50,8 +50,8 @@ let ranElem;
 let carrito;
 
 
-//añadimos 5 productos al catálogo
-console.log("Agregamos 5 productos");
+//Añadimos 4 productos al catálogo
+console.log("Agregamos 4 productos");
 createProduct(PrdA);
 createProduct(PrdB);
 createProduct(PrdC);
@@ -77,8 +77,8 @@ console.log("Filtro por categoria: Fruta");
 console.log(findProduct("Fruta:")); //filtro por categoria
 console.log("Filtro por tittle: Pera");
 console.log(findProduct("Pera")); //filtro por titulo
-console.log("Filtro por categoria: Verdura y tittle: Manzana");
-console.log(findProduct("Verdura:Platano")); //filtro por categoria y titulo
+console.log("Filtro por categoria: Verdura y tittle: Jitomate");
+console.log(findProduct("Verdura:Jitomate")); //filtro por categoria y titulo
 console.log("Filtro por categoria: Fruta y tittle: Manzana");
 console.log(findProduct("Fruta:Platano")); //filtro por categoria y titulo
 
@@ -114,6 +114,6 @@ console.log(carrito.productProxies);
 
 //calculamos el total del carrito de compras
 let total = carrito.calculateTotal();
-console.log(total);
+console.log("Total: ",total);
 
 
