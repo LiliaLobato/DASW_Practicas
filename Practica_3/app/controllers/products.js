@@ -111,13 +111,17 @@ class Product{
     static createFromObject(obj){
     	let newProduct = {};
     	Object.assign(newProduct, obj); //clone object and handle
-    	Product.cleanObject(newProduct);
-    	//Falta ir pasando los valores a un producto que pertenezca a la clase
-    	let product = new Product(newProduct['title'],newProduct['description'],
-                                  newProduct['imageUrl'],newProduct['unit'],
-                                  newProduct['stock'],newProduct['pricePerUnit'],
-                                  newProduct['category']);
-    	return product;
+        if(newProduct instanceof Product){
+            return newProduct;
+        } else {
+            Product.cleanObject(newProduct);
+            //Falta ir pasando los valores a un producto que pertenezca a la clase
+            let product = new Product(newProduct['title'],newProduct['description'],
+                newProduct['imageUrl'],newProduct['unit'],
+                newProduct['stock'],newProduct['pricePerUnit'],
+                newProduct['category']);
+            return product;
+        }
     }
 
     //Limpiamos el objeto recibido de todos
@@ -126,6 +130,9 @@ class Product{
     	const productProperties = ['title', 'description', 'imageUrl', 'unit', 'stock', 'pricePerUnit', 'category'];
     	for (let prop in obj){
     		//if prop not in productPrperties
+            let prop_clean = prop.replace(/_/g, "");
+            Object.defineProperty(obj, prop_clean,
+                Object.getOwnPropertyDescriptor(obj, prop));
     		if(productProperties.indexOf(prop) == -1){
             	delete obj[prop];
             }

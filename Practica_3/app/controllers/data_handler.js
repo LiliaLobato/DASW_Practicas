@@ -3,11 +3,11 @@
 const fs = require('fs');
 const Productjs = require('./products');
 let content = fs.readFileSync('./app/data/products.json');
-let productsL = JSON.parse(content).map(Productjs.createFromObject);
-console.log(productsL)
 
 //Este es el equivalente a nuestro servidor.
-const serverProducts = [];
+let serverProducts = JSON.parse(content).map(Productjs.createFromObject);
+//const serverProducts = [];
+//console.log(serverProducts)
 const filter = [];
 
 function getProducts(){
@@ -28,7 +28,8 @@ function getProductById(uuid){
 }
 
 function createProduct(product){
-	serverProducts.push(Product.createFromObject(product));
+	serverProducts.push(Productjs.createFromObject(product));
+    fs.writeFileSync('./app/data/products.json', JSON.stringify(serverProducts))
 }
 
 function updateProduct(uuid,updatedProduct){
@@ -89,3 +90,8 @@ function findCategory(category){
     	}
 	}
 }
+
+exports.getProducts = getProducts;
+exports.getProductById = getProductById;
+exports.findProduct = findProduct;
+exports.createProduct = createProduct;
