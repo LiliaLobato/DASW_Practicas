@@ -1,0 +1,24 @@
+### Llamada a Google
+GET https://google.com 
+
+### Inciso 1
+GET https://jsonplaceholder.typicode.com/users
+
+### Inciso 2
+GET https://jsonplaceholder.typicode.com/users/10
+
+### Inciso 3
+GET https://jsonplaceholder.typicode.com/users/100
+
+### Inciso 4
+POST https://jsonplaceholder.typicode.com/users
+Content-Type: application/json; charset=utf-8
+
+{
+    "name": "test test",
+    "username": "iteso",
+    "email": "asdf@iteso.mx"
+}
+
+### Inciso 5
+GET http://localhost:3000
