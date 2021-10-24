@@ -1,0 +1,19 @@
+[
+	{
+		"title":"Pera A",
+		"description":"Esta es la descripción del producto.",
+		"imageUrl":"https://images.freeimages.com/images/large-previews/4ec/banana-s-1326714.jpg",
+		"unit":"pieza",
+		"stock":15,
+		"pricePerUnit":20,
+		"category":"Fruta"
+	},
+	{
+		"title":"Pera B",
+		"description":"Esta es la descripción del producto.",
+		"imageUrl":"https://images.freeimages.com/images/large-previews/4ec/banana-s-1326714.jpg",
+		"unit":"pieza",
+		"stock":15,
+		"pricePerUnit":20,
+		"category":"Fruta"}
+]
