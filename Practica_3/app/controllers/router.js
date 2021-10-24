@@ -19,6 +19,9 @@ router.get('/home',function(req, res) {
 router.get('/shopping_cart',function(req, res) {
     res.sendFile(path.join(__dirname, '../view/shopping_cart.html'));
 });
+router.get('/style',function(req, res) {
+    res.sendFile(path.join(__dirname, '../view/style.css'));
+});
 
 
 function validateAdmin(req, res, next){
@@ -27,7 +30,7 @@ function validateAdmin(req, res, next){
   if(auth != undefined && auth == 'admin'){
     next();
   }else{
-    res.status(403).type("text/plain").send("HE HE HE");
+    res.status(403).type("text/plain").send("Acceso no autorizado");
   }
 }
 

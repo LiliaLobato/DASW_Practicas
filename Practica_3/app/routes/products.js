@@ -21,7 +21,7 @@ router.route('/:id')
     if(product != undefined ) {
       res.status(200).json(product);
     } else {
-      res.status(404).send();
+      res.status(404).send(`Producto con UUID: ${id} no existe!`);
     }
   });
 
@@ -31,7 +31,7 @@ router.route('/cart')
     let products = [];
 
     if(!Array.isArray(proxies)){
-      res.status(400).send();
+      res.status(400).send('Body debe de ser un arreglo!');
       return;
     }
     for (let proxy of proxies){
@@ -39,7 +39,7 @@ router.route('/cart')
       if(product != undefined){
         products.push(product);
       } else {
-        res.status(404).send();
+        res.status(404).send(`Producto con UUID: ${proxy.productUUID} no existe!`);
         return;        
       }
     }

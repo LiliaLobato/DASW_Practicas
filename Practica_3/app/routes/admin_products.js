@@ -17,7 +17,7 @@ router.route('/')
     }
     
     res.set('Content-Type', 'text/plain; charset=utf-8');
-    res.status(201).send(`User ${product.title} was created!`)
+    res.status(201).send(`Producto ${product.title} was created!`)
 
   });
 
@@ -35,11 +35,11 @@ router.route('/:id')
         return;
       }
     } else {
-      res.status(404).send();
+      res.status(404).send(`Producto con UUID: ${id} no existe!`);
     }
   
     res.set('Content-Type', 'text/plain; charset=utf-8');
-    res.status(200).send(`User ${product.title} actualizado!`)
+    res.status(200).send(`Producto ${product.title} actualizado!`)
   })
   .delete((req, res) => {
     let id = req.params.id;
@@ -53,11 +53,11 @@ router.route('/:id')
         return;
       }
     } else {
-      res.status(404).send();
+      res.status(404).send(`Producto con UUID: ${id} no existe!`);
     }
   
     res.set('Content-Type', 'text/plain; charset=utf-8');
-    res.status(200).send(`User ${product.title} eliminado!`)
+    res.status(200).send(`Producto ${product.title} eliminado!`)
   });
 
 module.exports = router;
