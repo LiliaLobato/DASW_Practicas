@@ -3,7 +3,7 @@
 const express = require('express');
 const router = require('./app/controllers/router');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 8080;
 
 app.use(express.json()); // Use express body-parser to parse all request bodies.
 app.use(router);

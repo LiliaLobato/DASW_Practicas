@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const routerProd = require('../routes/products');
 const routerProdAdm = require('../routes/admin_products');
+const path = require('path');
 
 router.use('/products', routerProd);
 router.use('/admin', validateAdmin , routerProdAdm);
@@ -11,6 +12,14 @@ router.use('/admin', validateAdmin , routerProdAdm);
 router.get('/',
   (req, res) => res.send('e-commerce app práctica 3')
 );
+
+router.get('/home',function(req, res) {
+    res.sendFile(path.join(__dirname, '../view/Home.html'));
+});
+router.get('/shopping_cart',function(req, res) {
+    res.sendFile(path.join(__dirname, '../view/shopping_cart.html'));
+});
+
 
 function validateAdmin(req, res, next){
   let  query = req.headers;

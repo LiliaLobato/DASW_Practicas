@@ -35,8 +35,9 @@ function createProduct(product){
 function updateProduct(uuid,updatedProduct){
     for (let prod in serverProducts){ 
     	if(uuid == serverProducts[prod].uuid){
-    		serverProducts[prod]=Product.createFromObject(updatedProduct);
-        	return serverProducts[prod];
+    		serverProducts[prod]=Productjs.createFromObject(updatedProduct);
+    		fs.writeFileSync('./app/data/products.json', JSON.stringify(serverProducts));
+    		break;
 		}
     }
 }
@@ -45,6 +46,7 @@ function deleteProduct(uuid){
     for (let prod in serverProducts){ 
     	if(uuid == serverProducts[prod].uuid){
         	serverProducts.splice(prod,1);
+    		fs.writeFileSync('./app/data/products.json', JSON.stringify(serverProducts))
         	break;
 		}
     }
@@ -95,3 +97,5 @@ exports.getProducts = getProducts;
 exports.getProductById = getProductById;
 exports.findProduct = findProduct;
 exports.createProduct = createProduct;
+exports.updateProduct = updateProduct;
+exports.deleteProduct = deleteProduct;
