@@ -7,8 +7,8 @@ btnAdd.addEventListener('click', addRow);
 
 function addRow() {
     let tr = document.createElement('tr');
-    let tdNumber = document.createElement('tdNumber');
-    let tdName = document.createElement('tdName');
+    let tdNumber = document.createElement('td');
+    let tdName = document.createElement('td');
 
     tdNumber.innerText = txtNumber.value;
     tdName.innerText = txtName.value

@@ -1,9 +1,6 @@
 "use strict";
 
 let userContainer = document.getElementById('userList');
-function userToHtml(user) {
-    return 
-}
 
 function userToHTML(user) {
     return `
