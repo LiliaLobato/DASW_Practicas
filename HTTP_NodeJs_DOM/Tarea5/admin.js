@@ -33,7 +33,11 @@ let colIdx;
 title.addEventListener('keyup', (event) => {
     //TODO: cuando está vacio entonces se deshabilita de nuevo?
     btnBoard.classList.remove('disabled');
-    if(title.value=="") console.log("HEY NO DEBERIA PODER VER UNA TABLA")
+    if(title.value=="") {
+        btnBoard.classList.add('disabled');
+        btnJson.classList.add('disabled');
+        mainTable.hidden = true;
+    }
 })
 
 /*
@@ -65,10 +69,14 @@ function generateGameBoard(event) {
     if (rows > maxCnt) game.rows = maxCnt;
     else if (rows < minCnt) game.rows = minCnt;
     else game.rows = rows;
+    rows=game.rows;
+    document.getElementById('rowsInput').value = game.rows
 
     if (cols > maxCnt) game.cols = maxCnt;
     else if (cols < minCnt) game.cols = minCnt;
     else game.cols = cols;
+    cols = game.cols;
+    document.getElementById('colsInput').value = game.cols
 
 
     // crea el arreglo de temas en el objeto game
