@@ -1,1 +1,51 @@
-[{"_uuid":"30604a81-9974-4129-af67-9bf4f8336bed","_title":"Pera B","_description":"Esta es la descripción del producto.","_imageUrl":"https://images.freeimages.com/images/large-previews/4ec/banana-s-1326714.jpg","_unit":"pieza","_stock":15,"_pricePerUnit":20,"_category":"Fruta"},{"_uuid":"ad639b42-6f3a-43ca-9140-e027883bbbec","_title":"Jitomate C","_description":"La descripcion contiene número 12345 y caracteres especiales ñ.-/?%.","_imageUrl":"https://images.freeimages.com/images/large-previews/4ec/banana-s-1326714.jpg","_unit":"pieza","_stock":15,"_pricePerUnit":1,"_category":"Verdura"},{"_uuid":"ee361007-d46e-450f-86fd-b8225d8f8c39","_title":"Lechuga D","_description":"Hello!","_imageUrl":"https://images.freeimages.com/images/large-previews/4ec/banana-s-1326714.jpg","_unit":"pieza","_stock":15,"_pricePerUnit":80,"_category":"Verdura"},{"_uuid":"169c1152-daed-4eb2-b398-82d35e1cfb6d","_title":"Manzana E","_description":"Aqui hice un update de producto","_imageUrl":"https://images.freeimages.com/images/large-previews/4ec/banana-s-1326714.jpg","_unit":"pieza","_stock":15,"_pricePerUnit":1000,"_category":"Fruta"},{"_uuid":"1e84a5fb-c90d-435f-86af-58f96215b014","_title":"Calabaza F","_description":"La descripcion contiene número 12345 y caracteres especiales ñ.-/?%.","_imageUrl":"https://images.freeimages.com/images/large-previews/4ec/banana-s-1326714.jpg","_unit":"pieza","_stock":15,"_pricePerUnit":1,"_category":"Verdura"}]
+[
+	{"try":3129312, 			
+	"uuid":"M1_UU1D_123456", 
+	"title":"Spray Natura",
+	"description":"Nullam rutrum, lacus et ullamcorper vulputate, lectus elit feugiat velit, non lacinia felis ipsum ut risus.",
+	"imageUrl":"https://image.freepik.com/free-psd/beauty-care-cosmetic-product-mock-up_23-2148891566.jpg",
+	"unit":"pieza",
+	"stock":15,
+	"pricePerUnit":140.00,
+	"category":"Fruta"},
+	
+	{"title":"Crema de Noche",
+	"description":"Nullam rutrum, lacus et ullamcorper vulputate, lectus elit feugiat velit, non lacinia felis ipsum ut risus.",
+	"imageUrl":"https://image.freepik.com/free-psd/beauty-care-cosmetic-product-mock-up_23-2148891552.jpg",
+	"unit":"bote (210ml)",
+	"stock":15,
+	"pricePerUnit":970.00,
+	"category":"Fruta"},
+	
+	{"title":"Aceite de Almendras",
+	"description":"Nullam rutrum, lacus et ullamcorper vulputate, lectus elit feugiat velit, non lacinia felis ipsum ut risus.",
+	"imageUrl":"https://image.freepik.com/free-psd/beauty-care-cosmetic-product-mock-up_23-2148891558.jpg",
+	"unit":"bote (510ml)",
+	"stock":15,
+	"pricePerUnit":150.00,
+	"category":"Verdura"},
+	
+	{"title":"Oleo Nocturno",
+	"description":"Nullam rutrum, lacus et ullamcorper vulputate, lectus elit feugiat velit, non lacinia felis ipsum ut risus.",
+	"imageUrl":"https://image.freepik.com/free-psd/beauty-care-cosmetic-product-mock-up_23-2148891545.jpg",
+	"unit":"Gotero",
+	"stock":15,
+	"pricePerUnit":700.00,
+	"category":"Verdura"},
+	
+	{"title":"Shampoo Orgánico",
+	"description":"Nullam rutrum, lacus et ullamcorper vulputate, lectus elit feugiat velit, non lacinia felis ipsum ut risus.",
+	"imageUrl":"https://image.freepik.com/free-psd/beauty-care-cosmetic-product-mock-up_23-2148891554.jpg",
+	"unit":"pieza",
+	"stock":15,
+	"pricePerUnit":500.00,
+	"category":"Fruta"},
+	
+	{"title":"Protector Solar",
+	"description":"Nullam rutrum, lacus et ullamcorper vulputate, lectus elit feugiat velit, non lacinia felis ipsum ut risus.",
+	"imageUrl":"https://image.freepik.com/free-psd/beauty-care-cosmetic-product-mock-up_23-2148891561.jpg",
+	"unit":"bote (250ml)",
+	"stock":15,
+	"pricePerUnit":140.00,
+	"category":"Fruta"}
+]

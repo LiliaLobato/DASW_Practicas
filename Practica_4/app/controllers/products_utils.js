@@ -1,25 +1,28 @@
 "use strict";
 
+const productsUrl = 'http://localhost:8080/products'
 let productcontainer = document.getElementById('mainList');
 
 function productToHtml(product){
-	return '
-	<div class = "card">
-		<img class = "card-img-top"
-			src="${product.imageUrl}" alt="">
-		<div class="card-body">
-			<p class="card-text">TEMPORAL</p>
-			<p><span> 1x12000.00</span></p>
-		</div>
-	</div>
-	';
+	return `	
+    <div class="col mb-4">
+    	<span> </span>
+      <div class="card">
+        <img src="${product._imageUrl}" class="card-img-top" alt="${product._title}">
+        <div class="card-body">
+          <h5 class="product-title">${product._title}</h5>
+          <p class="product-description">${product._description}</p>
+          <p class="product-price">1 ${product._unit} x $${product._pricePerUnit}</p>
+        </div>
+      </div>
+    </div>
+	`;
 }
 
 function productListToHtml(productList){
-	productcontainer.innerHtml = '<div class="row">\n' + productList.map(productListToHtml).join(\n) + '</div>'
+	productcontainer.innerHTML =  productList.map(productToHtml).join('\n');
 }
 
-loadProducts().then(products => {
-
-
+loadProducts(productsUrl).then(products => {
+	productListToHtml(products);
 })
