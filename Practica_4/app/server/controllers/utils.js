@@ -1,5 +1,6 @@
 "use strict";
 
+
 function generateUUID(){
 	return'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{
 		let r=Math.random()*16|0;
@@ -11,3 +12,5 @@ function generateUUID(){
 const random = (min, max) =>  {
 return Math.floor(Math.random() * (max - min) + min);
   };
+
+exports.generateUUID = generateUUID;

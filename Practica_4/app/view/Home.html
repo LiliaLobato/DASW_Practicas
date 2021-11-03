@@ -15,7 +15,7 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="style" media="all">
     <script src="https://kit.fontawesome.com/fee3aa343d.js" crossorigin="anonymous"></script>
-    
+
   </head>
 
   <body>
@@ -170,10 +170,41 @@
   </div>
 </div>
 
+<!-- Modal Agregar al carrito -->
+<div class="modal fade" id="addCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Escoge la cantidad a agregar:</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form>
+          <fieldset class="form-group">
+              <input type="number" class="form-control mb-2"  id="numItems" min="1" value="1">
+          </fieldset>
+                <div class="row">
+                  <div class="col">
+                    <button id="bnt_addCar" type="submit" class="btn btn-success btn-lg btn-block">Agregar</button>
+                  </div>
+                  <div class="col">
+                    <button id="bnt_cancelCar" type="submit" class="btn btn-danger btn-lg btn-block" data-dismiss="modal">Cancelar</button>
+                  </div>
+                </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Optional JavaScript -->
     <script type="text/javascript" src="static/ajax_handler.js"></script>
+    <script type="text/javascript" src="static/general_utils.js"></script>
     <script type="text/javascript" src="static/products_utils.js"></script>
+    <script type="text/javascript" src="static/cart_utils.js"></script>
     
 
     <!-- Bootstrap core JavaScript

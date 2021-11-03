@@ -5,9 +5,4 @@ async function loadProducts(url){
     if (response.status != 200) return [];
     let products = await response.json();
     return products;
-
-}
-
-function loadCartProducts(product){
-	
 }

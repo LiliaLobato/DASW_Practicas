@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const Productjs = require('./products');
-let content = fs.readFileSync('./app/data/products.json');
+let content = fs.readFileSync('./app/server/data/products.json');
 
 //Este es el equivalente a nuestro servidor.
 let serverProducts = JSON.parse(content).map(Productjs.createFromObject);

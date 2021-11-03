@@ -14,13 +14,13 @@ router.get('/',
 );
 
 router.get('/home',function(req, res) {
-    res.sendFile(path.join(__dirname, '../view/Home.html'));
+    res.sendFile(path.join(__dirname, '../../view/Home.html'));
 });
 router.get('/shopping_cart',function(req, res) {
-    res.sendFile(path.join(__dirname, '../view/shopping_cart.html'));
+    res.sendFile(path.join(__dirname, '../../view/shopping_cart.html'));
 });
 router.get('/style',function(req, res) {
-    res.sendFile(path.join(__dirname, '../view/style.css'));
+    res.sendFile(path.join(__dirname, '../../view/style.css'));
 });
 
 

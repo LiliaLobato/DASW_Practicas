@@ -125,3 +125,6 @@ class ShoppingCart{
     	return total;
     }
 }
+
+
+module.exports = ShoppingCart;

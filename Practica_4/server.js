@@ -1,7 +1,7 @@
 "use strict";
 
 const express = require('express');
-const router = require('./app/controllers/router');
+const router = require('./app/server/controllers/router');
 const app = express();
 const port = process.env.PORT || 8080;
 
