@@ -39,21 +39,24 @@ class ShoppingCart{
     	if(typeof val === 'String'){
     		val = JSON.parse(val);
     	}
-
         if(Array.isArray(val)){
             for(let product of val){
                 //remove first char of every prop
                 if(product instanceof Product){
                     this._products.push(product);
                 } else {
-                    this._products.push(Product.createFromObject(product));
+                    let indProduct = Product.createFromObject(product);
+                    indProduct._uuid = product._uuid;
+                    this._products.push(indProduct);
                 }
             }
         } else {
-            if(product instanceof Product){
+            if(val instanceof Product){
                 this._products.push(val);
             } else {
-                this._products.push(Product.createFromObject(val));
+                let product = Product.createFromObject(val);
+                product._uuid = val._uuid;
+                this._products.push(product);
             }
         }
     }
@@ -112,12 +115,12 @@ class ShoppingCart{
     calculateTotal(){
     	let total = 0;
         //creamos el products[]
-        this._products = (getProducts());
+        //this._products = (getProducts());
         for(let prox in this._productProxies){
             for(let prod in this.products){
-                if(this.products[prod].uuid == this.productProxies[prox].productUUID ){
-                    console.log(this.products[prod].title, ": ", this.products[prod].pricePerUnit,"x",this.productProxies[prox].amount)
-                    total = total + (this.products[prod].pricePerUnit * this.productProxies[prox].amount)
+                if(this.products[prod]._uuid == this.productProxies[prox].productUUID ){
+                    console.log(this.products[prod]._title, ": ", this.products[prod]._pricePerUnit,"x",this.productProxies[prox].amount)
+                    total = total + (this.products[prod]._pricePerUnit * this.productProxies[prox].amount)
                 }
             }
         }

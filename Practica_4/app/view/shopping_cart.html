@@ -43,79 +43,13 @@
               <button class="dropdown-item" type="button" data-toggle="modal" data-target="#Registro"> Registrar </button> 
             </div>
           </div>
-          <a href="shopping_cart" class="btn btn-dark" role="button" aria-disabled="true"><i class="fas fa-shopping-cart"></i> <span class="badge badge-light">4</span></a>
+          <a  class="btn btn-dark" role="button" aria-disabled="true" onclick="goToCart()"><i class="fas fa-shopping-cart"></i> <span class="badge badge-light" id="proxySize">0</span></a>
         </ul>
       </div>
     </nav>
 
   <div class="row p-3 row-cols-1  row-cols-md-2">
-    <div class="col-sm-6 col-md-8">
-      <div class="card">
-        <div class="card-body">
-          <div class="media">
-            <div class="media-body">
-              <h5 class="mt-0 mb-1">
-                Producto 1
-                <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-              </h5>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Cantidad:</span>
-                </div>
-                <input type="number" class="form-control" placeholder="1" id="quantity" name="quantity" min="1" max="5">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-success" type="button"><i class="fas fa-pencil-alt"></i></button>
-                </div>
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Precio:</span>
-                </div>
-                <span class="form-control" id="precio" align="center">152.00</span>
-                <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2">$ mxn</span>
-                </div>
-              </div>
-            </div>
-              <div class="media-right">
-                <img class="ml-3 shop-img" src="https://image.freepik.com/free-psd/beauty-care-cosmetic-product-mock-up_23-2148891566.jpg" alt="Generic placeholder image">
-              </div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="media">
-            <div class="media-body">
-              <h5 class="mt-0 mb-1">
-                Producto 2
-                <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-              </h5>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Cantidad:</span>
-                </div>
-                <input type="number" class="form-control" placeholder="1" id="quantity" name="quantity" min="1" max="5">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-success" type="button"><i class="fas fa-pencil-alt"></i></button>
-                </div>
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Precio:</span>
-                </div>
-                <span class="form-control" id="precio" align="center">152.00</span>
-                <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2">$ mxn</span>
-                </div>
-              </div>
-            </div>
-              <div class="media-right">
-                <img class="ml-3 shop-img" src="https://image.freepik.com/free-psd/beauty-care-cosmetic-product-mock-up_23-2148891545.jpg" alt="Generic placeholder image">
-              </div>
-          </div>
-        </div>
-      </div>
+    <div class="col-sm-6 col-md-8" id = "mainList">
     </div>
     <div class="col-sm-6 col-md-4">
       <div class="card">
@@ -124,13 +58,9 @@
             <li class="list-group-item">
               <h5 class="card-title">Total de Compra</h5>
             </li>
+            <li class="list-group-item" id = "sideList"></li>
             <li class="list-group-item">
-              <p>Producto 1: $XXXX.xx</p>
-              <p>Producto 2: $XXXX.xx</p>
-              <p>Costo de envio: $XX.xx</p>
-            </li>
-            <li class="list-group-item">
-              <p>Monto a pagar: $XXXX.xx</p>
+              <p id="cartTotal"></p>
               <button type="button" class="btn btn-outline-success btn-lg btn-block">Pagar</button>
               <a href="Home" class="btn btn-outline-danger btn-block" role="button" aria-disabled="true">Cancelar</a>
             </li>
@@ -219,6 +149,18 @@
     </div>
   </div>
 </div>
+
+    <!-- Optional JavaScript -->
+    <script type="text/javascript" src="static/ajax_handler.js"></script>
+    <script type="text/javascript" src="static/utils.js"></script>
+    
+    <script type="text/javascript" src="static/shopping_cart.js"></script>
+    <script type="text/javascript" src="static/products.js"></script>
+    
+    <script type="text/javascript" src="static/general_utils.js"></script>
+    <script type="text/javascript" src="static/cart_utils.js"></script>
+    
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

@@ -42,7 +42,7 @@
               <button class="dropdown-item" type="button" data-toggle="modal" data-target="#Registro"> Registrar </button> 
             </div>
           </div>
-          <a href="shopping_cart" class="btn btn-dark" role="button" aria-disabled="true"><i class="fas fa-shopping-cart"></i> <span class="badge badge-light">4</span></a>
+          <a  class="btn btn-dark" role="button" aria-disabled="true" onclick="goToCart()"><i class="fas fa-shopping-cart"></i> <span class="badge badge-light" id="proxySize">0</span></a>
         </ul>
       </div>
     </nav>
@@ -184,11 +184,12 @@
       <div class="modal-body mx-3">
         <form>
           <fieldset class="form-group">
-              <input type="number" class="form-control mb-2"  id="numItems" min="1" value="1">
+              <span class="d-none" id="uuidToCart"> </span>
+              <input type="number" class="form-control mb-2"  id="itemsToCart" min="1" value="1">
           </fieldset>
                 <div class="row">
                   <div class="col">
-                    <button id="bnt_addCar" type="submit" class="btn btn-success btn-lg btn-block">Agregar</button>
+                    <button id="bnt_addCar" onclick="addProductToCart()" class="btn btn-success btn-lg btn-block" data-dismiss="modal">Agregar</button>
                   </div>
                   <div class="col">
                     <button id="bnt_cancelCar" type="submit" class="btn btn-danger btn-lg btn-block" data-dismiss="modal">Cancelar</button>
@@ -202,9 +203,13 @@
 
     <!-- Optional JavaScript -->
     <script type="text/javascript" src="static/ajax_handler.js"></script>
+    <script type="text/javascript" src="static/utils.js"></script>
+    
+    <script type="text/javascript" src="static/shopping_cart.js"></script>
+    <script type="text/javascript" src="static/products.js"></script>
+    
     <script type="text/javascript" src="static/general_utils.js"></script>
     <script type="text/javascript" src="static/products_utils.js"></script>
-    <script type="text/javascript" src="static/cart_utils.js"></script>
     
 
     <!-- Bootstrap core JavaScript
