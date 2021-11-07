@@ -6,7 +6,6 @@ const cartUrl = 'http://localhost:8080/products/cart'
 function initShoppingCart(){
 	if(sessionStorage.getItem('shoppingCart')==null){
 		let cart = new ShoppingCart();
-		console.log("im empty, dont exist")
 		writeShoppingCart(cart);
 	}
 	let cart = readShoppingCart();
@@ -25,13 +24,8 @@ function writeShoppingCart(cart){
 	sessionStorage.setItem('shoppingCart',JSON.stringify(cart));
 }
 
-window.onunload = function () {
-	//sessionStorage.removeItem('shoppingCart');
-	console.log('hehe u reloaded')
-}
 
 function goToCart(){
-  	console.log("GOTOCART")
   	if(sessionStorage.getItem('shoppingCart')==null){
 		let cart = new ShoppingCart();
 		writeShoppingCart(cart);
@@ -58,7 +52,6 @@ function goToCart(){
 
 function reloadCart(){
   	let cart = readShoppingCart();
-  	console.log(cart);
   	postCart(cartUrl, cart._productProxies, 
       	(msg) => {
 	        cart.products = JSON.parse(msg)

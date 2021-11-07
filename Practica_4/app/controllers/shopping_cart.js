@@ -119,7 +119,7 @@ class ShoppingCart{
         for(let prox in this._productProxies){
             for(let prod in this.products){
                 if(this.products[prod]._uuid == this.productProxies[prox].productUUID ){
-                    console.log(this.products[prod]._title, ": ", this.products[prod]._pricePerUnit,"x",this.productProxies[prox].amount)
+                    //console.log(this.products[prod]._title, ": ", this.products[prod]._pricePerUnit,"x",this.productProxies[prox].amount)
                     total = total + (this.products[prod]._pricePerUnit * this.productProxies[prox].amount)
                 }
             }

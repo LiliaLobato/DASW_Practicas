@@ -88,7 +88,6 @@ function updateCart(clicked_id){
 	let btnCancel = document.getElementById('cancel:'+id);
 	let btnModify = document.getElementById('modify:'+id);
 	let inAmount = document.getElementById('amount:'+id);
-	console.log(id);
 	let cart = readShoppingCart();
 	cart.updateItem(id,inAmount.value);
 	inAmount.setAttribute("readonly", true);

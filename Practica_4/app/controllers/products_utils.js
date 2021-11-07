@@ -2,6 +2,12 @@
 
 let productcontainer = document.getElementById('mainList');
 
+let state = {
+  'querySet': null,
+  'page':1,
+  'rows':4
+}
+
 function productToHtml(product){
 	return `	
     <div class="col mb-4">
@@ -21,7 +27,10 @@ function productToHtml(product){
 }
 
 function productListToHtml(productList){
-  productcontainer.innerHTML =  productList.map(productToHtml).join('\n');
+  state.querySet = productList;
+  let currentData = pagination(state.querySet, state.page, state.rows);
+  pageButtons(currentData.pages)
+  productcontainer.innerHTML =  currentData.querySet.map(productToHtml).join('\n');
 }
 
 function preloadAddToCartModal(uuid){
@@ -30,7 +39,6 @@ function preloadAddToCartModal(uuid){
 }
 
 function addProductToCart(){
-  console.log("ADDTOCART")
   let productUUID = document.getElementById('uuidToCart').value;
   let amount = Number(document.getElementById('itemsToCart').value);
   let cart = readShoppingCart();
@@ -43,3 +51,31 @@ function addProductToCart(){
 loadProducts(productsUrl).then(products => {
 	productListToHtml(products);
 })
+
+function pagination(querySet, page, rows){
+  let trimStar = (page-1)*rows;
+  let trimEnd  = trimStar + rows;
+  let trimmedDate = querySet.slice(trimStar,trimEnd);
+  let pages = Math.ceil(querySet.length / rows);
+
+  return {
+    'querySet':trimmedDate,
+    'pages':pages
+  }
+}
+
+function pageButtons(page) {
+  let wrapper = document.getElementById('paginationNumber')
+  wrapper.innerHTML = ''
+  for(let pages=1;pages<=page;pages++){
+    wrapper.innerHTML += `
+      <li class="page-item"><a class="page-link" onClick="updatePag(this.innerText)">${pages}</a></li>`;
+  }
+}
+
+function updatePag(txt){
+  state.page=Number(txt);
+  let currentData = pagination(state.querySet, state.page, state.rows);
+  pageButtons(currentData.pages)
+  productcontainer.innerHTML =  currentData.querySet.map(productToHtml).join('\n');
+}
