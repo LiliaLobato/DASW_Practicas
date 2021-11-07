@@ -22,12 +22,12 @@ function productToHtml(products){
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Cantidad:</span>
             </div>
-            <input type="number" class="form-control"  id="amount::${proxy.productUUID}" min="1" 
+            <input type="number" class="form-control"  id="amount:${proxy.productUUID}" min="1" 
               readonly style="text-align:center; background-color:#fff" value=${proxy.amount}>
             <div class="input-group-append">
               <button class="btn btn-outline-success" id=modify:${proxy.productUUID} type="button" onClick="showModify(this.id)">
-              	<i class="fas fa-pencil-alt"></i></button>
-              <button class="btn btn-outline-success" id=accept:${proxy.productUUID} style="display:none" type="button"><i class="fas fa-check"></i></button>
+              	<i class="fas fa-pencil-alt"></i><span class="d-none" id=pre:${proxy.productUUID}></span></button>
+              <button class="btn btn-outline-success" id=accept:${proxy.productUUID} style="display:none" type="button" onClick="updateCart(this.id)"><i class="fas fa-check"></i></button>
               <button class="btn btn-outline-danger"  id=cancel:${proxy.productUUID} style="display:none" type="button" onClick="hideModify(this.id)">
                	<i class="fas fa-times"></i></button>
             </div>
@@ -82,23 +82,46 @@ function removeFromCart(clicked_id) {
 	reloadCart();
 }
 
-function showModify(clicked_id) {
-	console.log(clicked_id)
+function updateCart(clicked_id){
 	let id = clicked_id.split(':')[1];
 	let btnAccept = document.getElementById('accept:'+id);
 	let btnCancel = document.getElementById('cancel:'+id);
 	let btnModify = document.getElementById('modify:'+id);
+	let inAmount = document.getElementById('amount:'+id);
+	console.log(id);
+	let cart = readShoppingCart();
+	cart.updateItem(id,inAmount.value);
+	inAmount.setAttribute("readonly", true);
+	btnAccept.style.display = 'none';
+	btnCancel.style.display = 'none';
+	btnModify.style.display = '';
+	writeShoppingCart(cart);
+	reloadCart();
+}
+
+function showModify(clicked_id) {
+	let id = clicked_id.split(':')[1];
+	let btnAccept = document.getElementById('accept:'+id);
+	let btnCancel = document.getElementById('cancel:'+id);
+	let btnModify = document.getElementById('modify:'+id);
+	let inAmount = document.getElementById('amount:'+id);
+	let preVal = document.getElementById('pre:'+id);
+	inAmount.removeAttribute("readonly");
+	preVal.innerText = inAmount.value;
 	btnAccept.style.display = '';
 	btnCancel.style.display = '';
 	btnModify.style.display = 'none';
 }
 
 function hideModify(clicked_id) {
-	console.log(clicked_id)
 	let id = clicked_id.split(':')[1];
 	let btnAccept = document.getElementById('accept:'+id);
 	let btnCancel = document.getElementById('cancel:'+id);
 	let btnModify = document.getElementById('modify:'+id);
+	let inAmount = document.getElementById('amount:'+id);
+	let preVal = document.getElementById('pre:'+id);
+	inAmount.value = preVal.innerText;
+	inAmount.setAttribute("readonly", true);
 	btnAccept.style.display = 'none';
 	btnCancel.style.display = 'none';
 	btnModify.style.display = '';
