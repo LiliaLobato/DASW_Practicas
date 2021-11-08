@@ -50,6 +50,7 @@ function addProductToCart(){
 
 loadProducts(productsUrl).then(products => {
 	productListToHtml(products);
+  updatePag(1);
 })
 
 function pagination(querySet, page, rows){
@@ -69,13 +70,21 @@ function pageButtons(page) {
   wrapper.innerHTML = ''
   for(let pages=1;pages<=page;pages++){
     wrapper.innerHTML += `
-      <li class="page-item"><a class="page-link" onClick="updatePag(this.innerText)">${pages}</a></li>`;
+      <li class="page-item" id=pg${pages} onClick="updatePag(this.innerText)"><a class="page-link">${pages}</a></li>`;
   }
 }
 
 function updatePag(txt){
   state.page=Number(txt);
   let currentData = pagination(state.querySet, state.page, state.rows);
-  pageButtons(currentData.pages)
   productcontainer.innerHTML =  currentData.querySet.map(productToHtml).join('\n');
+  
+  let currentBtn = document.getElementById('pg'+state.page);
+  let allBtn = document.getElementsByClassName("page-item active")
+  for(let i = 0; i<allBtn.length; i++){
+    console.log(allBtn[0])
+    allBtn[0].className = 'page-item';
+  }
+  currentBtn.className = 'page-item active';
+
 }
