@@ -1,0 +1,96 @@
+
+/*Horizontal list customization*/
+.check_list { 
+    margin: 0; 
+    min-width: 60px;
+    width: 20%;
+ }
+.text_list {
+    margin: 0; 
+    width: 80%;
+}
+
+/*Button customization for dailies*/
+.dayBnt{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 20%;
+  max-width:100%;
+  background-color: #a8daf4;
+}
+.dayBnt.good{
+  background-color: #a8daf4;
+}
+.dayBnt.bad{
+  background-color: #ef9f9f;
+}
+.dayBnt.done{
+  background-color: #c3c0c8;
+}
+.dayBtn_list{
+    background-color: #50b5e9;
+}
+.dayBtn_list.good{
+    background-color: #50b5e9;
+}
+.dayBtn_list.bad{
+    background-color: #de3f3f;
+}
+.dayBtn_list.done{
+    background-color: #878190;
+}
+.dayBtn_list.done i{
+  visibility: visible;
+}
+.dayBnt:hover  i, 
+.dayBnt i:hover { 
+  visibility: visible;
+}
+.dayBnt i {
+  visibility: hidden;
+}
+
+/*Button customization for habits*/
+.habBnt{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 20%;
+  max-width:100%;
+  border-radius: 50%;
+  background-color: #dda146;
+}
+.habBnt.strong{
+  background-color: #229f72;
+}
+.habBnt.disabled{
+  background-color: #edecee;
+}
+.habBtn_list{
+    background-color: #ffbe5d;
+}
+.habBtn_list.strong{
+    background-color: #24cc8f;
+}
+.habBtn_list.disabled{
+    background-color: #e1dfe2;
+}
+
+
+/*General customization */
+body{
+    background-color: #f9f9f9;    
+}
+
+.top_body{
+    background-color: #36205d;
+}
+
+.cards_body{
+    background-color: #f9f9f9;
+}
+
+.card-body{
+    background-color: #edecee;
+}

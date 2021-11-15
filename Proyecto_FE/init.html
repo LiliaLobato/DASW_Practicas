@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>DASW | HABITICA</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="navbar-top.css" rel="stylesheet">
+    <link rel="stylesheet" href="init.css">
+    <script src="https://kit.fontawesome.com/fee3aa343d.js" crossorigin="anonymous"></script>
+
+  </head>
+
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark  mb-0" style="background-color: #432874;">
+      <a class="navbar-brand" href="#.html">HABITICA</a> 
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <!-- TODO LO QUE ESTÁ A LA IZQUIERDA-->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Tasks<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Group</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Challenges
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">My Challenges</a>
+              <a class="dropdown-item" href="#">Discover Challegenes</a>
+            </div>
+          </li>
+        </ul>
+
+        <!-- TODO LO QUE ESTÁ A LA DERECHA-->
+
+      </div>
+    </nav>
+
+    <div class="top_body">
+      
+      <div class="avatar">
+        <img class="d-block w-100" src="http://placehold.it/1024x700/c2d6ae/ffffff?text=IMAGEN+1" alt="First slide">
+      </div>
+    </div>
+
+    <div class="card-deck mx-2 cards_pad cards_body py-4">
+      <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mx-0" id="mainList">
+        <!-- HABITS-->
+        <div class="col mb-4">
+          <div class="card">
+            <div class="card-header">
+              HABITS
+            </div>
+            <div class="card-body" >
+              <input class="form-control mb-4" type="text" placeholder="Add a Habit" style="background-color: #e1dfe2">
+              <ul class="list-group dailies_list " style="width: 100%">
+                <li style="list-style-type:none;" class=" mb-1" >
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list">
+                      <a class="btn habBnt btn-lg" role="button" onclick="goToCart()"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-group-item text_list d-flex justify-content-between align-items-center">
+                      <ul class="list-group">
+                        <li style="list-style-type:none;">
+                          <p>HABIT BOTH ENABLED</p>
+                        </li>
+                        <li style="list-style-type:none;">
+                      <span class="badge badge-warning badge-pill">
+                        <i class="fa fa-forward" aria-hidden="true"></i> 14</span>
+                        </li> 
+                      </ul>
+                    </li>  
+                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list ">
+                      <a class="btn habBnt btn-lg" role="button" onclick="goToCart()"><i class="fa fa-minus" aria-hidden="true"></i></i></a>
+                    </li>
+                  </ul>
+                </li>
+                <li style="list-style-type:none;" class=" mb-1" >
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list disabled">
+                      <a class="btn habBnt btn-lg disabled" role="button" onclick="goToCart()" ><i class="fa fa-plus" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-group-item text_list d-flex justify-content-between align-items-center">
+                      <ul class="list-group">
+                        <li style="list-style-type:none;">
+                          <p>HABIT DISABLED</p>
+                        </li>
+                        <li style="list-style-type:none;">
+                      <span class="badge badge-warning badge-pill">
+                        <i class="fa fa-forward" aria-hidden="true"></i> 14</span>
+                        </li> 
+                      </ul>
+                    </li>  
+                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list">
+                      <a class="btn habBnt btn-lg" role="button" onclick="goToCart()"><i class="fa fa-minus" aria-hidden="true"></i></i></a>
+                    </li>
+                  </ul>
+                </li>
+                <li style="list-style-type:none;" class=" mb-1" >
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list strong">
+                      <a class="btn habBnt btn-lg strong" role="button" onclick="goToCart()" ><i class="fa fa-plus" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-group-item text_list d-flex justify-content-between align-items-center">
+                      <ul class="list-group">
+                        <li style="list-style-type:none;">
+                          <p>HABIT STRONG</p>
+                        </li>
+                        <li style="list-style-type:none;">
+                      <span class="badge badge-success badge-pill">
+                        <i class="fa fa-forward" aria-hidden="true"></i> 30</span>
+                        </li> 
+                      </ul>
+                    </li>  
+                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list disabled">
+                      <a class="btn habBnt btn-lg disabled" role="button" onclick="goToCart()"><i class="fa fa-minus" aria-hidden="true"></i></i></a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAILIES-->
+        <div class="col mb-4">
+          <div class="card">
+            <div class="card-header">
+              DAILIES
+            </div>
+            <div class="card-body" >
+              <input class="form-control mb-4" type="text" placeholder="Add a Daily" style="background-color: #e1dfe2">
+              <ul class="list-group dailies_list " style="width: 100%">
+                <li style="list-style-type:none;" class=" mb-1" >
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 dayBtn_list good">
+                      <a class="btn dayBnt btn-lg good" role="button" onclick="goToCart()"><i class="fa fa-check" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-group-item text_list d-flex justify-content-between align-items-center">
+                      <p>DAILY TASK GOOD STREAK</p>
+                      <span class="badge badge-info badge-pill mr-2">
+                        <i class="fa fa-forward" aria-hidden="true"></i> 14</span>
+                    </li>  
+                  </ul>
+                </li>
+                <li style="list-style-type:none;" class=" mb-1" >
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 dayBtn_list bad">
+                      <a class="btn dayBnt btn-lg bad" role="button" onclick="goToCart()"><i class="fa fa-check" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-group-item text_list d-flex justify-content-between align-items-center">
+                      <p>DAILY TASK BAD STREAK </p>
+                      <span class="badge badge-danger badge-pill mr-2">
+                        <i class="fa fa-forward" aria-hidden="true"></i>0</span>
+                    </li>  
+                  </ul>
+                </li>
+                <li style="list-style-type:none;" class=" mb-1" >
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 dayBtn_list done">
+                      <a class="btn dayBnt btn-lg done" role="button" onclick="goToCart()"><i class="fa fa-check" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-group-item text_list d-flex justify-content-between align-items-center">
+                      <p>DAILY TASK DONE</p>
+                      <span class="badge badge-secondary badge-pill mr-2">
+                        <i class="fa fa-forward" aria-hidden="true"></i> 14</span>
+                    </li>  
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TO DO'S-->
+        <div class="col mb-4">
+          <div class="card">
+            <div class="card-header">
+              TO DO
+            </div>
+            <div class="card-body" >
+              <input class="form-control mb-4" type="text" placeholder="Add a To Do" style="background-color: #e1dfe2">
+              <ul class="list-group dailies_list " style="width: 100%">
+                <li style="list-style-type:none;" class=" mb-1" >
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 dayBtn_list good">
+                      <a class="btn dayBnt btn-lg good" role="button" onclick="goToCart()"><i class="fa fa-check" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-group-item text_list d-flex justify-content-between align-items-center">
+                      <ul class="list-group">
+                        <li style="list-style-type:none;">
+                          <p>TO DO ON TIME</p>
+                        </li>
+                        <li style="list-style-type:none;">
+                            <span class="badge badge-info badge-pill mr-2">
+                              <i class="fa fa-calendar-o" aria-hidden="true"></i> Due in 7 days</span>
+                        </li> 
+                      </ul>
+                    </li> 
+                  </ul>
+                </li>
+                <li style="list-style-type:none;" class=" mb-1" >
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 dayBtn_list bad">
+                      <a class="btn dayBnt btn-lg bad" role="button" onclick="goToCart()"><i class="fa fa-check" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-group-item text_list d-flex justify-content-between align-items-center">
+                      <ul class="list-group">
+                        <li style="list-style-type:none;">
+                          <p>TO DO OVERDUE</p>
+                        </li>
+                        <li style="list-style-type:none;">
+                            <span class="badge badge-danger badge-pill mr-2">
+                              <i class="fa fa-calendar-o" aria-hidden="true"></i> Due 1 month ago</span>
+                        </li> 
+                      </ul>
+                    </li> 
+                  </ul>
+                </li>
+                <li style="list-style-type:none;" class=" mb-1" >
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 dayBtn_list done">
+                      <a class="btn dayBnt btn-lg done" role="button" onclick="goToCart()"><i class="fa fa-check" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-group-item text_list d-flex justify-content-between align-items-center">
+                      <ul class="list-group">
+                        <li style="list-style-type:none;">
+                          <p>TO DO DONE</p>
+                        </li>
+                        <li style="list-style-type:none;">
+                            <span class="badge badge-secondary badge-pill mr-2">
+                              <i class="fa fa-calendar-o" aria-hidden="true"></i> Done</span>
+                        </li> 
+                      </ul>
+                    </li> 
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- REWARDS-->
+        <div class="col mb-4">
+          <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+  
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+  </body>
+</html>
