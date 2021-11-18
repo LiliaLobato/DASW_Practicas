@@ -51,7 +51,7 @@
   visibility: hidden;
 }
 
-/*Button customization for habits*/
+/*Customization for habits*/
 .habBnt{
   display: flex;
   justify-content: center;
@@ -76,7 +76,47 @@
 .habBtn_list.disabled{
     background-color: #e1dfe2;
 }
+/*Modal customization for habits */
+.ModBabBtn_list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width:100%;
+  border-radius: 50%;
+  background-color: #edecee;
+}
+.ModBabBtn_list.selected{
+    background-color: #dda146;
+}
 
+/*Reward customization */
+.reward{
+    margin: 0; 
+    min-width: 50px;
+}
+
+/*Avatar customization */
+.avatar{
+    display:block;
+    margin:auto; 
+    height: 100%;
+}
+.avatar_icon { 
+    margin: 0; 
+    width: 10%;
+    background-color: #9398bf;
+    min-width: 30px;
+ }
+.avatar_progress {
+    margin: 0; 
+    width: 90%;
+}
+.avatar_stat_icon {
+    color: #36205d;
+}
+.progress-bar {
+    background-color: #9398bf !important;
+}
 
 /*General customization */
 body{
@@ -85,6 +125,10 @@ body{
 
 .top_body{
     background-color: #36205d;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
 }
 
 .cards_body{
