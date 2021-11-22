@@ -7,14 +7,14 @@ class DailyException{
 }
 
 class Daily{
-	constructor(title) {
+	constructor(title, difficulty, tagId, validOn, status, streak) {
         this._id = generateId('daily');
         this.title = title
-        this.dificultad = "easy"
-        this.tagId = ''
-        this.validOn = ["mon","tue"]
-        this.status = "good"
-        this.streak = 0
+        this.difficulty = difficulty
+        this.tagId = tagId
+        this.validOn = validOn
+        this.status = status
+        this.streak = streak
     }
     //id
     get id() {
@@ -33,44 +33,54 @@ class Daily{
     	}
         this._title = val;
     }
-    //dificultad
-    get dificultad() {
-        return this._dificultad;
+    //difficulty
+    get difficulty() {
+        return this._difficulty;
     }
-    set dificultad(val) {
-    	if(typeof val !== "string" || val == ''){
-    		throw new DailyException('dificultad cannot be empty.');
-    	}
-        this._dificultad = val;
+    set difficulty(val) {
+        if( val == '' || val === undefined){
+            this._difficulty = "easy";
+        } else {
+            if(typeof val !== "string"){
+                throw new DailyException('difficulty cannot be empty.');
+            }
+            this._difficulty = val;
+        }
     }
     //tagId
     get tagId() {
         return this._tagId;
     }
     set tagId(val) {
-    	if(typeof val !== "string"){
-    		throw new DailyException('tagId is not valid.');
-    	}
-        this._tagId = val;
+        if(typeof val !== "string" && val !== undefined){
+            throw new DailyException('tagId is not valid.');
+        }
+        if(val === undefined){
+            this._tagId = '';
+        }else{
+            this._tagId = val;
+        }
     }
     //validOn
     get validOn() {
         return this._validOn;
     }
     set validOn(val) {
-
         this._validOn = [];
         if(Array.isArray(val)){
             for(let day of val){
-                if(day !== "mon" || day !== "tue" || day !== "wed" || day !== "thu" ||
-                   day !== "fri" || day !== "sat" || day !== "sun" || val !== ''){
+                if(day !== "mon" && day !== "tue" && day !== "wed" && day !== "thu" &&
+                   day !== "fri" && day !== "sat" && day !== "sun" && val !== ''){
                     throw new HabitException('day of validOn not valid.');
                 }
                 this._validOn.push(day);
             }
         } else {
-            if(val !== "mon" || val !== "tue" || val !== "wed" || val !== "tue" ||
-               val !== "fri" || val !== "sat" || val !== "sun" || val !== ''){
+            if(val == ''  || val === undefined){
+                val = '';
+            }
+            if(val !== "mon" && val !== "tue" && val !== "wed" && val !== "tue" &&
+               val !== "fri" && val !== "sat" && val !== "sun" && val !== ''){
                 throw new HabitException('day of validOn not valid.');
             }
             this._validOn.push(val);
@@ -81,23 +91,31 @@ class Daily{
         return this._status;
     }
     set status(val) {
-        if(val !== "bad" || val !== "good" || val !== "done"){
-            throw new HabitException('status not valid.');
+        if( val == ''  || val === undefined){
+            this._status = "good";
+        } else {
+            if(val !== "bad" && val !== "good" && val !== "done"){
+                throw new HabitException('status not valid.');
+            }
+            if(typeof val !== "string"){
+                throw new DailyException('status cannot be empty.');
+            }
+            this._status = val;
         }
-        if(typeof val !== "string" || val == ''){
-            throw new DailyException('status cannot be empty.');
-        }
-        this._status = val;
     }
     //streak
     get streak() {
         return this._streak;
     }
     set streak(val) {
-        if(typeof val !== "number" || val < 0){
+        if(val === undefined){
+            this._streak = 0;
+        } else {
+            if(typeof val !== "number" || val < 0){
             throw new DailyException('streak cannot be negative or not number.');
+            }
+            this._streak = val;
         }
-        this._streak = val;
     }
 
     //Convertimos el String de JSON recibido 
@@ -116,14 +134,14 @@ class Daily{
     	Object.assign(newDaily, obj); //clone object and handle
     	Daily.cleanObject(newDaily);
     	//Falta ir pasando los valores a un Dailyo que pertenezca a la clase
-    	let daily = new Daily(newDaily['title']);
+    	let daily = new Daily(newDaily['title'], newDaily['difficulty'], newDaily['tagId'], newDaily['validOn'], newDaily['status'], newDaily['streak']);
     	return daily;
     }
 
     //Limpiamos el objeto recibido de todos
     //aquellos valores ajenos a la clase Daily
     static cleanObject(obj){
-    	const DailyProperties = ['title', 'dificultad', 'tagId', 'validOn', 'status', 'streak'];
+    	const DailyProperties = ['title', 'difficulty', 'tagId', 'validOn', 'status', 'streak'];
 
     	for (let prop in obj){
     		//if prop not in DailyProperties

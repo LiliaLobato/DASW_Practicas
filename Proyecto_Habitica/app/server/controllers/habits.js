@@ -7,15 +7,15 @@ class HabitException{
 }
 
 class Habit{
-	constructor(title) {
+	constructor(title, difficulty, tagId, reset, bntCnt, status, streak) {
         this._id = generateId('habit');
         this.title = title
-        this.dificultad = "easy"
-        this.tagId = ''
-        this.reset = "semanal"
-        this.bntCnt = ["positive","negative"]
-        this.status = "weak"
-        this.streak = 0
+        this.difficulty = difficulty
+        this.tagId = tagId
+        this.reset = reset
+        this.bntCnt = bntCnt
+        this.status = status
+        this.streak = streak
     }
     //id
     get id() {
@@ -34,35 +34,48 @@ class Habit{
     	}
         this._title = val;
     }
-    //dificultad
-    get dificultad() {
-        return this._dificultad;
+    //difficulty
+    get difficulty() {
+        return this._difficulty;
     }
-    set dificultad(val) {
-    	if(typeof val !== "string" || val == ''){
-    		throw new HabitException('dificultad cannot be empty.');
-    	}
-        this._dificultad = val;
+    set difficulty(val) {
+        if( val == '' || val === undefined){
+            this._difficulty = "easy";
+        } else {
+            if(typeof val !== "string"){
+                throw new HabitException('difficulty cannot be empty.');
+            }
+            this._difficulty = val;
+        }
     }
     //tagId
     get tagId() {
         return this._tagId;
     }
     set tagId(val) {
-    	if(typeof val !== "string"){
-    		throw new HabitException('tagId is not valid.');
-    	}
-        this._tagId = val;
+        if(typeof val !== "string" && val !== undefined){
+            throw new HabitException('tagId is not valid.');
+        }
+        if(val === undefined){
+            this._tagId = '';
+        }else{
+            this._tagId = val;
+        }
     }
     //reset
     get reset() {
         return this._reset;
     }
     set reset(val) {
-    	if(typeof val !== "string" || val == ''){
-    		throw new HabitException('reset cannot be empty.');
-    	}
         this._reset = val;
+        if( val == '' || val === undefined){
+            this._reset = "weekly";
+        } else {
+            if(typeof val !== "string"){
+                throw new HabitException('reset cannot be empty.');
+            }
+            this._reset = val;
+        }
     }
     //bntCnt
     get bntCnt() {
@@ -72,13 +85,16 @@ class Habit{
         this._bntCnt = [];
         if(Array.isArray(val)){
             for(let bnt of val){
-                if(bnt !== "positive" || bnt !== "negative" || bnt !== ''){
+                if(bnt !== "positive" && bnt !== "negative" && bnt !== ''){
                     throw new HabitException('bntCnt not valid.');
                 }
                 this._bntCnt.push(bnt);
             }
         } else {
-            if(val !== "positive" || val !== "negative" || val !== ''){
+            if(val == ''  || val === undefined){
+                val = "positive";
+            }
+            if(val !== "positive" && val !== "negative" && val !== ''){
                 throw new HabitException('bntCnt not valid.');
             }
             this._bntCnt.push(val);
@@ -89,23 +105,32 @@ class Habit{
         return this._status;
     }
     set status(val) {
-        if(val !== "weak" || val !== "strong"){
-            throw new HabitException('status not valid.');
-        }
-        if(typeof val !== "string" || val == ''){
-            throw new HabitException('status cannot be empty.');
-        }
         this._status = val;
+        if( val == ''  || val === undefined){
+            this._status = "weak";
+        } else {
+            if(val !== "weak" && val !== "strong"){
+                throw new HabitException('status not valid.');
+            }
+            if(typeof val !== "string"){
+                throw new HabitException('status cannot be empty.');
+            }
+            this._status = val;
+        }
     }
     //streak
     get streak() {
         return this._streak;
     }
     set streak(val) {
-        if(typeof val !== "number" || val < 0){
+        if(val === undefined){
+            this._streak = 0;
+        } else {
+            if(typeof val !== "number" || val < 0){
             throw new HabitException('streak cannot be negative or not number.');
+            }
+            this._streak = val;
         }
-        this._streak = val;
     }
 
     //Convertimos el String de JSON recibido 
@@ -124,14 +149,14 @@ class Habit{
     	Object.assign(newHabit, obj); //clone object and handle
     	Habit.cleanObject(newHabit);
     	//Falta ir pasando los valores a un Habito que pertenezca a la clase
-    	let habit = new Habit(newHabit['title']);
+    	let habit = new Habit(newHabit['title'], newHabit['difficulty'], newHabit['tagId'], newHabit['reset'], newHabit['bntCnt'], newHabit['status'], newHabit['streak']);
     	return habit;
     }
 
     //Limpiamos el objeto recibido de todos
     //aquellos valores ajenos a la clase Habit
     static cleanObject(obj){
-    	const HabitProperties = ['title', 'dificultad', 'tagId', 'reset', 'bntCnt', 'status', 'streak'];
+    	const HabitProperties = ['title', 'difficulty', 'tagId', 'reset', 'bntCnt', 'status', 'streak'];
         
         for (let prop in obj){
     		//if prop not in HabitProperties

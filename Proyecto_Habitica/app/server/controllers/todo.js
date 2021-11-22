@@ -7,13 +7,13 @@ class TodoException{
 }
 
 class Todo{
-	constructor(title) {
+	constructor(title, difficulty, tagId, date, status) {
         this._id = generateId('todo');
         this.title = title
-        this.dificultad = "easy"
-        this.tagId = ''
-        this.date = getTodayDate();
-        this.status = "good"
+        this.difficulty = difficulty
+        this.tagId = tagId
+        this.date = date
+        this.status = status
     }
     //id
     get id() {
@@ -32,58 +32,64 @@ class Todo{
     	}
         this._title = val;
     }
-    //dificultad
-    get dificultad() {
-        return this._dificultad;
+    //difficulty
+    get difficulty() {
+        return this._difficulty;
     }
-    set dificultad(val) {
-    	if(typeof val !== "string" || val == ''){
-    		throw new TodoException('dificultad cannot be empty.');
-    	}
-        this._dificultad = val;
+    set difficulty(val) {
+        if( val == '' || val === undefined){
+            this._difficulty = "easy";
+        } else {
+            if(typeof val !== "string"){
+                throw new TodoException('difficulty cannot be empty.');
+            }
+            this._difficulty = val;
+        }
     }
     //tagId
     get tagId() {
         return this._tagId;
     }
     set tagId(val) {
-    	if(typeof val !== "string"){
+    	if(typeof val !== "string" && val !== undefined){
     		throw new TodoException('tagId is not valid.');
     	}
-        this._tagId = val;
+        if(val === undefined){
+            this._tagId = '';
+        }else{
+            this._tagId = val;
+        }
     }
     //date
     get date() {
         return this._date;
     }
     set date(val) {
-    	if(typeof val !== "string" || val == ''){
-    		throw new TodoException('date cannot be empty.');
-    	}
-        this._date = val;
+        if(val == '' || val === undefined){
+            this._date = getTodayDate();
+        } else {
+            if(typeof val !== "string"){
+                throw new TodoException('date cannot be empty.');
+            }
+            this._date = val;
+        }
     }
     //status
     get status() {
         return this._status;
     }
     set status(val) {
-        if(val !== "bad" || val !== "good" || val !== "done"){
-            throw new HabitException('status not valid.');
+        if( val == ''  || val === undefined){
+            this._status = "good";
+        } else {
+            if(val !== "bad" && val !== "good" && val !== "done"){
+                throw new HabitException('status not valid.');
+            }
+            if(typeof val !== "string"){
+                throw new TodoException('status cannot be empty.');
+            }
+            this._status = val;
         }
-        if(typeof val !== "string" || val == ''){
-            throw new TodoException('status cannot be empty.');
-        }
-        this._status = val;
-    }
-    //streak
-    get streak() {
-        return this._streak;
-    }
-    set streak(val) {
-        if(typeof val !== "number" || val < 0){
-            throw new TodoException('streak cannot be negative or not number.');
-        }
-        this._streak = val;
     }
 
     //Convertimos el String de JSON recibido 
@@ -94,22 +100,21 @@ class Todo{
     }
 
     //Convertimos el objeto recibido en una
-    //nueva instancia de Todoo
-
+    //nueva instancia de Todo
     //le entra algo como let a = {'bntCnt': 15};
     static createFromObject(obj){
     	let newTodo = {};
     	Object.assign(newTodo, obj); //clone object and handle
     	Todo.cleanObject(newTodo);
     	//Falta ir pasando los valores a un Todoo que pertenezca a la clase
-    	let todo = new Todo(newTodo['title']);
+    	let todo = new Todo(newTodo['title'], newTodo['difficulty'], newTodo['tagId'], newTodo['date'], newTodo['status']);
     	return todo;
     }
 
     //Limpiamos el objeto recibido de todos
     //aquellos valores ajenos a la clase Todo
     static cleanObject(obj){
-    	const TodoProperties = ['title', 'dificultad', 'tagId', 'date', 'bntCnt', 'status', 'streak'];
+    	const TodoProperties = ['title', 'difficulty', 'tagId', 'date', 'status'];
     	for (let prop in obj){
     		//if prop not in TodoProperties
     		if(TodoProperties.indexOf(prop) == -1){

@@ -57,7 +57,7 @@ class Reward{
         return this._category;
     }
     set category(val) {
-        if(val !== "health" || val !== "experience"){
+        if (val !== "health" && val !== "experience"){
             throw new RewardException('category not valid.');
         }
     	if(typeof val !== "string" || val == ''){
@@ -92,7 +92,7 @@ class Reward{
     	Object.assign(newReward, obj); //clone object and handle
     	Reward.cleanObject(newReward);
     	//Falta ir pasando los valores a un Rewardo que pertenezca a la clase
-    	let reward = new Reward(newReward['title']);
+    	let reward = new Reward(newReward['title'], newReward['rewardImg'], newReward['price'], newReward['category'], newReward['points']);
     	return reward;
     }
 
