@@ -9,6 +9,12 @@
     margin: 0; 
     width: 80%;
 }
+.tab_filter{
+    color: black !important;
+}
+.tag_search{
+    max-width: 500px;
+}
 
 /*Button customization for dailies*/
 .dayBnt{
@@ -92,7 +98,14 @@
 /*Reward customization */
 .reward{
     margin: 0; 
-    min-width: 50px;
+    min-width: 75px;
+    max-width: 150px;
+}
+.reward_img{
+    background-color: #9398bf;
+}
+.reward_body{
+    background-color: white !important;
 }
 
 /*Avatar customization */
@@ -100,6 +113,7 @@
     display:block;
     margin:auto; 
     height: 100%;
+    max-width: 300px;
 }
 .avatar_icon { 
     margin: 0; 

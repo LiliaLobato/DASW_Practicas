@@ -6,15 +6,23 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>DASW | HABITICA</title>
+    <title>HABITICA</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="navbar-top.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/fee3aa343d.js" crossorigin="anonymous"></script>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="../server/controllers/utils.js"></script>
+    <script type="text/javascript" src="../server/controllers/daily.js"></script>
+    <script type="text/javascript" src="../server/controllers/habits.js"></script>
+    <script type="text/javascript" src="../server/controllers/reward.js"></script>
+    <script type="text/javascript" src="../server/controllers/tag.js"></script>
+    <script type="text/javascript" src="../server/controllers/user.js"></script>
+    <script type="text/javascript" src="../server/controllers/data_handler.js"></script>
 
   </head>
 
@@ -33,9 +41,6 @@
           <li class="nav-item active">
             <a class="nav-link" href="#">Tasks<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Group</a>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Challenges
@@ -48,6 +53,8 @@
         </ul>
 
         <!-- TODO LO QUE ESTÁ A LA DERECHA-->
+        <button type="button" class="btn btn-outline-light my-0 py-0" style="height: inherit; border: 0px;">
+          <i class="fa fa-user" aria-hidden="true"></i> </button>
 
       </div>
     </nav>
@@ -56,7 +63,7 @@
       <div class="card mb-0" style="max-width: 750px;">
         <div class="row no-gutters" style="background-color: #edecee;">
           <div class="col-md-4 avatar" style="width: auto; height: 100%">
-            <img src="http://placehold.it/300x300/c2d6ae/ffffff?text=AVATAR+200x200" class="card-img" alt="...">
+            <img src="./avatar/3.png" class="card-img" alt="...">
           </div>
           <div class="col" style="background-color: #edecee;">
             <div class="card-body" >
@@ -65,7 +72,7 @@
 
               <ul class="list-group list-group-horizontal pb-1">
                 <li class="list-group-item avatar_icon d-flex justify-content-center align-items-center p-2">
-                  <i class="fa fa-money avatar_stat_icon"  aria-hidden="true"></i>
+                  <img class="card-img-top" src="./Objects/coin.png" alt="Card image cap">
                 </li>
                 <li class="list-group-item avatar_progress d-flex align-items-center py-2">
                     <span class="m-0 p-0 current_coins">342876423</span>
@@ -75,23 +82,25 @@
 
               <ul class="list-group list-group-horizontal pb-1">
                 <li class="list-group-item avatar_icon d-flex justify-content-center align-items-center p-2">
-                  <i class="fa fa-heart avatar_stat_icon" aria-hidden="true"></i>
+                  <img class="card-img-top" src="./Objects/heart.png" alt="Card image cap">
                 </li>
                 <li class="list-group-item avatar_progress d-flex justify-content-between align-items-center">
                   <div class="progress" style="width: 100%;">
-                    <div class="progress-bar " role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">HEALT</div>
+                    <div class="progress-bar " role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">HEALTH</div>
                   </div>
+                  <p class="m-0 p-0 pl-2">87/100</p>
                 </li> 
               </ul>
 
               <ul class="list-group list-group-horizontal ">
                 <li class="list-group-item avatar_icon d-flex justify-content-center align-items-center p-2 ">
-                  <i class="fa fa-star avatar_stat_icon" aria-hidden="true"></i>
+                  <img class="card-img-top" src="./Objects/experience.png" alt="Card image cap">
                 </li>
                 <li class="list-group-item avatar_progress d-flex justify-content-between align-items-center">
                   <div class="progress" style="width: 100%;">
                     <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">EXPERIENCE</div>
                   </div>
+                  <p class="m-0 p-0 pl-2">87/100</p>
                 </li> 
               </ul>
 
@@ -100,9 +109,19 @@
           </div>
         </div>
       </div>
+      
+      <div class="form-row justify-content-center mt-3 mb-0" style="height:40px;">
+        <div class="form-group col-md-3 tag_search">
+          <input class="form-control " type="text" placeholder="Search.." style="height: inherit;">        
+        </div>
+        <button type="button" class="btn btn-warning my-0 py-0" style="height: inherit;">
+          <i class="fa fa-filter" aria-hidden="true"></i> </button>    
     </div>
 
+    </div>
+    
     <div class="card-deck mx-2 cards_pad cards_body mt-3">
+
       <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mx-0" id="mainList">
         <!-- HABITS-->
         <div class="col mb-4">
@@ -185,7 +204,17 @@
         <div class="col mb-4">
           <div class="card">
             <div class="card-header">
-              DAILIES
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link tab_filter active" href="#">DAILIES</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link tab_filter" href="#">ACTIVE</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link tab_filter" href="#">NOT ACTIVE</a>
+                </li>
+              </ul>
             </div>
             <div class="card-body" >
               <input class="form-control mb-4" type="text" placeholder="Add a Daily" style="background-color: #e1dfe2">
@@ -235,7 +264,17 @@
         <div class="col mb-4">
           <div class="card">
             <div class="card-header">
-              TO DO
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link tab_filter active" href="#">TO DO</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link tab_filter" href="#">ACTIVE</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link tab_filter" href="#">COMPLETE</a>
+                </li>
+              </ul>
             </div>
             <div class="card-body" >
               <input class="form-control mb-4" type="text" placeholder="Add a To Do" style="background-color: #e1dfe2">
@@ -303,21 +342,30 @@
         <div class="col mb-4">
           <div class="card">
             <div class="card-header">
-              REWARDS
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link tab_filter active" href="#">REWARDS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link tab_filter" href="#">+ HEALTH</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link tab_filter" href="#">+ EXP</a>
+                </li>
+              </ul>
             </div>
             <div class="card-body" >
-              <input class="form-control mb-4" type="text" placeholder="Add a To Do" style="background-color: #e1dfe2">
               <div class="card-deck">
-                <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 mx-0">
+                <div class="row row-cols-2 row-cols-sm-3 row-cols-md-2 row-cols-lg-2 row-cols-xl-2 mx-0">
                   
                   <div class = "col m-0 p-0">
                     <div class="card reward mb-2" >
-                      <img class="card-img-top" src="http://placehold.it/300x300/c7bcf3/ffffff?text=200x200" alt="Card image cap">
-                      <div class="card-body">
+                      <img class="card-img-top reward_img" src="./Objects/1.png" alt="Card image cap">
+                      <div class="card-body reward_body">
                         <p class="card-title text-center">ITEM</p>
                         <span class=" card-text text-muted">
                           <p class="m-0 p-0" id="reward_coins">37 coins</p>
-                          <p class="m-0 p-0" id="reward_salud">+ 126 healt</p>
+                          <p class="m-0 p-0" id="reward_salud">+ 126 health</p>
                         </span>
                       </div>
                     </div>
@@ -325,12 +373,12 @@
 
                   <div class = "col m-0 p-0">
                     <div class="card reward mb-2" >
-                      <img class="card-img-top" src="http://placehold.it/300x300/c7bcf3/ffffff?text=200x200" alt="Card image cap">
-                      <div class="card-body">
+                      <img class="card-img-top reward_img" src="./Objects/2.png" alt="Card image cap">
+                      <div class="card-body reward_body">
                         <p class="card-title text-center">ITEM</p>
                         <span class=" card-text text-muted">
                           <p class="m-0 p-0" id="reward_coins">37 coins</p>
-                          <p class="m-0 p-0" id="reward_salud">+ 126 healt</p>
+                          <p class="m-0 p-0" id="reward_salud">+ 126 health</p>
                         </span>
                       </div>
                     </div>
@@ -338,12 +386,12 @@
 
                   <div class = "col m-0 p-0">
                     <div class="card reward mb-2" >
-                      <img class="card-img-top" src="http://placehold.it/300x300/c7bcf3/ffffff?text=200x200" alt="Card image cap">
-                      <div class="card-body">
+                      <img class="card-img-top reward_img" src="./Objects/4.png" alt="Card image cap">
+                      <div class="card-body reward_body">
                         <p class="card-title text-center">ITEM</p>
                         <span class=" card-text text-muted">
                           <p class="m-0 p-0" id="reward_coins">37 coins</p>
-                          <p class="m-0 p-0" id="reward_salud">+ 126 healt</p>
+                          <p class="m-0 p-0" id="reward_salud">+ 126 health</p>
                         </span>
                       </div>
                     </div>
@@ -488,7 +536,7 @@
               <select class="form-control mb-2" id="TagHabit">
                     <option>AUN NO IMPLEMENTADO</option>
               </select>
-              <label class="m-0"  data-error="wrong" data-success="right" for="resetCounterHabit">Valid on: </label>
+              <label class="m-0"  data-error="wrong" data-success="right" for="resetCounterHabit">Valid on </label>
               <div class="btn-group mr-2 d-flex justify-content-between align-items-center" role="group" aria-label="First group">
                 <button type="button" class="btn btn-warning btn-sm">Mon</button>
                 <button type="button" class="btn btn-warning btn-sm">Tue</button>
@@ -514,9 +562,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
 
   </body>
