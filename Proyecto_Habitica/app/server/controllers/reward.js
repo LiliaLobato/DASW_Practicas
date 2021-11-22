@@ -1,5 +1,7 @@
 "use strict";
 
+const utils = require('./utils');
+
 class RewardException{
 	constructor(errorMessage){
 		this.errorMessage = errorMessage;
@@ -8,7 +10,7 @@ class RewardException{
 
 class Reward{
 	constructor(title, rewardImg, price, category, points) {
-        this._id = generateId('reward');
+        this._id = utils.generateId('reward');
         this.title = title
         this.rewardImg = rewardImg
         this.price = price
@@ -50,14 +52,14 @@ class Reward{
         if(typeof val !== "number" || val < 0){
             throw new RewardException('streak cannot be negative or not number.');
         }
-        this._streak = val;
+        this._price = val;
     }
     //category
     get category() {
         return this._category;
     }
     set category(val) {
-        if (val !== "health" && val !== "experience"){
+        if (val !== "life" && val !== "exp"){
             throw new RewardException('category not valid.');
         }
     	if(typeof val !== "string" || val == ''){
@@ -73,7 +75,7 @@ class Reward{
         if(typeof val !== "number" || val < 0){
             throw new RewardException('streak cannot be negative or not number.');
         }
-        this._streak = val;
+        this._points = val;
     }
 
     //Convertimos el String de JSON recibido 
@@ -90,10 +92,14 @@ class Reward{
     static createFromObject(obj){
     	let newReward = {};
     	Object.assign(newReward, obj); //clone object and handle
-    	Reward.cleanObject(newReward);
-    	//Falta ir pasando los valores a un Rewardo que pertenezca a la clase
-    	let reward = new Reward(newReward['title'], newReward['rewardImg'], newReward['price'], newReward['category'], newReward['points']);
-    	return reward;
+        if(newReward instanceof Reward){
+            return newReward;
+        } else {
+        	Reward.cleanObject(newReward);
+        	//Falta ir pasando los valores a un Rewardo que pertenezca a la clase
+        	let reward = new Reward(newReward['title'], newReward['rewardImg'], newReward['price'], newReward['category'], newReward['points']);
+        	return reward;
+        }
     }
 
     //Limpiamos el objeto recibido de todos
@@ -102,11 +108,14 @@ class Reward{
     	const RewardProperties = ['title', 'rewardImg', 'price', 'category', 'points'];
     	for (let prop in obj){
     		//if prop not in RewardProperties
+            let prop_clean = prop.replace(/_/g, "");
+            Object.defineProperty(obj, prop_clean,
+                Object.getOwnPropertyDescriptor(obj, prop));
     		if(RewardProperties.indexOf(prop) == -1){
             	delete obj[prop];
             }
     	}
     }
-
-
 }
+
+module.exports = Reward;

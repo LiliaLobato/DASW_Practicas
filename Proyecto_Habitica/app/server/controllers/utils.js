@@ -17,3 +17,6 @@ function getTodayDate(){
 const random = (min, max) =>  {
 return Math.floor(Math.random() * (max - min) + min);
   };
+
+  
+exports.generateId = generateId;

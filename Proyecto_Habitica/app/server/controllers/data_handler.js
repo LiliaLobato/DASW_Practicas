@@ -1,11 +1,15 @@
 "use strict";
+const fs = require('fs');
+const Rewardjs = require('./reward');
+let content = fs.readFileSync('./app/server/data/rewards.js');
 
 //Este es el equivalente a nuestro servidor.
 const serverHabit = [];
 const serverDaily = [];
 const serverTodo = [];
 const serverTag = [];
-const serverReward = [];
+//const serverReward = [];
+let serverReward = JSON.parse(content).map(Rewardjs.createFromObject);
 const filter = [];
 
 //Tags
@@ -36,12 +40,14 @@ function getRewards(){
 	return serverReward;
 }
 function createReward(reward){
-	serverReward.push(Reward.createFromObject(reward));
+	serverReward.push(Rewardjs.createFromObject(product));
+    fs.writeFileSync('./app/data/rewards.json', JSON.stringify(serverReward));
 }
 function deleteReward(id){
     for (let reward in serverReward){ 
     	if(id == serverReward[reward].id){
         	serverReward.splice(reward,1);
+        	fs.writeFileSync('./app/data/rewards.json', JSON.stringify(serverReward));
         	break;
 		}
     }
@@ -150,11 +156,7 @@ function updateHabit(id,updatedHabit){
     }
 }
 
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////
 
 function findProduct(query){
 	var fields = String(query).split(':');
@@ -196,3 +198,8 @@ function findCategory(category){
     	}
 	}
 }
+
+exports.getRewards = getRewards;
+exports.createReward = createReward;
+exports.deleteReward = deleteReward;
+exports.getRewardById = getRewardById;
