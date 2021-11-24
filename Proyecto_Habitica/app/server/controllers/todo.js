@@ -9,11 +9,12 @@ class TodoException{
 class Todo{
 	constructor(title, difficulty, tagId, date, status) {
         this._id = generateId('todo');
+        this.userId = //sesionStorage($userId)
         this.title = title
-        this.difficulty = difficulty
-        this.tagId = tagId
-        this.date = date
-        this.status = status
+        //this.difficulty = difficulty //pendiente
+        this.tag = tag
+        this.date = date //calcular si es good || bad 23/11/2021 getdate() => 22/11/2021
+        this.completed = completed //true == done; flase == pending
     }
     //id
     get id() {

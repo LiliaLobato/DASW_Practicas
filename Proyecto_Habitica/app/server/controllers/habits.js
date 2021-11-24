@@ -9,13 +9,13 @@ class HabitException{
 class Habit{
 	constructor(title, difficulty, tagId, reset, bntCnt, status, streak) {
         this._id = generateId('habit');
+        this.userId = //sesionStorage($userId)
         this.title = title
-        this.difficulty = difficulty
-        this.tagId = tagId
-        this.reset = reset
-        this.bntCnt = bntCnt
-        this.status = status
-        this.streak = streak
+        //this.difficulty = difficulty //pendiente
+        this.tag = tag
+        //this.reset = reset //user will have a bnt to reset to 0
+        // this.bntCnt = bntCnt //negative did not make sense :D
+        this.counter = counter //status se obtiene de streak
     }
     //id
     get id() {

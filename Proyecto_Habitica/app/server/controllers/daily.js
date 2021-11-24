@@ -9,12 +9,14 @@ class DailyException{
 class Daily{
 	constructor(title, difficulty, tagId, validOn, status, streak) {
         this._id = generateId('daily');
+        this.userId = //sesionStorage($userId)
         this.title = title
-        this.difficulty = difficulty
-        this.tagId = tagId
-        this.validOn = validOn
-        this.status = status
-        this.streak = streak
+        //this.difficulty = difficulty //pendiente
+        this.tag = tag
+        this.validOn = validOn 
+        this.updatedAt = updatedAt //last date when it was udpated
+        this.completed = completed //true == hecho, flase == not done
+        this.counter = counter //status se obtiene de streak
     }
     //id
     get id() {

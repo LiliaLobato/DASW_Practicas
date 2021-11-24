@@ -9,7 +9,7 @@ class TagException{
 class Tag{
 	constructor(title) {
         this._id = generateId('tag');
-        this.title = title
+        this.title = title //ya estan definidas, el filtro es un checkbox
     }
     //id
     get id() {

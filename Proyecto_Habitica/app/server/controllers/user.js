@@ -14,14 +14,13 @@ class TagProxy{
 
 class userData{
 	constructor(avatarImg, avatarName, avatarLevel, avatarCoins, avatarHealth, avatarExp){
-        this._id = generateId('user');
-        this.avatarImg = avatarImg
+        this._id = generateId('user'); //al iniciar mando {nombre, correo, contraseña, level, coins, health}
+        this.avatarImg = avatarImg //guarda num
         this.avatarName = avatarName
-        this.avatarLevel = avatarLevel
-        this.avatarCoins = avatarCoins
-        this.avatarHealth = avatarHealth
-        this.avatarExp = avatarExp
-        this._tagProxies = []
+        this.avatarLevel = avatarLevel //default 1
+        this.avatarCoins = avatarCoins //default 1000
+        this.avatarHealth = avatarHealth //default 1000
+        this.avatarExp = avatarExp //default 0
 	}
     //id
     get id() {
