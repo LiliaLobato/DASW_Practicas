@@ -21,7 +21,7 @@ router.route('/:id')
     if(product != undefined ) {
       res.status(200).json(product);
     } else {
-      res.status(404).send(`Producto con UUID: ${id} no existe!`);
+      res.status(404).send(`Reward con UUID: ${id} no existe!`);
     }
   });
 

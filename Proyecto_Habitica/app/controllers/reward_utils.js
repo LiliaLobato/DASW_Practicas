@@ -24,21 +24,6 @@ function productListToHtml(productList){
   productcontainer.innerHTML =  productList.map(productToHtml).join('\n');
 }
 
-function preloadAddToCartModal(uuid){
-  document.getElementById('uuidToCart').value = uuid;
-  document.getElementById('itemsToCart').value = 1;
-}
-
-function addProductToCart(){
-  let productUUID = document.getElementById('uuidToCart').value;
-  let amount = Number(document.getElementById('itemsToCart').value);
-  let cart = readShoppingCart();
-  cart.addItem(productUUID, amount);
-  document.getElementById("proxySize").innerText 
-          = cart._productProxies.length;
-  writeShoppingCart(cart)
-}
-
-loadCards(rewardsUrl).then(products => {
-	productListToHtml(products);
+loadCards(rewardsUrl).then(rewards => {
+	productListToHtml(rewards);
 })

@@ -1,0 +1,1 @@
+[{"_id":"usercfa94d35-f070-4f20-a916-eb1b74b052ce","_avatarEmail":"lilia.arceli@gmail.com","_avatarImg":2,"_avatarName":"Lilia Lobato","_avatarPassword":"lolo","_avatarLevel":1,"_avatarCoins":1000,"_avatarHealth":1000,"_avatarExp":0}]

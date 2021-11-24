@@ -47,9 +47,6 @@
   padding: 15px;
   color: #FFFFFF;
   font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
   background: #9398bf;
@@ -69,16 +66,14 @@
 .form .login-form {
   display: block;
 }
+.form .Alert{
+  display: none;
+}
 .container {
   position: relative;
   z-index: 1;
   max-width: 300px;
   margin: 0 auto;
-}
-.container:before, .container:after {
-  content: "";
-  display: block;
-  clear: both;
 }
 .container .info {
   margin: 50px auto;

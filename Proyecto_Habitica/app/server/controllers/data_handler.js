@@ -1,7 +1,9 @@
 "use strict";
 const fs = require('fs');
 const Rewardjs = require('./reward');
-let content = fs.readFileSync('./app/server/data/rewards.js');
+const Userjs = require('./user');
+let contentReward = fs.readFileSync('./app/server/data/rewards.js');
+let contentUser = fs.readFileSync('./app/server/data/users.js');
 
 //Este es el equivalente a nuestro servidor.
 const serverHabit = [];
@@ -9,7 +11,8 @@ const serverDaily = [];
 const serverTodo = [];
 const serverTag = [];
 //const serverReward = [];
-let serverReward = JSON.parse(content).map(Rewardjs.createFromObject);
+let serverReward = JSON.parse(contentReward).map(Rewardjs.createFromObject);
+let serverUser = JSON.parse(contentUser).map(Userjs.createFromObject);
 const filter = [];
 
 //Tags
@@ -40,14 +43,14 @@ function getRewards(){
 	return serverReward;
 }
 function createReward(reward){
-	serverReward.push(Rewardjs.createFromObject(product));
-    fs.writeFileSync('./app/data/rewards.json', JSON.stringify(serverReward));
+	serverReward.push(Rewardjs.createFromObject(reward));
+    fs.writeFileSync('./app/server/data/rewards.js', JSON.stringify(serverReward));
 }
 function deleteReward(id){
     for (let reward in serverReward){ 
     	if(id == serverReward[reward].id){
         	serverReward.splice(reward,1);
-        	fs.writeFileSync('./app/data/rewards.json', JSON.stringify(serverReward));
+        	fs.writeFileSync('./app/server/data/rewards.js', JSON.stringify(serverReward));
         	break;
 		}
     }
@@ -56,6 +59,38 @@ function getRewardById(id){
     for (let reward in serverReward){ 
     	if(id == serverReward[reward].id){
         	return serverReward[reward];
+		}
+    }
+}
+
+//User
+function getUsers(){
+	return serverUser;
+}
+function createUser(user){
+	serverUser.push(Userjs.createFromObject(user));
+    fs.writeFileSync('./app/server/data/users.js', JSON.stringify(serverUser));
+}
+function deleteUser(id){
+    for (let user in serverUser){ 
+    	if(id == serverUser[user].id){
+        	serverUser.splice(user,1);
+        	fs.writeFileSync('./app/server/data/users.js', JSON.stringify(serverUser));
+        	break;
+		}
+    }
+}
+function getUserById(id){
+    for (let user in serverUser){ 
+    	if(id == serverUser[user].id){
+        	return serverUser[user];
+		}
+    }
+}
+function getUserByEmail(avatarEmail){
+    for (let user in serverUser){ 
+    	if(avatarEmail == serverUser[user].avatarEmail){
+        	return serverUser[user];
 		}
     }
 }
@@ -203,3 +238,9 @@ exports.getRewards = getRewards;
 exports.createReward = createReward;
 exports.deleteReward = deleteReward;
 exports.getRewardById = getRewardById;
+
+exports.getUsers = getUsers;
+exports.createUser = createUser;
+exports.deleteUser = deleteUser;
+exports.getUserById = getRewardById;
+exports.getUserByEmail = getUserByEmail;

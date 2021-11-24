@@ -2,7 +2,10 @@
 
 const productsUrl = 'http://localhost:8080/products'
 const rewardsUrl = 'http://localhost:8080/reward'
+const usersUrl = 'http://localhost:8080/user'
 const cartUrl = 'http://localhost:8080/products/cart'
+
+
 
 function initShoppingCart(){
 	if(sessionStorage.getItem('shoppingCart')==null){
@@ -26,27 +29,53 @@ function writeShoppingCart(cart){
 }
 
 
-function goToCart(){
-  	if(sessionStorage.getItem('shoppingCart')==null){
+function addUser(user) {
+    storeUser(usersUrl, user, (msg) => {
+        console.log(msg);
+        //displayUsers();
+    }, (err) => console.log(err));
+}
+
+let status;
+function validateUser(email){
+    loadCards(usersUrl+'/'+email).then(rewards => {
+	if(rewards.length !=0){
+		status = true;
+		console.log("usuario existe")
+		//console.log(status)
+		status = true;
+	} else {
+		status = false;
+		console.log("usuario no existe")
+	}
+})
+    return status;
+}
+
+
+function goToHome(){
+  	/*if(sessionStorage.getItem('shoppingCart')==null){
 		let cart = new ShoppingCart();
 		writeShoppingCart(cart);
 	}
-  	let cart = readShoppingCart();
+  	let cart = readShoppingCart();*/
   	//aqui hacemos una llamada al post cart y lo que nos regresa lo guardamos en products
-  	postCart(cartUrl, cart._productProxies, 
+  	//createUser({"avatarImg":1,"avatarName":"NAME TEST", "avatarPassword":"superSecureSecret"})
+  	
+  	postCards(usersUrl, {"avatarImg":1,"avatarName":"NAME TEST", "avatarPassword":"superSecureSecret"}, 
       	(msg) => {
-	        //console.log(msg)
-	        cart.products = JSON.parse(msg)
-	        writeShoppingCart(cart)
-	        window.location.href = "shopping_cart"
+	        console.log(msg)
+	        //cart.products = JSON.parse(msg)
+	        //writeShoppingCart(cart)
+	        //window.location.href = "shopping_cart"
 	      }
 	      , (err) => {
-	      	sessionStorage.removeItem('shoppingCart');
-			let cart = new ShoppingCart();
-			writeShoppingCart(cart);
-  			document.getElementById("proxySize").innerText 
-          		= cart._productProxies.length;
-    		loadCart();
+	      	//sessionStorage.removeItem('shoppingCart');
+			//let cart = new ShoppingCart();
+			//writeShoppingCart(cart);
+  			//document.getElementById("proxySize").innerText 
+          	//	= cart._productProxies.length;
+    		//loadCart();
 			console.log("Server + UUID Refresh = " + err);
       	});
 }

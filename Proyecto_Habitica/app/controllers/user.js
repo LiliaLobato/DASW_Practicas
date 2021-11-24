@@ -1,16 +1,14 @@
 "use strict";
 
-const utils = require('./utils');
-
 class userDataException{
-    constructor(errorMessage){
-        this.errorMessage = errorMessage;
-    }
+	constructor(errorMessage){
+		this.errorMessage = errorMessage;
+	}
 }
 
 class User{
     constructor(avatarEmail, avatarImg, avatarName,avatarPassword, avatarLevel, avatarCoins, avatarHealth, avatarExp){
-        this._id = utils.generateId('user'); //al iniciar mando {avatarImg,avatarName,avatarPassword}
+        this._id = generateId('user'); //al iniciar mando {avatarImg,avatarName,avatarPassword}
         this.avatarEmail = avatarEmail
         this.avatarImg = avatarImg //guarda num
         this.avatarName = avatarName
@@ -172,5 +170,3 @@ class User{
     }
 
 }
-
-module.exports = User;

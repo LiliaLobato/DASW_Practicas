@@ -8,11 +8,19 @@ async function loadCards(url){
 }
 
 
-function postCart(url, proxy, onSuccess, onError) {
+function postCards(url, proxy, onSuccess, onError) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', url);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(proxy));
+    xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
+}
+
+function storeUser(url, user, onSuccess, onError) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(user));
     xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
 }
 
