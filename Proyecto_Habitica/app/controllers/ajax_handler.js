@@ -6,8 +6,6 @@ async function loadCards(url){
     let products = await response.json();
     return products;
 }
-
-
 function postCards(url, proxy, onSuccess, onError) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', url);
@@ -19,6 +17,13 @@ function postCards(url, proxy, onSuccess, onError) {
 function storeUser(url, user, onSuccess, onError) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(user));
+    xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
+}
+function putUser(url, user, onSuccess, onError) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('PUT', url);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(user));
     xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);

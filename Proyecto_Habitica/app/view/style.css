@@ -57,6 +57,20 @@
   visibility: hidden;
 }
 
+/*Customization for modal*/
+.modBnt{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 20%;
+  max-width:100%;
+  border-radius: 50%;
+  background-color: #878190;
+}
+.modBtn_list{
+    background-color: #edecee;
+}
+
 /*Customization for habits*/
 .habBnt{
   display: flex;

@@ -1,6 +1,5 @@
 "use strict";
 
-
 let create = document.getElementById('create');
 let registerForm = document.getElementById('register-form');
 let loginForm = document.getElementById('login-form');
@@ -34,8 +33,8 @@ document.getElementById('createAccount_bnt').onclick = function(){
    if(userCA != '' && pswdCA != '' && emailCA != '') {
       let newUser = new User(emailCA, getRandomAvatar(1,5), userCA, pswdCA);
       //Check is user has already been created
-      loadCards(usersUrl+'/'+emailCA).then(rewards => {
-         if(rewards.length !=0){
+      loadCards(usersUrl+'/'+emailCA).then(user => {
+         if(user.length !=0){
             //user already exist, send an alert and ask for a sign in!
             console.log("usuario existe")
             //regreso a la pantalla de signin
@@ -61,15 +60,17 @@ document.getElementById('login_bnt').onclick = function(){
 
    if(pswdSI != '' && emailSI != '') {
       //Check if user has already been created
-      loadCards(usersUrl+'/'+emailSI).then(rewards => {
-         if(rewards.length !=0){
+      loadCards(usersUrl+'/'+emailSI).then(user => {
+         if(user.length !=0){
             //user already exist!
             console.log("usuario existe")
             //Check credentials
-            if(rewards._avatarPassword == pswdSI){
+            if(user._avatarPassword == pswdSI){
                //YES! we are in! 
                //TODO save email on sessionServer and go to home!!!!
                console.log("go to home")
+               console.log(user)
+               goToHome(user)
             } else {
                //password is not valid!!!
                wrongPswAlert.style.display="block";
@@ -91,4 +92,10 @@ document.getElementById('login_bnt').onclick = function(){
 
 function getRandomAvatar(min, max) {
   return  Math.floor(Math.random() * (max - min) + min);
+}
+
+function goToHome(user){
+   writeUserData(user);
+   readUserData();
+   window.location.href = "habitica"
 }

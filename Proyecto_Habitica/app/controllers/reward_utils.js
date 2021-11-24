@@ -1,8 +1,8 @@
 "use strict";
 
-let productcontainer = document.getElementById('rewardList');
+let rewardcontainer = document.getElementById('rewardList');
 
-function productToHtml(product){
+function rewardToHtml(product){
 	return `	
     <div class = "col m-0 p-0">
       <div class="card reward mb-2" >
@@ -20,10 +20,10 @@ function productToHtml(product){
 	`;
 }
 
-function productListToHtml(productList){
-  productcontainer.innerHTML =  productList.map(productToHtml).join('\n');
+function rewardListToHtml(productList){
+  rewardcontainer.innerHTML =  productList.map(rewardToHtml).join('\n');
 }
 
 loadCards(rewardsUrl).then(rewards => {
-	productListToHtml(rewards);
+	rewardListToHtml(rewards);
 })

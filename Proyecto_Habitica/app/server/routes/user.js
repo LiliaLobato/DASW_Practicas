@@ -22,15 +22,23 @@ router.route('/')
 
   });
 
-router.route('/:id')
+router.route('/:email')
   .get((req, res) => {
-    let id = req.params.id;
-    let product = dataHandler.getUserByEmail(id);
+    let email = req.params.email;
+    let product = dataHandler.getUserByEmail(email);
     if(product != undefined ) {
       res.status(200).json(product);
     } else {
-      res.status(404).send(`Usuario con UUID: ${id} no existe!`);
+      res.status(404).send(`Usuario con UUID: ${email} no existe!`);
     }
+  })
+  .put((req, res) => {
+    let email = req.params.email;
+    let user = req.body;
+    console.log(email)
+    user = dataHandler.updateUser(email, user);
+    res.type('text/plain; charset=utf-8');
+    res.send(`User was updated!`);
   });
 
 
@@ -38,14 +46,6 @@ router.route('/:email')
   .get((req, res) => {
     let email = req.params.email;
     res.json(dataHandler.getUserByEmail(email));
-  })
-  .put((req, res) => {
-    let email = req.params.email;
-    let user = req.body;
-    
-    user = dataHandler.updateUser(email, user);
-    res.type('text/plain; charset=utf-8');
-    res.send(`User ${user.firstName} was updated!`);
   })
   .delete((req, res) => {
     let email = req.params.email;

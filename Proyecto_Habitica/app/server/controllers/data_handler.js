@@ -71,28 +71,21 @@ function createUser(user){
 	serverUser.push(Userjs.createFromObject(user));
     fs.writeFileSync('./app/server/data/users.js', JSON.stringify(serverUser));
 }
-function deleteUser(id){
-    for (let user in serverUser){ 
-    	if(id == serverUser[user].id){
-        	serverUser.splice(user,1);
-        	fs.writeFileSync('./app/server/data/users.js', JSON.stringify(serverUser));
-        	break;
-		}
-    }
-}
-function getUserById(id){
-    for (let user in serverUser){ 
-    	if(id == serverUser[user].id){
-        	return serverUser[user];
-		}
-    }
-}
 function getUserByEmail(avatarEmail){
     for (let user in serverUser){ 
     	if(avatarEmail == serverUser[user].avatarEmail){
         	return serverUser[user];
 		}
     }
+}
+function updateUser(avatarEmail, updatedUser) {
+    for (let user in serverUser){ 
+    	if(avatarEmail == serverUser[user].avatarEmail){
+        	serverUser[user] = Userjs.createFromObject(updatedUser);
+		}
+    }
+    fs.writeFileSync('./app/server/data/users.js', JSON.stringify(serverUser));
+    return 1;
 }
 
 //Todo
@@ -241,6 +234,6 @@ exports.getRewardById = getRewardById;
 
 exports.getUsers = getUsers;
 exports.createUser = createUser;
-exports.deleteUser = deleteUser;
+exports.updateUser = updateUser;
 exports.getUserById = getRewardById;
 exports.getUserByEmail = getUserByEmail;

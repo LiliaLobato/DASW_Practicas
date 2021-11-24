@@ -21,51 +21,32 @@
 
   <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark  mb-0" style="background-color: #432874;">
+    <nav class="navbar navbar-expand-md navbar-dark justify-content-center  mb-0" style="background-color: #432874;">
       <a class="navbar-brand" href="habitica"><img class="banner" src="avatar/whiteBanner.png" alt="Card image cap" style="height:35px;"></a> 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
-      <!-- TODO LO QUE ESTÁ A LA IZQUIERDA-->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Tasks<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Challenges
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">My Challenges</a>
-              <a class="dropdown-item" href="#">Discover Challegenes</a>
-            </div>
-          </li>
-        </ul>
-
-        <!-- TODO LO QUE ESTÁ A LA DERECHA-->
       </div>
 
     </nav>
 
     <div class="top_body" >
-      <div class="card mb-0" style="max-width: 750px;">
+      <div class="card mb-0" style="max-width: 750px;" data-toggle="modal" data-target="#user_modal" onclick="preloadUserModal()">
         <div class="row no-gutters" style="background-color: #edecee;">
           <div class="col-md-4 avatar" style="width: auto; height: 100%">
-            <img src="avatar/3.png" class="card-img" alt="...">
+            <img id="avatarImg" src="" class="card-img" alt="...">
           </div>
           <div class="col" style="background-color: #edecee;">
             <div class="card-body" >
-              <h5 class="card-title pb-0">AVATAR NAME</h5>
-              <p class="card-text "><span class="text-muted">Level 37</span></p>
+              <h5 class="card-title pb-0" id="avatarName">Avatar Name</h5>
+              <p class="card-text "><span class="text-muted" id="avatarLevel">Level 37</span></p>
 
               <ul class="list-group list-group-horizontal pb-1">
                 <li class="list-group-item avatar_icon d-flex justify-content-center align-items-center p-2">
                   <img class="card-img-top" src="object/coin.png" alt="Card image cap">
                 </li>
                 <li class="list-group-item avatar_progress d-flex align-items-center py-2">
-                    <span class="m-0 p-0 current_coins">342876423</span>
+                    <span class="m-0 p-0 current_coins" id="avatarCoins">342876423</span>
                     <span class="m-0 p-0 current_coins">&nbsp;&nbsp;COINS</span>
                 </li> 
               </ul>
@@ -76,9 +57,9 @@
                 </li>
                 <li class="list-group-item avatar_progress d-flex justify-content-between align-items-center">
                   <div class="progress" style="width: 100%;">
-                    <div class="progress-bar " role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">HEALTH</div>
+                    <div class="progress-bar " role="progressbar" style="width: 0%;" id="avatarHealthBar">HEALTH</div>
                   </div>
-                  <p class="m-0 p-0 pl-2">87/100</p>
+                  <p class="m-0 p-0 pl-2" id="avatarHealthIndicator">00/100</p>
                 </li> 
               </ul>
 
@@ -88,9 +69,9 @@
                 </li>
                 <li class="list-group-item avatar_progress d-flex justify-content-between align-items-center">
                   <div class="progress" style="width: 100%;">
-                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">EXPERIENCE</div>
+                    <div class="progress-bar" role="progressbar" style="width: 0%;" id="avatarExpBar">EXPERIENCE</div>
                   </div>
-                  <p class="m-0 p-0 pl-2">87/100</p>
+                  <p class="m-0 p-0 pl-2" id="avatarExpIndicator">87/100</p>
                 </li> 
               </ul>
 
@@ -99,7 +80,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="form-row justify-content-center mt-3 mb-0" style="height:40px;">
         <div class="form-group col-md-3 tag_search">
           <input class="form-control " type="text" placeholder="Search.." style="height: inherit;">        
@@ -148,7 +129,7 @@
                     <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list disabled">
                       <a class="btn habBnt btn-lg disabled" role="button" onclick="goToCart()" ><i class="fa fa-plus" aria-hidden="true"></i></a>
                     </li>
-                    <li class="list-group-item text_list d-flex justify-content-between align-items-center" data-toggle="modal" data-target="#habit_modal">
+                    <li class="list-group-item text_list d-flex justify-content-between align-items-center" data-toggle="modal" data-target="#habit_modal" >
                       <ul class="list-group">
                         <li style="list-style-type:none;">
                           <p>HABIT DISABLED</p>
@@ -169,7 +150,7 @@
                     <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list strong">
                       <a class="btn habBnt btn-lg strong" role="button" onclick="goToCart()" ><i class="fa fa-plus" aria-hidden="true"></i></a>
                     </li>
-                    <li class="list-group-item text_list d-flex justify-content-between align-items-center" data-toggle="modal" data-target="#habit_modal">
+                    <li class="list-group-item text_list d-flex justify-content-between align-items-center">
                       <ul class="list-group">
                         <li style="list-style-type:none;">
                           <p>HABIT STRONG</p>
@@ -508,6 +489,47 @@
     </div>
 
 
+    <!-- Modal USER -->
+    <div class="modal fade" id="user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #ffbe5d">
+            <h4 class="modal-title text-left w-100 font-weight-bold" style="color: #794b00;">Edit Avatar</h4>
+            <button type="button" class="btn btn-link" data-dismiss="modal" style="color: black !important;" >CANCEL</button>
+            <button type="submit" class="btn btn-light " data-dismiss="modal" onclick="saveModal()">SAVE</button>
+          </div>
+          <div class="modal-body mx-3">
+            <h5 class="card-title pb-0" id="avatarName">Avatar Name</h5>
+            <input type="text" class="form-control mb-2" id="avatarNameModal" required>
+
+            <li style="list-style-type:none;" class=" mb-1" >
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0 check_list d-flex justify-content-between align-items-center p-2 modBtn_list">
+                  <a class="btn modBnt btn-lg" role="button" onclick="prevAvatar()"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                </li>
+                <li class="list-group-item border-0 text_list d-flex justify-content-between align-items-center" style="background-color: #edecee;">
+                  <ul class="list-group" style="background-color: #edecee;">
+                    <img id="avatarImgModal" src="avatar/1.png" class="card-img" alt="...">
+                    <span class="badge badge-dark badge-pill" id="avatarLevelModal">
+                      Level 14</span>
+                  </ul>
+                </li>  
+                <li class="list-group-item border-0 check_list d-flex justify-content-between align-items-center p-2 modBtn_list" >
+                  <a class="btn modBnt btn-lg" role="button" onclick="nextAvatar()"><i class="fa fa-angle-right" aria-hidden="true"></i></i></a>
+                </li>
+              </ul>
+            </li>
+          </div>
+          <div class="modal-footer d-flex justify-content-center .justify-content-end">
+            <a href="#" data-dismiss="modal" data-toggle="modal" id="eliminateHabit" style="color:red !important;">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Log Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <!-- JavaScript -->
     <script type="text/javascript" src="static/ajax_handler.js"></script>
     <script type="text/javascript" src="static/utils.js"></script>
@@ -516,12 +538,13 @@
     <script type="text/javascript" src="static/todo.js"></script>
     <script type="text/javascript" src="static/habits.js"></script>
     <script type="text/javascript" src="static/tag.js"></script>
-    <script type="text/javascript" src="static/user.js"></script>
   -->
+    <script type="text/javascript" src="static/user.js"></script>
     <script type="text/javascript" src="static/reward.js"></script>
 
     <script type="text/javascript" src="static/general_utils.js"></script>
     <script type="text/javascript" src="static/reward_utils.js"></script>
+    <script type="text/javascript" src="static/user_utils.js"></script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

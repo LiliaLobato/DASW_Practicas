@@ -3,38 +3,27 @@
 const productsUrl = 'http://localhost:8080/products'
 const rewardsUrl = 'http://localhost:8080/reward'
 const usersUrl = 'http://localhost:8080/user'
-const cartUrl = 'http://localhost:8080/products/cart'
 
-
-
-function initShoppingCart(){
-	if(sessionStorage.getItem('shoppingCart')==null){
-		let cart = new ShoppingCart();
-		writeShoppingCart(cart);
-	}
-	let cart = readShoppingCart();
-	document.getElementById("proxySize").innerText = cart._productProxies.length;
-}
-
-function readShoppingCart(){
-	let cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
-	let i = new ShoppingCart();
-	i._products = cart._products;
-	i._productProxies = cart._productProxies;
+function readUserData(){
+	let user = JSON.parse(sessionStorage.getItem('userData'));
+	let i = User.createFromObject(user);
 	return i;
 }
 
-function writeShoppingCart(cart){
-	sessionStorage.setItem('shoppingCart',JSON.stringify(cart));
+function writeUserData(user){
+	sessionStorage.setItem('userData',JSON.stringify(user));
 }
-
 
 function addUser(user) {
     storeUser(usersUrl, user, (msg) => {
         console.log(msg);
-        //displayUsers();
     }, (err) => console.log(err));
 }
+
+function updateUser(user) {
+    putUser(usersUrl+'/'+user._avatarEmail, user, (msg) => console.log(msg), (err) => console.log(err));
+}
+
 
 let status;
 function validateUser(email){
@@ -52,46 +41,18 @@ function validateUser(email){
     return status;
 }
 
-
-function goToHome(){
-  	/*if(sessionStorage.getItem('shoppingCart')==null){
-		let cart = new ShoppingCart();
-		writeShoppingCart(cart);
-	}
-  	let cart = readShoppingCart();*/
-  	//aqui hacemos una llamada al post cart y lo que nos regresa lo guardamos en products
-  	//createUser({"avatarImg":1,"avatarName":"NAME TEST", "avatarPassword":"superSecureSecret"})
-  	
-  	postCards(usersUrl, {"avatarImg":1,"avatarName":"NAME TEST", "avatarPassword":"superSecureSecret"}, 
-      	(msg) => {
-	        console.log(msg)
-	        //cart.products = JSON.parse(msg)
-	        //writeShoppingCart(cart)
-	        //window.location.href = "shopping_cart"
-	      }
-	      , (err) => {
-	      	//sessionStorage.removeItem('shoppingCart');
-			//let cart = new ShoppingCart();
-			//writeShoppingCart(cart);
-  			//document.getElementById("proxySize").innerText 
-          	//	= cart._productProxies.length;
-    		//loadCart();
-			console.log("Server + UUID Refresh = " + err);
-      	});
-}
-
 function reloadCart(){
-  	let cart = readShoppingCart();
+  	let cart = readUserData();
   	postCart(cartUrl, cart._productProxies, 
       	(msg) => {
 	        cart.products = JSON.parse(msg)
-	        writeShoppingCart(cart)
+	        writeUserData(cart)
     		loadCart();
 	      } 
 	      , (err) => {
-	      	sessionStorage.removeItem('shoppingCart');
-			let cart = new ShoppingCart();
-			writeShoppingCart(cart); 
+	      	sessionStorage.removeItem('userData');
+			let cart = new UserData();
+			writeUserData(cart); 
   			document.getElementById("proxySize").innerText 
           		= cart._productProxies.length;
     		loadCart();
@@ -99,5 +60,7 @@ function reloadCart(){
       	});
 }
 
-
-//initShoppingCart();
+function helloWorld(){
+	console.log("Hello World")
+}
+//initUserData();

@@ -105,7 +105,7 @@ class User{
     }
     set avatarHealth(val) {
         if(val === undefined){
-            this._avatarHealth = 1000;
+            this._avatarHealth = 100;
         } else {
             if(typeof val !== "number" || val < 1){
             throw new userDataException('level cannot be less than 1 or not number.');
@@ -119,7 +119,7 @@ class User{
     }
     set avatarExp(val) {
         if(val === undefined){
-            this._avatarExp = 0;
+            this._avatarExp = 10;
         } else {
             if(typeof val !== "number" || val < 0){
             throw new userDataException('level cannot be less than 1 or not number.');
