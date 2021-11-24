@@ -14,6 +14,10 @@ function writeUserData(user){
 	sessionStorage.setItem('userData',JSON.stringify(user));
 }
 
+function cleanUserData(){
+	sessionStorage.removeItem('userData');
+}
+
 function addUser(user) {
     storeUser(usersUrl, user, (msg) => {
         console.log(msg);

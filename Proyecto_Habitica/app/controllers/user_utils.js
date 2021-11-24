@@ -69,8 +69,9 @@ function saveModal(){
   updateAvatar();
 }
 
-function updateUserData(){
-  updateUser(user)
+function logout(){
+  cleanUserData();
+  window.location.href = "login"
 }
 
 updateAvatar();

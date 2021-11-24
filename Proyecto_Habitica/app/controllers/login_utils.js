@@ -49,6 +49,7 @@ document.getElementById('createAccount_bnt').onclick = function(){
             addUser(newUser);
             //TODO save email on sessionServer and go to home!!!!
             console.log("go to home")
+            goToHome(newUser)
          }
       })
    } 
