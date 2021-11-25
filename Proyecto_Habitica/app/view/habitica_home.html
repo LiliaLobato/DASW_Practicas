@@ -101,7 +101,7 @@
               HABITS
             </div>
             <div class="card-body" >
-              <input class="form-control mb-4" type="text" placeholder="Add a Habit" style="background-color: #e1dfe2">
+              <input class="form-control mb-4" type="text" placeholder="Add a Habit" id="textboxHabit" style="background-color: #e1dfe2">
               <ul class="list-group dailies_list " style="width: 100%">
                 <li style="list-style-type:none;" class=" mb-1" >
                   <ul class="list-group list-group-horizontal">
@@ -119,30 +119,6 @@
                         </li> 
                       </ul>
                     </li>  
-                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list ">
-                      <a class="btn habBnt btn-lg" role="button" onclick="goToCart()"><i class="fa fa-minus" aria-hidden="true"></i></i></a>
-                    </li>
-                  </ul>
-                </li>
-                <li style="list-style-type:none;" class=" mb-1" >
-                  <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list disabled">
-                      <a class="btn habBnt btn-lg disabled" role="button" onclick="goToCart()" ><i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </li>
-                    <li class="list-group-item text_list d-flex justify-content-between align-items-center" data-toggle="modal" data-target="#habit_modal" >
-                      <ul class="list-group">
-                        <li style="list-style-type:none;">
-                          <p>HABIT DISABLED</p>
-                        </li>
-                        <li style="list-style-type:none;">
-                      <span class="badge badge-warning badge-pill">
-                        <i class="fa fa-forward" aria-hidden="true"></i> 14</span>
-                        </li> 
-                      </ul>
-                    </li>  
-                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list">
-                      <a class="btn habBnt btn-lg" role="button" onclick="goToCart()"><i class="fa fa-minus" aria-hidden="true"></i></i></a>
-                    </li>
                   </ul>
                 </li>
                 <li style="list-style-type:none;" class=" mb-1" >
@@ -160,10 +136,7 @@
                         <i class="fa fa-forward" aria-hidden="true"></i> 30</span>
                         </li> 
                       </ul>
-                    </li>  
-                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list disabled">
-                      <a class="btn habBnt btn-lg disabled" role="button" onclick="goToCart()"><i class="fa fa-minus" aria-hidden="true"></i></i></a>
-                    </li>
+                    </li> 
                   </ul>
                 </li>
               </ul>
@@ -315,13 +288,13 @@
             <div class="card-header">
               <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                  <a class="nav-link tab_filter active" href="#">REWARDS</a>
+                  <a class="nav-link tab_filter active" onclick="updateRewardList()" id="allRewardsTab">REWARDS</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link tab_filter" href="#">+ HEALTH</a>
+                  <a class="nav-link tab_filter" onclick="updateRewardListByType('life')" id="lifeRewardsTab">+ HEALTH</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link tab_filter" href="#">+ EXP</a>
+                  <a class="nav-link tab_filter" onclick="updateRewardListByType('exp')" id="expRewardsTab">+ EXP</a>
                 </li>
               </ul>
             </div>
@@ -351,29 +324,6 @@
           </div>
           <div class="modal-body mx-3">
             <form>
-                <ul class="list-group list-group-horizontal d-flex justify-content-center align-items-center">
-                  <li class="list-group-item border-0 check_list d-flex justify-content-center align-items-center m-0 p-0 py-1">
-                    <ul class="list-group d-flex justify-content-center align-items-center">
-                      <li class="list-group-item border-0 check_list d-flex justify-content-center align-items-center m-0 p-0">
-                        <a class="btn ModBabBtn_list selected btn-lg" role="button" onclick="goToCart()"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                      </li>
-                      <li class="list-group-item border-0 check_list d-flex justify-content-center align-items-center m-0 p-0">
-                        <p>POSITIVE</p>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="list-group-item border-0 check_list d-flex justify-content-center align-items-center m-0 p-0 py-1">
-                    <ul class="list-group d-flex justify-content-center align-items-center">
-                      <li class="list-group-item border-0 check_list d-flex justify-content-center align-items-center m-0 p-0">
-                        <a class="btn ModBabBtn_list btn-lg" role="button" onclick="goToCart()"><i class="fa fa-minus" aria-hidden="true"></i></a>
-                      </li>
-                      <li class="list-group-item border-0 check_list d-flex justify-content-center align-items-center m-0 p-0">
-                        <p>NEGATIVE</p>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-
               <label class="m-0" data-error="wrong" data-success="right" for="titleHabit">Title</label>
               <input type="text" class="form-control mb-2" id="titleHabit" required>
               <label class="m-0"  data-error="wrong" data-success="right" for="dificultyHabit">Difficulty</label>
@@ -383,23 +333,32 @@
                     <option>Intermediate</option>
                     <option>Hard</option>
               </select>
-              <label class="m-0" data-error="wrong" data-success="right" for="TagHabit">Tag</label>
-              <select class="form-control mb-2" id="TagHabit">
-                    <option>AUN NO IMPLEMENTADO</option>
-              </select>
-              <label class="m-0"  data-error="wrong" data-success="right" for="resetCounterHabit">Reset Counter</label>
-              <select class="form-control mb-2" id="resetCounterHabit">
-                    <option>Diary</option>
-                    <option>Semanal</option>
-                    <option>Weekly</option>
-                    <option>Never</option>
-              </select>
-              
+              <label class="m-0 " data-error="wrong" data-success="right" for="TagHabit" >Tag </label>
+              <div class="mb-2 d-flex justify-content-between align-items-center px-4" id="TagHabit">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                  <label class="form-check-label" for="inlineCheckbox1">Study</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                  <label class="form-check-label" for="inlineCheckbox2">Work</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                  <label class="form-check-label" for="inlineCheckbox3" >Health</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" >
+                  <label class="form-check-label" for="inlineCheckbox4">Personal</label>
+                </div>
+              </div>              
             </form>
           </div>
-          <div class="modal-footer d-flex justify-content-center .justify-content-end">
-            <a href="#" data-dismiss="modal" data-toggle="modal" id="eliminateHabit" style="color:red !important;">
+          <div class="modal-footer d-flex justify-content-between align-items-center px-4">
+            <a class = "px-4" data-dismiss="modal" data-toggle="modal" id="eliminateHabit" style="color:red !important;">
               <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Eliminate Habit</a>
+            <a class = "px-4" data-dismiss="modal" data-toggle="modal" id="eliminateHabit" style="color:green !important;">
+              <i class="fa fa-magic" aria-hidden="true"></i>&nbsp;Restart Habit</a>
           </div>
         </div>
       </div>
@@ -429,10 +388,25 @@
                     <option>Intermediate</option>
                     <option>Hard</option>
               </select>
-              <label class="m-0" data-error="wrong" data-success="right" for="TagHabit">Tag</label>
-              <select class="form-control mb-2" id="TagHabit">
-                    <option>AUN NO IMPLEMENTADO</option>
-              </select>
+              <label class="m-0 " data-error="wrong" data-success="right" for="TagHabit" >Tag</label>
+              <div class="mb-2 d-flex justify-content-between align-items-center px-4" id="TagHabit">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                  <label class="form-check-label" for="inlineCheckbox1">Study</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                  <label class="form-check-label" for="inlineCheckbox2">Work</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                  <label class="form-check-label" for="inlineCheckbox3" >Health</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" >
+                  <label class="form-check-label" for="inlineCheckbox4">Personal</label>
+                </div>
+              </div>
             </form>
           </div>
           <div class="modal-footer d-flex justify-content-center .justify-content-end">
@@ -464,10 +438,25 @@
                     <option>Intermediate</option>
                     <option>Hard</option>
               </select>
-              <label class="m-0" data-error="wrong" data-success="right" for="TagHabit">Tag</label>
-              <select class="form-control mb-2" id="TagHabit">
-                    <option>AUN NO IMPLEMENTADO</option>
-              </select>
+              <label class="m-0 " data-error="wrong" data-success="right" for="TagHabit" >Tag</label>
+              <div class="mb-2 d-flex justify-content-between align-items-center px-4" id="TagHabit">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                  <label class="form-check-label" for="inlineCheckbox1">Study</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                  <label class="form-check-label" for="inlineCheckbox2">Work</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                  <label class="form-check-label" for="inlineCheckbox3" >Health</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" >
+                  <label class="form-check-label" for="inlineCheckbox4">Personal</label>
+                </div>
+              </div>
               <label class="m-0"  data-error="wrong" data-success="right" for="resetCounterHabit">Valid on </label>
               <div class="btn-group mr-2 d-flex justify-content-between align-items-center" role="group" aria-label="First group">
                 <button type="button" class="btn btn-warning btn-sm">Mon</button>
@@ -487,7 +476,6 @@
         </div>
       </div>
     </div>
-
 
     <!-- Modal USER -->
     <div class="modal fade" id="user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -545,6 +533,7 @@
     <script type="text/javascript" src="static/general_utils.js"></script>
     <script type="text/javascript" src="static/reward_utils.js"></script>
     <script type="text/javascript" src="static/user_utils.js"></script>
+    <script type="text/javascript" src="static/habit_utils.js"></script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

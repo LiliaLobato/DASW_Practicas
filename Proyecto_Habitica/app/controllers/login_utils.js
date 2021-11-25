@@ -95,6 +95,29 @@ function getRandomAvatar(min, max) {
   return  Math.floor(Math.random() * (max - min) + min);
 }
 
+
+function addUser(user) {
+    storeUser(usersUrl, user, (msg) => {
+        console.log(msg);
+    }, (err) => console.log(err));
+}
+
+let status;
+function validateUser(email){
+    loadCards(usersUrl+'/'+email).then(rewards => {
+   if(rewards.length !=0){
+      status = true;
+      console.log("usuario existe")
+      //console.log(status)
+      status = true;
+   } else {
+      status = false;
+      console.log("usuario no existe")
+   }
+})
+    return status;
+}
+
 function goToHome(user){
    writeUserData(user);
    readUserData();

@@ -2,45 +2,35 @@
 const fs = require('fs');
 const Rewardjs = require('./reward');
 const Userjs = require('./user');
+const Habitjs = require('./habit');
 let contentReward = fs.readFileSync('./app/server/data/rewards.js');
 let contentUser = fs.readFileSync('./app/server/data/users.js');
+let contentHabit = fs.readFileSync('./app/server/data/habits.js');
 
 //Este es el equivalente a nuestro servidor.
-const serverHabit = [];
 const serverDaily = [];
 const serverTodo = [];
 const serverTag = [];
 //const serverReward = [];
 let serverReward = JSON.parse(contentReward).map(Rewardjs.createFromObject);
 let serverUser = JSON.parse(contentUser).map(Userjs.createFromObject);
+let serverHabit = JSON.parse(contentHabit).map(Habitjs.createFromObject);
 const filter = [];
 
-//Tags
-function getTags(){
-	return serverTag;
-}
-function createTag(tag){
-	serverTag.push(Tag.createFromObject(tag));
-}
-function deleteTag(id){
-    for (let tag in serverTag){ 
-    	if(id == serverTag[tag].id){
-        	serverTag.splice(tag,1);
-        	break;
-		}
-    }
-}
-function getTagById(id){
-    for (let tag in serverTag){ 
-    	if(id == serverTag[tag].id){
-        	return serverTag[tag];
-		}
-    }
-}
 
 //Reward
 function getRewards(){
 	return serverReward;
+}
+
+function getTypeRewards(type){
+	filter.length=0;
+    for (let reward in serverReward){ 
+    	if(type == serverReward[reward].category){
+        	filter.push(serverReward[reward]);
+		}
+    }
+	return filter;
 }
 function createReward(reward){
 	serverReward.push(Rewardjs.createFromObject(reward));
@@ -65,9 +55,9 @@ function getRewardById(id){
 
 //User
 function getUsers(){
-	return serverUser;
+	return serverUser; //regresa un array de user.object
 }
-function createUser(user){
+function createUser(user){ // {'name': Lolo}
 	serverUser.push(Userjs.createFromObject(user));
     fs.writeFileSync('./app/server/data/users.js', JSON.stringify(serverUser));
 }
@@ -157,7 +147,8 @@ function getHabits(){
 	return serverHabit;
 }
 function createHabit(habit){
-	serverHabit.push(Habit.createFromObject(habit));
+	serverHabit.push(Habitjs.createFromObject(habit));
+    fs.writeFileSync('./app/server/data/habits.js', JSON.stringify(serverHabit));
 }
 function deleteHabit(id){
     for (let habit in serverHabit){ 
@@ -167,9 +158,9 @@ function deleteHabit(id){
 		}
     }
 }
-function getHabitById(id){
+function getHabitFromUser(userEmail){
     for (let habit in serverHabit){ 
-    	if(id == serverHabit[habit].id){
+    	if(userEmail == serverHabit[habit].userEmail){
         	return serverHabit[habit];
 		}
     }
@@ -230,10 +221,15 @@ function findCategory(category){
 exports.getRewards = getRewards;
 exports.createReward = createReward;
 exports.deleteReward = deleteReward;
-exports.getRewardById = getRewardById;
+exports.getTypeRewards = getTypeRewards;
 
 exports.getUsers = getUsers;
 exports.createUser = createUser;
 exports.updateUser = updateUser;
-exports.getUserById = getRewardById;
 exports.getUserByEmail = getUserByEmail;
+
+exports.getHabits = getHabits;
+exports.createHabit = createHabit;
+exports.deleteHabit = deleteHabit;
+exports.updateHabit = updateHabit;
+exports.getHabitFromUser = getHabitFromUser;

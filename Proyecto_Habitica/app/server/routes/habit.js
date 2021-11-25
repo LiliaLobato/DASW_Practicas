@@ -6,28 +6,28 @@ const router = express.Router();
 
 router.route('/')
   .get((req, res) => {
-    res.json(dataHandler.getUsers());
+    res.json(dataHandler.getHabits());
   })
   .post((req, res) => {
-    let user = req.body;
+    let product = req.body;
     try {
-      dataHandler.createUser(user);
+      dataHandler.createHabit(product);
     } catch (e){
       res.status(400).send(e.errorMessage);
       return;
     }
     
     res.set('Content-Type', 'text/plain; charset=utf-8');
-    res.status(201).send(`Producto ${user.title} was created!`)
+    res.status(201).send(`Producto ${product.title} was created!`)
 
   });
 
 router.route('/:email')
   .get((req, res) => {
     let email = req.params.email;
-    let user = dataHandler.getUserByEmail(email);
-    if(user != undefined ) {
-      res.status(200).json(user);
+    let product = dataHandler.getUserByEmail(email);
+    if(product != undefined ) {
+      res.status(200).json(product);
     } else {
       res.status(404).send(`Usuario con UUID: ${email} no existe!`);
     }

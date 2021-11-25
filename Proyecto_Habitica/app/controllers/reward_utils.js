@@ -1,6 +1,9 @@
 "use strict";
 
 let rewardcontainer = document.getElementById('rewardList');
+let allRewardsTab = document.getElementById('allRewardsTab');
+let lifeRewardsTab = document.getElementById('lifeRewardsTab');
+let expRewardsTab = document.getElementById('expRewardsTab');
 
 function rewardToHtml(product){
 	return `	
@@ -24,6 +27,31 @@ function rewardListToHtml(productList){
   rewardcontainer.innerHTML =  productList.map(rewardToHtml).join('\n');
 }
 
-loadCards(rewardsUrl).then(rewards => {
-	rewardListToHtml(rewards);
-})
+function updateRewardListByType(type){
+  loadCards(rewardsUrl + '/' + type).then(rewards => {
+    rewardListToHtml(rewards);
+  })
+
+  if(type=="life"){
+    lifeRewardsTab.classList.add("active");
+    expRewardsTab.classList.remove("active");
+    allRewardsTab.classList.remove("active");
+  } else {
+    expRewardsTab.classList.add("active");
+    lifeRewardsTab.classList.remove("active");
+    allRewardsTab.classList.remove("active");
+  }
+}
+
+function updateRewardList(){
+  
+  loadCards(rewardsUrl).then(rewards => {
+    rewardListToHtml(rewards);
+  })
+
+  allRewardsTab.classList.add("active");
+  lifeRewardsTab.classList.remove("active");
+  expRewardsTab.classList.remove("active");
+}
+
+updateRewardList();

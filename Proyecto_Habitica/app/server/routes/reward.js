@@ -14,14 +14,14 @@ router.route('/')
     }
   });
 
-router.route('/:id')
+router.route('/:type')
   .get((req, res) => {
-    let id = req.params.id;
-    let product = dataHandler.getRewardById(id);
+    let type = req.params.type;
+    let product = dataHandler.getTypeRewards(type);
     if(product != undefined ) {
       res.status(200).json(product);
     } else {
-      res.status(404).send(`Reward con UUID: ${id} no existe!`);
+      res.status(404).send(`Reward con type: ${type} no existe!`);
     }
   });
 

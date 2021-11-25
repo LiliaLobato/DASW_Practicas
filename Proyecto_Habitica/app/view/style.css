@@ -70,6 +70,12 @@
 .modBtn_list{
     background-color: #edecee;
 }
+label{
+    font-weight:bold;
+}
+form-check-label{
+    font-weight:nomal;
+}
 
 /*Customization for habits*/
 .habBnt{
@@ -83,9 +89,6 @@
 }
 .habBnt.strong{
   background-color: #229f72;
-}
-.habBnt.disabled{
-  background-color: #edecee;
 }
 .habBtn_list{
     background-color: #ffbe5d;
