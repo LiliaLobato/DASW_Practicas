@@ -62,7 +62,9 @@ document.getElementById('login_bnt').onclick = function(){
    if(pswdSI != '' && emailSI != '') {
       //Check if user has already been created
       loadCards(usersUrl+'/'+emailSI).then(user => {
-         if(user.length !=0){
+         user = user[0]
+         console.log(user)
+         if(user != undefined && user.length !=0 ){
             //user already exist!
             console.log("usuario existe")
             //Check credentials

@@ -20,6 +20,13 @@ function putCards(url, user, onSuccess, onError) {
     xhr.send(JSON.stringify(user));
     xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
 }
+function deleteCards(url, user, onSuccess, onError) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('DELETE', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(user));
+    xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
+}
 
 function storeUser(url, user, onSuccess, onError) {
     let xhr = new XMLHttpRequest();

@@ -102,43 +102,9 @@
             </div>
             <div class="card-body" >
               <input class="form-control mb-4" type="text" placeholder="Add a Habit" id="textboxHabit" style="background-color: #e1dfe2">
-              <ul class="list-group dailies_list " style="width: 100%">
-                <li style="list-style-type:none;" class=" mb-1" >
-                  <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list">
-                      <a class="btn habBnt btn-lg" role="button" onclick="goToCart()"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </li>
-                    <li class="list-group-item text_list d-flex justify-content-between align-items-center" data-toggle="modal" data-target="#habit_modal">
-                      <ul class="list-group">
-                        <li style="list-style-type:none;">
-                          <p>HABIT BOTH ENABLED</p>
-                        </li>
-                        <li style="list-style-type:none;">
-                      <span class="badge badge-warning badge-pill">
-                        <i class="fa fa-forward" aria-hidden="true"></i> 14</span>
-                        </li> 
-                      </ul>
-                    </li>  
-                  </ul>
-                </li>
-                <li style="list-style-type:none;" class=" mb-1" >
-                  <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 habBtn_list strong">
-                      <a class="btn habBnt btn-lg strong" role="button" onclick="goToCart()" ><i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </li>
-                    <li class="list-group-item text_list d-flex justify-content-between align-items-center">
-                      <ul class="list-group">
-                        <li style="list-style-type:none;">
-                          <p>HABIT STRONG</p>
-                        </li>
-                        <li style="list-style-type:none;">
-                      <span class="badge badge-success badge-pill">
-                        <i class="fa fa-forward" aria-hidden="true"></i> 30</span>
-                        </li> 
-                      </ul>
-                    </li> 
-                  </ul>
-                </li>
+              <ul class="list-group dailies_list " id="habitList" style="width: 100%">
+                
+                
               </ul>
             </div>
           </div>
@@ -320,44 +286,45 @@
           <div class="modal-header" style="background-color: #ffbe5d">
             <h4 class="modal-title text-left w-100 font-weight-bold" style="color: #794b00;">Edit Habit</h4>
             <button type="button" class="btn btn-link" data-dismiss="modal" style="color: black !important;" >CANCEL</button>
-            <button type="submit" class="btn btn-light " data-dismiss="modal" >SAVE</button>
+            <button type="submit" class="btn btn-light " data-dismiss="modal" onclick="editHabit()" >SAVE</button>
           </div>
           <div class="modal-body mx-3">
             <form>
-              <label class="m-0" data-error="wrong" data-success="right" for="titleHabit">Title</label>
-              <input type="text" class="form-control mb-2" id="titleHabit" required>
-              <label class="m-0"  data-error="wrong" data-success="right" for="dificultyHabit">Difficulty</label>
-              <select class="form-control mb-2" id="dificultyHabit">
-                    <option>Trivial</option>
-                    <option>Easy</option>
-                    <option>Intermediate</option>
-                    <option>Hard</option>
+              <span class="d-none" id="HabitId"> </span>
+              <label class="m-0" data-error="wrong" data-success="right" for="titleHabitModal">Title</label>
+              <input type="text" class="form-control mb-2" id="titleHabitModal" required>
+              <label class="m-0"  data-error="wrong" data-success="right" for="dificultyHabitModal">Difficulty</label>
+              <select class="form-control mb-2" id="dificultyHabitModal">
+                    <option value="trivial">Trivial</option>
+                    <option value="easy">Easy</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="hard">Hard</option>
               </select>
               <label class="m-0 " data-error="wrong" data-success="right" for="TagHabit" >Tag </label>
               <div class="mb-2 d-flex justify-content-between align-items-center px-4" id="TagHabit">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                  <label class="form-check-label" for="inlineCheckbox1">Study</label>
+                  <input class="form-check-input" type="checkbox" id="studyHabitCheckboxModal" value="option1" onclick="onlyOne(this.id,'Habit')">
+                  <label class="form-check-label" for="studyHabitCheckboxModal">Study</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                  <label class="form-check-label" for="inlineCheckbox2">Work</label>
+                  <input class="form-check-input" type="checkbox" id="workHabitCheckboxModal" value="option2" checked onclick="onlyOne(this.id,'Habit')">
+                  <label class="form-check-label" for="workHabitCheckboxModal">Work</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                  <label class="form-check-label" for="inlineCheckbox3" >Health</label>
+                  <input class="form-check-input" type="checkbox" id="healthHabitCheckboxModal" value="option3" onclick="onlyOne(this.id,'Habit')" >
+                  <label class="form-check-label" for="healthHabitCheckboxModal" >Health</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" >
-                  <label class="form-check-label" for="inlineCheckbox4">Personal</label>
+                  <input class="form-check-input" type="checkbox" id="personalHabitCheckboxModal" value="option4" onclick="onlyOne(this.id,'Habit')">
+                  <label class="form-check-label" for="personalHabitCheckboxModal">Personal</label>
                 </div>
               </div>              
             </form>
           </div>
           <div class="modal-footer d-flex justify-content-between align-items-center px-4">
-            <a class = "px-4" data-dismiss="modal" data-toggle="modal" id="eliminateHabit" style="color:red !important;">
+            <a class = "px-4" data-dismiss="modal" data-toggle="modal" id="eliminateHabit" onclick="habitDelete()" style="color:red !important;">
               <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Eliminate Habit</a>
-            <a class = "px-4" data-dismiss="modal" data-toggle="modal" id="eliminateHabit" style="color:green !important;">
+            <a class = "px-4" data-dismiss="modal" data-toggle="modal" id="eliminateHabit" onclick="habitRestart()" style="color:green !important;">
               <i class="fa fa-magic" aria-hidden="true"></i>&nbsp;Restart Habit</a>
           </div>
         </div>
@@ -376,6 +343,7 @@
           </div>
           <div class="modal-body mx-3">
             <form>
+              <span class="d-none" id="TodoId"> </span>
               <label class="m-0" data-error="wrong" data-success="right" for="titleHabit">Title</label>
               <input type="text" class="form-control mb-2" id="titleHabit" required>
               <label class="m-0" data-error="wrong" data-success="right" for="dateHabit">Due Date</label>
@@ -383,28 +351,28 @@
 
               <label class="m-0"  data-error="wrong" data-success="right" for="dificultyHabit">Difficulty</label>
               <select class="form-control mb-2" id="dificultyHabit">
-                    <option>Trivial</option>
-                    <option>Easy</option>
-                    <option>Intermediate</option>
-                    <option>Hard</option>
+                    <option value="trivial">Trivial</option>
+                    <option value="easy">Easy</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="hard">Hard</option>
               </select>
               <label class="m-0 " data-error="wrong" data-success="right" for="TagHabit" >Tag</label>
               <div class="mb-2 d-flex justify-content-between align-items-center px-4" id="TagHabit">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                  <label class="form-check-label" for="inlineCheckbox1">Study</label>
+                  <input class="form-check-input" type="checkbox" id="studyTodoCheckboxModal" value="option1" onclick="onlyOne(this.id,'Todo')">
+                  <label class="form-check-label" for="studyTodoCheckboxModal">Study</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                  <label class="form-check-label" for="inlineCheckbox2">Work</label>
+                  <input class="form-check-input" type="checkbox" id="workTodoCheckboxModal" value="option2" checked onclick="onlyOne(this.id,'Todo')">
+                  <label class="form-check-label" for="workTodoCheckboxModal">Work</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                  <label class="form-check-label" for="inlineCheckbox3" >Health</label>
+                  <input class="form-check-input" type="checkbox" id="healthTodoCheckboxModal" value="option3"  onclick="onlyOne(this.id,'Todo')">
+                  <label class="form-check-label" for="healthTodoCheckboxModal" >Health</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" >
-                  <label class="form-check-label" for="inlineCheckbox4">Personal</label>
+                  <input class="form-check-input" type="checkbox" id="personalTodoCheckboxModal" value="option4" onclick="onlyOne(this.id,'Todo')" >
+                  <label class="form-check-label" for="personalTodoCheckboxModal">Personal</label>
                 </div>
               </div>
             </form>
@@ -429,32 +397,33 @@
           </div>
           <div class="modal-body mx-3">
             <form>
+              <span class="d-none" id="DailyId"> </span>
               <label class="m-0" data-error="wrong" data-success="right" for="titleHabit">Title</label>
               <input type="text" class="form-control mb-2" id="titleHabit" required>
               <label class="m-0"  data-error="wrong" data-success="right" for="dificultyHabit">Difficulty</label>
               <select class="form-control mb-2" id="dificultyHabit">
-                    <option>Trivial</option>
-                    <option>Easy</option>
-                    <option>Intermediate</option>
-                    <option>Hard</option>
+                    <option value="trivial">Trivial</option>
+                    <option value="easy">Easy</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="hard">Hard</option>
               </select>
               <label class="m-0 " data-error="wrong" data-success="right" for="TagHabit" >Tag</label>
               <div class="mb-2 d-flex justify-content-between align-items-center px-4" id="TagHabit">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                  <label class="form-check-label" for="inlineCheckbox1">Study</label>
+                  <input class="form-check-input" type="checkbox" id="studyDailyCheckboxModal" value="option1" onclick="onlyOne(this.id,'Daily')">
+                  <label class="form-check-label" for="studyDailyCheckboxModal">Study</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                  <label class="form-check-label" for="inlineCheckbox2">Work</label>
+                  <input class="form-check-input" type="checkbox" id="workDailyCheckboxModal" value="option2" checked onclick="onlyOne(this.id,'Daily')">
+                  <label class="form-check-label" for="workDailyCheckboxModal">Work</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                  <label class="form-check-label" for="inlineCheckbox3" >Health</label>
+                  <input class="form-check-input" type="checkbox" id="healthDailyCheckboxModal" value="option3"  onclick="onlyOne(this.id,'Daily')">
+                  <label class="form-check-label" for="healthDailyCheckboxModal" >Health</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" >
-                  <label class="form-check-label" for="inlineCheckbox4">Personal</label>
+                  <input class="form-check-input" type="checkbox" id="personalDailyCheckboxModal" value="option4"  onclick="onlyOne(this.id,'Daily')">
+                  <label class="form-check-label" for="personalDailyCheckboxModal">Personal</label>
                 </div>
               </div>
               <label class="m-0"  data-error="wrong" data-success="right" for="resetCounterHabit">Valid on </label>
@@ -524,11 +493,11 @@
   <!--
     <script type="text/javascript" src="static/daily.js"></script>
     <script type="text/javascript" src="static/todo.js"></script>
-    <script type="text/javascript" src="static/habits.js"></script>
     <script type="text/javascript" src="static/tag.js"></script>
   -->
     <script type="text/javascript" src="static/user.js"></script>
     <script type="text/javascript" src="static/reward.js"></script>
+    <script type="text/javascript" src="static/habit.js"></script>
 
     <script type="text/javascript" src="static/general_utils.js"></script>
     <script type="text/javascript" src="static/reward_utils.js"></script>
