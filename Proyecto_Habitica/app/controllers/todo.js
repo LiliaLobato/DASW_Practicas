@@ -1,7 +1,5 @@
 "use strict";
 
-const utils = require('./utils');
-
 class TodoException{
 	constructor(errorMessage){
 		this.errorMessage = errorMessage;
@@ -10,7 +8,7 @@ class TodoException{
 
 class Todo{
 	constructor(userEmail, title, difficulty, tag, date, completed) {
-        this._id = utils.generateId('todo');
+        this._id = generateId('todo');
         this.userEmail = userEmail
         this.title = title
         this.difficulty = difficulty //pendiente
@@ -130,5 +128,3 @@ class Todo{
     	}
     }
 }
-
-module.exports = Todo;

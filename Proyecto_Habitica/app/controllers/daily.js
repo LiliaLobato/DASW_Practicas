@@ -1,7 +1,5 @@
 "use strict";
 
-const utils = require('./utils');
-
 class DailyException{
 	constructor(errorMessage){
 		this.errorMessage = errorMessage;
@@ -10,7 +8,7 @@ class DailyException{
 
 class Daily{
 	constructor(userEmail, title, difficulty, tag, validOn, updatedAt, completed, counter) {
-        this._id = utils.generateId('daily');
+        this._id = generateId('daily');
         this.userEmail = userEmail
         this.title = title
         this.difficulty = difficulty 
@@ -184,5 +182,3 @@ class Daily{
     	}
     }
 }
-
-module.exports = Daily;
