@@ -27,7 +27,7 @@ function deleteCards(url, user, onSuccess, onError) {
     xhr.send(JSON.stringify(user));
     xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
 }
-
+///////////////////////////////////////////////////////////////////////////////
 function storeUser(url, user, onSuccess, onError) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', url);
@@ -42,8 +42,7 @@ function putUser(url, user, onSuccess, onError) {
     xhr.send(JSON.stringify(user));
     xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
 }
-
-
+///////////////////////////////////////////////////////////////////////////////
 function getXhrResponse(xhr, onSuccess, onError) {
     if (xhr.status == 200) {
         onSuccess(xhr.responseText);

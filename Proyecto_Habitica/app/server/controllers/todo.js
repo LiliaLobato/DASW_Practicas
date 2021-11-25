@@ -7,11 +7,11 @@ class TodoException{
 }
 
 class Todo{
-	constructor(title, difficulty, tagId, date, status) {
+	constructor(userEmail,title, difficulty, tag, date, completed) {
         this._id = generateId('todo');
-        this.userId = //sesionStorage($userId)
+        this.userEmail = userEmail
         this.title = title
-        //this.difficulty = difficulty //pendiente
+        this.difficulty = difficulty //pendiente
         this.tag = tag
         this.date = date //calcular si es good || bad 23/11/2021 getdate() => 22/11/2021
         this.completed = completed //true == done; flase == pending
@@ -47,18 +47,18 @@ class Todo{
             this._difficulty = val;
         }
     }
-    //tagId
-    get tagId() {
-        return this._tagId;
+    //tag
+    get tag() {
+        return this._tag;
     }
-    set tagId(val) {
+    set tag(val) {
     	if(typeof val !== "string" && val !== undefined){
-    		throw new TodoException('tagId is not valid.');
+    		throw new TodoException('tag is not valid.');
     	}
         if(val === undefined){
-            this._tagId = '';
+            this._tag = '';
         }else{
-            this._tagId = val;
+            this._tag = val;
         }
     }
     //date
@@ -75,21 +75,21 @@ class Todo{
             this._date = val;
         }
     }
-    //status
-    get status() {
-        return this._status;
+    //completed
+    get completed() {
+        return this._completed;
     }
-    set status(val) {
+    set completed(val) {
         if( val == ''  || val === undefined){
-            this._status = "good";
+            this._completed = "good";
         } else {
             if(val !== "bad" && val !== "good" && val !== "done"){
-                throw new HabitException('status not valid.');
+                throw new HabitException('completed not valid.');
             }
             if(typeof val !== "string"){
-                throw new TodoException('status cannot be empty.');
+                throw new TodoException('completed cannot be empty.');
             }
-            this._status = val;
+            this._completed = val;
         }
     }
 
@@ -108,14 +108,14 @@ class Todo{
     	Object.assign(newTodo, obj); //clone object and handle
     	Todo.cleanObject(newTodo);
     	//Falta ir pasando los valores a un Todoo que pertenezca a la clase
-    	let todo = new Todo(newTodo['title'], newTodo['difficulty'], newTodo['tagId'], newTodo['date'], newTodo['status']);
+    	let todo = new Todo(newTodo['title'], newTodo['difficulty'], newTodo['tag'], newTodo['date'], newTodo['completed']);
     	return todo;
     }
 
     //Limpiamos el objeto recibido de todos
     //aquellos valores ajenos a la clase Todo
     static cleanObject(obj){
-    	const TodoProperties = ['title', 'difficulty', 'tagId', 'date', 'status'];
+    	const TodoProperties = ['title', 'difficulty', 'tag', 'date', 'completed'];
     	for (let prop in obj){
     		//if prop not in TodoProperties
     		if(TodoProperties.indexOf(prop) == -1){

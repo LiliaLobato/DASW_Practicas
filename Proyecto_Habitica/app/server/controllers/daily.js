@@ -7,14 +7,14 @@ class DailyException{
 }
 
 class Daily{
-	constructor(title, difficulty, tagId, validOn, status, streak) {
+	constructor(userEmail, title, difficulty, tag, validOn, updatedAt, completed, streak) {
         this._id = generateId('daily');
-        this.userId = //sesionStorage($userId)
+        this.userEmail = userEmail
         this.title = title
-        //this.difficulty = difficulty //pendiente
+        this.difficulty = difficulty 
         this.tag = tag
-        this.validOn = validOn 
-        this.updatedAt = updatedAt //last date when it was udpated
+        this.validOn = validOn //este es un array de strings ['mon','tue']
+        this.updatedAt = updatedAt //last date when it was udpated (class guarda un string, necesita una función que traduzca de string a tipo data de moongoose)
         this.completed = completed //true == hecho, flase == not done
         this.counter = counter //status se obtiene de streak
     }
@@ -35,6 +35,26 @@ class Daily{
     	}
         this._title = val;
     }
+    //userEmail
+    get userEmail() {
+        return this._userEmail;
+    }
+    set userEmail(val) {
+        if(typeof val !== "string" || val == ''){
+            throw new DailyException('Daily userEmail cannot be empty.');
+        }
+        this._userEmail = val;
+    }
+    //updatedAt
+    get updatedAt() {
+        return this._updatedAt;
+    }
+    set updatedAt(val) {
+        if(typeof val !== "string" || val == ''){
+            throw new DailyException('Daily updatedAt cannot be empty.');
+        }
+        this._updatedAt = val;
+    }
     //difficulty
     get difficulty() {
         return this._difficulty;
@@ -49,18 +69,18 @@ class Daily{
             this._difficulty = val;
         }
     }
-    //tagId
-    get tagId() {
-        return this._tagId;
+    //tag
+    get tag() {
+        return this._tag;
     }
-    set tagId(val) {
+    set tag(val) {
         if(typeof val !== "string" && val !== undefined){
-            throw new DailyException('tagId is not valid.');
+            throw new DailyException('tag is not valid.');
         }
         if(val === undefined){
-            this._tagId = '';
+            this._tag = '';
         }else{
-            this._tagId = val;
+            this._tag = val;
         }
     }
     //validOn

@@ -4,6 +4,7 @@ const productsUrl = 'http://localhost:8080/products'
 const rewardsUrl = 'http://localhost:8080/reward'
 const usersUrl = 'http://localhost:8080/user'
 const habitsUrl = 'http://localhost:8080/habit'
+const dailyUrl = 'http://localhost:8080/daily'
 
 
 function readUserData(){
