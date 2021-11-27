@@ -69,7 +69,7 @@ class Todo{
     }
     set date(val) {
         if(val == '' || val === undefined){
-            this._date = getTodayDate();
+            this._date = utils.getTodayDate();
         } else {
             if(typeof val !== "string"){
                 throw new TodoException('date cannot be empty.');
