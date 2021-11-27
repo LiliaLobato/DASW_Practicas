@@ -6,7 +6,6 @@ const usersUrl = 'http://localhost:8080/user'
 const habitsUrl = 'http://localhost:8080/habit'
 const dailyUrl = 'http://localhost:8080/daily'
 
-
 function readUserData(){
 	let user = JSON.parse(sessionStorage.getItem('userData'));
 	let i = User.createFromObject(user);

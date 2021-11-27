@@ -176,12 +176,13 @@ async function getDailies(res){
 }
 async function createDaily(body){
 	let dailyObj = Dailyjs.createFromObject(body);
+	console.log(dailyObj);
 	const daily = new Daily({
 		_userEmail : `${dailyObj.userEmail}`,
 		_title : `${dailyObj.title}`,
 		_difficulty : `${dailyObj.difficulty}`,
 		_tag:  `${dailyObj.tag}`,
-		_validOn: [`${dailyObj.validOn}`],
+		_validOn: `${dailyObj.validOn}`,
 	   	_updatedAt:`${dailyObj.updatedAt}`,
 	  	_completed: `${dailyObj.completed}`,
 	   	_counter: `${dailyObj.counter}`

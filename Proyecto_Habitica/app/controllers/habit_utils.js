@@ -134,13 +134,12 @@ function habitPlus(id){
         putCards(habitsUrl+'/ById/'+id, currentHabit, (msg) => console.log(msg), (err) => console.log(err));
         updateHabitsList();
     })
-    //TODO
+    //TODO NARDA
     //calculamos la cantidad de monedas que gana
     //updateUser(user); //le sumamos monedas
 }
 
 function habitDelete(){
-    console.log("aun no se como se hace")
     deleteCards(habitsUrl+'/ById/'+HabitId.innerText, (msg) => console.log(msg), (err) => console.log(err));
     updateHabitsList();
 }
@@ -159,9 +158,6 @@ function habitRestart(){
         putCards(habitsUrl+'/ById/'+HabitId.innerText, currentHabit, (msg) => console.log(msg), (err) => console.log(err));
         updateHabitsList();
     })
-    //TODO
-    //calculamos la cantidad de monedas que gana
-    //updateUser(user); //le sumamos monedas
 }
 
 function createHabit(habit) {

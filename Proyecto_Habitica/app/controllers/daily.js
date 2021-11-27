@@ -117,13 +117,13 @@ class Daily{
             }
         } else {
             if(val == ''  || val === undefined){
-                val = '';
-            }
-            if(val !== "mon" && val !== "tue" && val !== "wed" && val !== "tue" &&
+                this._validOn = ['mon','tue','wed','thu','fri','sat','sun'];
+            } else if(val !== "mon" && val !== "tue" && val !== "wed" && val !== "thu" &&
                val !== "fri" && val !== "sat" && val !== "sun" && val !== ''){
-                throw new HabitException('day of validOn not valid.');
+                throw new DailyException('day of validOn not valid.');
+            } else {
+                this._validOn.push(val);
             }
-            this._validOn.push(val);
         }
     }
     //counter

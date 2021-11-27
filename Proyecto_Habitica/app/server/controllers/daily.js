@@ -53,7 +53,7 @@ class Daily{
     }
     set updatedAt(val) {
         if(val == '' || val === undefined){
-            this._updatedAt = getTodayDate();
+            this._updatedAt = utils.getTodayDate();
         } else {
             if(typeof val !== "string"){
                 throw new DailyException('date cannot be empty.');
@@ -119,13 +119,13 @@ class Daily{
             }
         } else {
             if(val == ''  || val === undefined){
-                val = '';
-            }
-            if(val !== "mon" && val !== "tue" && val !== "wed" && val !== "tue" &&
+                this._validOn = ['mon','tue','wed','thu','fri','sat','sun'];
+            } else if(val !== "mon" && val !== "tue" && val !== "wed" && val !== "thu" &&
                val !== "fri" && val !== "sat" && val !== "sun" && val !== ''){
                 throw new DailyException('day of validOn not valid.');
+            } else {
+                this._validOn.push(val);
             }
-            this._validOn.push(val);
         }
     }
     //counter
