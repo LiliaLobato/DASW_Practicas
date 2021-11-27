@@ -3,16 +3,16 @@
 const express = require('express');
 const router = express.Router();
 const routerHabit = require('../routes/habit');
-//const routerDaily = require('../routes/daily');
-//const routerTodo = require('../routes/todo');
+const routerDaily = require('../routes/daily');
+const routerTodo = require('../routes/todo');
 const routerReward = require('../routes/reward');
 const routerUser = require('../routes/user');
 //const routerTag = require('../routes/tag');
 const path = require('path');
 
 router.use('/habit', routerHabit);
-//router.use('/daily', routerDaily);
-//router.use('/todo', routerTodo);
+router.use('/daily', routerDaily);
+router.use('/todo', routerTodo);
 router.use('/reward', routerReward);
 router.use('/user', routerUser);
 //router.use('/tag', routerTag);
