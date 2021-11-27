@@ -20,3 +20,4 @@ return Math.floor(Math.random() * (max - min) + min);
 
   
 exports.generateId = generateId;
+exports.getTodayDate = getTodayDate;
