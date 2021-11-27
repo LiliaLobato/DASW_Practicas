@@ -113,7 +113,7 @@ class Daily{
             for(let day of val){
                 if(day !== "mon" && day !== "tue" && day !== "wed" && day !== "thu" &&
                    day !== "fri" && day !== "sat" && day !== "sun" && val !== ''){
-                    throw new HabitException('day of validOn not valid.');
+                    throw new DailyException('day of validOn not valid.');
                 }
                 this._validOn.push(day);
             }
@@ -123,7 +123,7 @@ class Daily{
             }
             if(val !== "mon" && val !== "tue" && val !== "wed" && val !== "tue" &&
                val !== "fri" && val !== "sat" && val !== "sun" && val !== ''){
-                throw new HabitException('day of validOn not valid.');
+                throw new DailyException('day of validOn not valid.');
             }
             this._validOn.push(val);
         }
