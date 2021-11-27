@@ -3,9 +3,13 @@ const fs = require('fs');
 const Rewardjs = require('./reward');
 const Userjs = require('./user');
 const Habitjs = require('./habit');
+const Dailyjs = require('./daily');
+const Todojs = require('./todo');
 
 const User = require ('../../model/user');
 const Habit = require ('../../model/habit');
+const Daily = require ('../../model/daily'); 
+const Todo = require ('../../model/todo');  
 
 
 let contentReward = fs.readFileSync('./app/server/data/rewards.js');
@@ -160,6 +164,126 @@ async function updateHabit(id, updatedHabit){
 	console.log(habit)
 	await Habit.findByIdAndUpdate(id,habit);
 }
+//Dailies 
+async function getDailies(res){	
+	Daily.find({}).then(function (dailies) {
+	    if(dailies != undefined ) {
+	      res.status(200).json(dailies);
+	    } else {
+	      res.status(404).send(`Habits no existe!`);
+	    }
+	 });
+}
+async function createDaily(body){
+	let dailyObj = Dailyjs.createFromObject(body);
+	const daily = new Daily({
+		_userEmail : `${dailyObj.userEmail}`,
+		_title : `${dailyObj.title}`,
+		_difficulty : `${dailyObj.difficulty}`,
+		_tag:  `${dailyObj.tag}`,
+		_validOn: [`${dailyObj.validOn}`],
+	   	_updatedAt:`${dailyObj.updatedAt}`,
+	  	_completed: `${dailyObj.completed}`,
+	   	_counter: `${dailyObj.counter}`
+	});
+	console.log(daily);
+	await daily.save();
+}
+async function deleteDaily(id){
+	await Daily.findByIdAndDelete(id);
+}
+async function getDailyFromUser(Email,res){
+	Daily.find({_userEmail:Email}).then(function (dailies) {
+	    if(dailies != undefined ) {
+	      res.status(200).json(dailies);
+	    } else {
+	      res.status(404).send(`Daily no existe!`);
+	    }
+	 });
+}
+async function getDailyFromId(id,res){
+	Daily.findById(id).then(function (dailies) {
+	    if(dailies != undefined ) {
+	      res.status(200).json(dailies);
+	    } else {
+	      res.status(404).send(`Daily no existe!`);
+	    }
+	 });
+}
+async function updateDaily(id, updatedDaily){
+	let dailyObj = Dailyjs.createFromObject(updatedDaily);
+	const daily =  {
+		_userEmail : `${dailyObj.userEmail}`,
+		_title : `${dailyObj.title}`,
+		_difficulty : `${dailyObj.difficulty}`,
+		_tag:  `${dailyObj.tag}`,
+		_validOn: [`${dailyObj.validOn}`],
+	   	_updatedAt:`${dailyObj.updatedAt}`,
+	  	_completed: `${dailyObj.completed}`,
+	   	_counter: `${dailyObj.counter}`
+	};
+	console.log(daily)
+	await Daily.findByIdAndUpdate(id,daily);
+}
+
+//Todos
+async function getTodos(res){	
+	Daily.find({}).then(function (todos) {
+	    if(todos != undefined ) {
+	      res.status(200).json(todos);
+	    } else {
+	      res.status(404).send(`Todo no existe!`);
+	    }
+	 });
+}
+async function createTodo(body){
+	let todoObj = Todojs.createFromObject(body);
+	const todo = new Todo({
+		_userEmail : `${todoObj.userEmail}`,
+		_title : `${todoObj.title}`,
+		_difficulty : `${todoObj.difficulty}`,
+		_tag:  `${todoObj.tag}`,
+		_date: `${todoObj.date}`,
+	  	_completed: `${todoObj.completed}`
+	});
+	console.log(todo);
+	await todo.save();
+}
+async function deleteTodo(id){
+	await Todo.findByIdAndDelete(id);
+}
+async function getTodoFromUser(Email,res){
+	Todo.find({_userEmail:Email}).then(function (todos) {
+	    if(todos != undefined ) {
+	      res.status(200).json(todos);
+	    } else {
+	      res.status(404).send(`Todo no existe!`);
+	    }
+	 });
+}
+async function updateTodo(id, updatedTodo){
+	let todoObj = Todojs.createFromObject(updatedTodo);
+	const todo = {
+		_userEmail : `${todoObj.userEmail}`,
+		_title : `${todoObj.title}`,
+		_difficulty : `${todoObj.difficulty}`,
+		_tag:  `${todoObj.tag}`,
+		_date: `${todoObj.date}`,
+	  	_completed: `${todoObj.completed}`
+	};
+	console.log(todo)
+	await Todo.findByIdAndUpdate(id,todo);
+}
+async function getTodoFromId(id,res){
+	Todo.findById(id).then(function (todos) {
+	    if(todos != undefined ) {
+	      res.status(200).json(todos);
+	    } else {
+	      res.status(404).send(`Todo no existe!`);
+	    }
+	 });
+}
+
 
 exports.getRewards = getRewards;
 exports.createReward = createReward;
@@ -177,3 +301,17 @@ exports.deleteHabit = deleteHabit;
 exports.updateHabit = updateHabit;
 exports.getHabitFromUser = getHabitFromUser;
 exports.getHabitFromId = getHabitFromId;
+
+exports.getDailies = getDailies;
+exports.createDaily = createDaily;
+exports.deleteDaily = deleteDaily;
+exports.updateDaily = updateDaily;
+exports.getDailyFromUser= getDailyFromUser;
+exports.getDailyFromId = getDailyFromId;
+
+exports.getTodos = getTodos;
+exports.createTodo = createTodo;
+exports.deleteTodo = deleteTodo;
+exports.updateTodo = updateTodo;
+exports.getTodoFromUser= getTodoFromUser;
+exports.getTodoFromId = getTodoFromId;
