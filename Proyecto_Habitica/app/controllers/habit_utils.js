@@ -137,7 +137,7 @@ function habitPlus(id){
         updateHabitsList();
     })
     //TODO NARDA
-    //calculamos la cantidad de monedas que gana
+    //calculamos la cantidad de monedas y experiencia que gana
     //updateUser(user); //le sumamos monedas y experienca pero revisamos que si sobrepasan el límite, aumente de nivel
 }
 

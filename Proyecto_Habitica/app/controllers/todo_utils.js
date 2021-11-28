@@ -172,8 +172,8 @@ function todoDone(id){
         updateTodoList();
     })
     //TODO NARDA
-    //calculamos la cantidad de monedas que gana
-    //updateUser(user); //le sumamos monedas y experienca pero revisamos que si sobrepasan el límite, aumente de nivel
+    //calculamos la cantidad de experiencia que gana
+    //updateUser(user); //le sumamos experienca pero revisamos que si sobrepasan el límite, aumente de nivel
 }
 
 function checkDate(todo){

@@ -47,7 +47,8 @@ function buyReward(id){
   loadCards(rewardsUrl + '/ById/' + id).then(reward => {
     console.log(reward)
     //TODO NARDA
-    //obtenemos precio y puntos
+    //obtenemos precio y puntos que gana
+    //dependiendo del type, lo agregamos como life o como exp
     //quitamos modenas y putnos del usuario
   })
 

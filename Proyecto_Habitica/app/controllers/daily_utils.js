@@ -259,7 +259,7 @@ function dailyDone(id){
     })
     //TODO NARDA
     //calculamos la cantidad de monedas que gana
-    //updateUser(user); //le sumamos monedas y experienca pero revisamos que si sobrepasan el límite, aumente de nivel
+    //updateUser(user); //le sumamos monedas 
 }
 
 
