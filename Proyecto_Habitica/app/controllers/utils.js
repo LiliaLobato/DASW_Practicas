@@ -20,6 +20,12 @@ function getYesterdayDate(){
 	let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()-1);
 	return date;
 }
+function getStringDate(date){
+	let newDate = new Date(date);
+	newDate.setDate(newDate.getDate() +1);
+	let strDate = newDate.getFullYear()+'-'+(newDate.getMonth()+1)+'-'+newDate.getDate();
+	return strDate;
+}
 
 const random = (min, max) =>  {
 return Math.floor(Math.random() * (max - min) + min);

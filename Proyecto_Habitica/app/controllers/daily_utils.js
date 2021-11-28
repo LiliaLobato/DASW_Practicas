@@ -3,7 +3,7 @@
 let textboxDaily = document.getElementById('textboxDaily');
 let dailycontainer = document.getElementById('dailyList');
 let titleDailyModal = document.getElementById('titleDailyModal');
-let dificultyDailyModal = document.getElementById('dificultyDailyModal');
+let difficultyDailyModal = document.getElementById('difficultyDailyModal');
 let studyDailyCheckboxModal = document.getElementById('studyDailyCheckboxModal');
 let workDailyCheckboxModal = document.getElementById('workDailyCheckboxModal');
 let healthDailyCheckboxModal = document.getElementById('healthDailyCheckboxModal');
@@ -62,6 +62,7 @@ textboxDaily.addEventListener("keyup", function(event) {
                 "_userEmail": currentUser._avatarEmail,
                 "_title": textboxDaily.value
             })
+            updateDailyList();
             textboxDaily.value = '';
         }
 		return false;
@@ -112,21 +113,22 @@ function selectDay(selectedDays){
     }
 }
 
-function TagSellected(){
+function TagSellectedDaily(){
     if (studyDailyCheckboxModal.checked==true) return 'study';
-    if (workDailyCheckboxModal.checked==true) return 'work';
-    if (healthDailyCheckboxModal.checked==true) return 'health';
-    if (personalDailyCheckboxModal.checked==true) return 'personal';
+    else if (workDailyCheckboxModal.checked==true) return 'work';
+    else if (healthDailyCheckboxModal.checked==true) return 'health';
+    else if (personalDailyCheckboxModal.checked==true) return 'personal';
+    else return ''
 }
 
-function noTagSellected(){
+function noTagSellectedDaily(){
     studyDailyCheckboxModal.checked=false;
     workDailyCheckboxModal.checked=false;
     healthDailyCheckboxModal.checked=false;
     personalDailyCheckboxModal.checked=false;
 }
 
-function selectTag(tag){
+function selectTagDaily(tag){
     switch(tag){
         case 'study':
             studyDailyCheckboxModal.checked=true;
@@ -151,11 +153,11 @@ function preloadDailyModal(id){
         //habitListToHtml(daily);
         let currentDaily = daily;
         //obtenemos los valores actuales del habito
-        dificultyDailyModal.value=currentDaily._difficulty;
+        difficultyDailyModal.value=currentDaily._difficulty;
         titleDailyModal.value = currentDaily._title;
-        noTagSellected();
+        noTagSellectedDaily();
         noDaySellected();
-        selectTag(currentDaily._tag);
+        selectTagDaily(currentDaily._tag);
         selectDay(daily._validOn[0].slice(daily._validOn[0].indexOf("\n") + 1).split(","))
         DailyId.innerText = id;
     })
@@ -166,21 +168,14 @@ function editDaily(){
         //habitListToHtml(habits);
         let currentDaily = habits;
         //solamente cambiamos los atributo que pueden cambiar
-        currentDaily._difficulty = dificultyDailyModal.value;
+        currentDaily._difficulty = difficultyDailyModal.value;
         currentDaily._title = titleDailyModal.value;
-        currentDaily._tag = TagSellected();
+        currentDaily._tag = TagSellectedDaily();
         console.log(currentDaily)
         currentDaily._validOn = validOnModal;
         putCards(dailyUrl+'/ById/'+DailyId.innerText, currentDaily, (msg) => console.log(msg), (err) => console.log(err));
         updateDailyList();
     })
-}
-
-function createDaily(daily) {
-    postCards(dailyUrl, daily, (msg) => {
-        console.log(msg);
-    }, (err) => console.log(err));
-    updateDailyList();
 }
 
 function checkDate(daily){
@@ -212,6 +207,9 @@ function updateDate(daily){
         daily._validOn = validOnArray;
         daily._completed = false; 
         putCards(dailyUrl+'/ById/'+daily._id, daily, (msg) => console.log(msg), (err) => console.log(err));
+        //TODO NARDA
+        //calculamos la cantidad de monedas que pierde
+        //updateUser(user); //le restamos vida
     }
 	// reviso si hoy no es un dia valido => usuario no tiene que hacer daily hoy
 	if(!validOnArray.includes(today_dow) && daily._completed != true){
@@ -261,7 +259,7 @@ function dailyDone(id){
     })
     //TODO NARDA
     //calculamos la cantidad de monedas que gana
-    //updateUser(user); //le sumamos monedas
+    //updateUser(user); //le sumamos monedas y experienca pero revisamos que si sobrepasan el límite, aumente de nivel
 }
 
 

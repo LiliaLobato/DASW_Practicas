@@ -47,7 +47,7 @@ document.getElementById('createAccount_bnt').onclick = function(){
             //There is no user with that email
             console.log("usuario no existe")
             addUser(newUser);
-            //TODO save email on sessionServer and go to home!!!!
+            populateUser(emailCA)
             console.log("go to home")
             goToHome(newUser)
          }
@@ -102,6 +102,18 @@ function addUser(user) {
     storeUser(usersUrl, user, (msg) => {
         console.log(msg);
     }, (err) => console.log(err));
+}
+
+function populateUser(userEmail) {
+   createHabit({ "_userEmail": userEmail, "_title": 'Go for a run', "_tag": 'health'})
+   createHabit({ "_userEmail": userEmail, "_title": 'Meditate', "_tag": 'personal'})
+   createHabit({ "_userEmail": userEmail, "_title": 'Read 20 pages from any book', "_tag": 'study'})
+   createDaily({ "_userEmail": userEmail, "_title": 'Clean work area', "_tag": 'work'})
+   createDaily({ "_userEmail": userEmail, "_title": 'Brush teeth', "_tag": 'health'})
+   createDaily({ "_userEmail": userEmail, "_title": 'Make bed before leaving the house', "_tag": 'personal'})
+   createTodo({  "_userEmail": userEmail, "_title": 'Send Presentation to boss', "_tag": 'work'})
+   createTodo({  "_userEmail": userEmail, "_title": 'Buy concert tickets', "_tag": 'personal'})
+   createTodo({  "_userEmail": userEmail, "_title": 'Spanish Homework', "_tag": 'study'})    
 }
 
 let status;

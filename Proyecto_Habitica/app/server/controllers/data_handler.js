@@ -13,15 +13,9 @@ const Todo = require ('../../model/todo');
 
 
 let contentReward = fs.readFileSync('./app/server/data/rewards.js');
-let contentHabit = fs.readFileSync('./app/server/data/habits.js');
 
 //Este es el equivalente a nuestro servidor.
-const serverDaily = [];
-const serverTodo = [];
-const serverTag = [];
-//const serverReward = [];
 let serverReward = JSON.parse(contentReward).map(Rewardjs.createFromObject);
-let serverHabit = JSON.parse(contentHabit).map(Habitjs.createFromObject);
 const filter = [];
 
 
@@ -229,7 +223,7 @@ async function updateDaily(id, updatedDaily){
 
 //Todos
 async function getTodos(res){	
-	Daily.find({}).then(function (todos) {
+	Todo.find({}).then(function (todos) {
 	    if(todos != undefined ) {
 	      res.status(200).json(todos);
 	    } else {
@@ -290,6 +284,7 @@ exports.getRewards = getRewards;
 exports.createReward = createReward;
 exports.deleteReward = deleteReward;
 exports.getTypeRewards = getTypeRewards;
+exports.getRewardById = getRewardById;
 
 exports.getUsers = getUsers;
 exports.createUser = createUser;

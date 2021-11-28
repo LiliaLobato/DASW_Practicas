@@ -111,6 +111,19 @@ form-check-label{
 .ModBabBtn_list.selected{
     background-color: #dda146;
 }
+/*Filter customization*/
+.filter_tag:disabled{
+    background-color: #9398bf !important;
+    color: black !important;
+}
+.btn-purple{
+    background-color: #686d8f;
+    color:  white;
+}
+.btn-purple:hover{
+    background-color: #9398bf;
+    color:  white;
+}
 
 /*Reward customization */
 .reward{

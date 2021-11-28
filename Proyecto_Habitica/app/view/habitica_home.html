@@ -27,7 +27,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       </div>
-
     </nav>
 
     <div class="top_body" >
@@ -74,7 +73,6 @@
                   <p class="m-0 p-0 pl-2" id="avatarExpIndicator">87/100</p>
                 </li> 
               </ul>
-
               </div>
             </div>
           </div>
@@ -83,11 +81,16 @@
 
       <div class="form-row justify-content-center mt-3 mb-0" style="height:40px;">
         <div class="form-group col-md-3 tag_search">
-          <input class="form-control " type="text" placeholder="Search.." style="height: inherit;">        
-        </div>
-        <button type="button" class="btn btn-warning my-0 py-0" style="height: inherit;">
-          <i class="fa fa-filter" aria-hidden="true"></i> </button>    
-    </div>
+          <div class="btn-group mr-2 d-flex justify-content-between align-items-center" role="group" aria-label="First group">
+            <button type="button" class="btn btn-light btn-md filter_tag" disabled ><i class="fas fa-filter"></i></button>
+            <button type="button" class="btn btn-light btn-md " onclick="filterCards(this.id)" id="studyFilter">Study</button>
+            <button type="button" class="btn btn-light btn-md " onclick="filterCards(this.id)" id="workFilter">Work</button>
+            <button type="button" class="btn btn-light btn-md " onclick="filterCards(this.id)" id="healthFilter">Health</button>
+            <button type="button" class="btn btn-light btn-md " onclick="filterCards(this.id)" id="personalFilter">Personal</button>
+            <button type="button" class="btn btn-purple btn-md " onclick="filterCards(this.id)" id="allFilter">All</button>
+          </div>      
+        </div>  
+      </div>
 
     </div>
     
@@ -102,9 +105,7 @@
             </div>
             <div class="card-body" >
               <input class="form-control mb-4" type="text" placeholder="Add a Habit" id="textboxHabit" style="background-color: #e1dfe2">
-              <ul class="list-group dailies_list " id="habitList" style="width: 100%">
-                
-                
+              <ul class="list-group dailies_list " id="habitList" style="width: 100%">          
               </ul>
             </div>
           </div>
@@ -151,62 +152,8 @@
               </ul>
             </div>
             <div class="card-body" >
-              <input class="form-control mb-4" type="text" placeholder="Add a To Do" style="background-color: #e1dfe2">
-              <ul class="list-group dailies_list " style="width: 100%">
-                <li style="list-style-type:none;" class=" mb-1" >
-                  <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 dayBtn_list good">
-                      <a class="btn dayBnt btn-lg good" role="button" onclick="goToCart()"><i class="fa fa-check" aria-hidden="true"></i></a>
-                    </li>
-                    <li class="list-group-item text_list d-flex justify-content-between align-items-center" data-toggle="modal" data-target="#todo_modal">
-                      <ul class="list-group">
-                        <li style="list-style-type:none;">
-                          <p>TO DO ON TIME</p>
-                        </li>
-                        <li style="list-style-type:none;">
-                            <span class="badge badge-info badge-pill mr-2">
-                              <i class="fa fa-calendar-o" aria-hidden="true"></i> Due in 7 days</span>
-                        </li> 
-                      </ul>
-                    </li> 
-                  </ul>
-                </li>
-                <li style="list-style-type:none;" class=" mb-1" >
-                  <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 dayBtn_list bad">
-                      <a class="btn dayBnt btn-lg bad" role="button" onclick="goToCart()"><i class="fa fa-check" aria-hidden="true"></i></a>
-                    </li>
-                    <li class="list-group-item text_list d-flex justify-content-between align-items-center" data-toggle="modal" data-target="#todo_modal">
-                      <ul class="list-group">
-                        <li style="list-style-type:none;">
-                          <p>TO DO OVERDUE</p>
-                        </li>
-                        <li style="list-style-type:none;">
-                            <span class="badge badge-danger badge-pill mr-2">
-                              <i class="fa fa-calendar-o" aria-hidden="true"></i> Due 1 month ago</span>
-                        </li> 
-                      </ul>
-                    </li> 
-                  </ul>
-                </li>
-                <li style="list-style-type:none;" class=" mb-1" >
-                  <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item check_list d-flex justify-content-between align-items-center p-2 dayBtn_list done">
-                      <a class="btn dayBnt btn-lg done" role="button" onclick="goToCart()"><i class="fa fa-check" aria-hidden="true"></i></a>
-                    </li>
-                    <li class="list-group-item text_list d-flex justify-content-between align-items-center" data-toggle="modal" data-target="#todo_modal">
-                      <ul class="list-group">
-                        <li style="list-style-type:none;">
-                          <p>TO DO DONE</p>
-                        </li>
-                        <li style="list-style-type:none;">
-                            <span class="badge badge-secondary badge-pill mr-2">
-                              <i class="fa fa-calendar-o" aria-hidden="true"></i> Done</span>
-                        </li> 
-                      </ul>
-                    </li> 
-                  </ul>
-                </li>
+              <input class="form-control mb-4" id="textboxTodo" type="text" placeholder="Add a To Do" style="background-color: #e1dfe2">
+              <ul class="list-group dailies_list " id="todoList" style="width: 100%">
               </ul>
             </div>
           </div>
@@ -257,8 +204,8 @@
               <span class="d-none" id="HabitId"> </span>
               <label class="m-0" data-error="wrong" data-success="right" for="titleHabitModal">Title</label>
               <input type="text" class="form-control mb-2" id="titleHabitModal" required>
-              <label class="m-0"  data-error="wrong" data-success="right" for="dificultyHabitModal">Difficulty</label>
-              <select class="form-control mb-2" id="dificultyHabitModal">
+              <label class="m-0"  data-error="wrong" data-success="right" for="difficultyHabitModal">Difficulty</label>
+              <select class="form-control mb-2" id="difficultyHabitModal">
                     <option value="trivial">Trivial</option>
                     <option value="easy">Easy</option>
                     <option value="intermediate">Intermediate</option>
@@ -303,25 +250,25 @@
           <div class="modal-header" style="background-color: #ffbe5d">
             <h4 class="modal-title text-left w-100 font-weight-bold" style="color: #794b00;">Edit To Do</h4>
             <button type="button" class="btn btn-link" data-dismiss="modal" style="color: black !important;" >CANCEL</button>
-            <button type="submit" class="btn btn-light " data-dismiss="modal" >SAVE</button>
+            <button type="submit" class="btn btn-light " data-dismiss="modal" onclick="editTodo()">SAVE</button>
           </div>
           <div class="modal-body mx-3">
             <form>
               <span class="d-none" id="TodoId"> </span>
               <label class="m-0" data-error="wrong" data-success="right" for="titleTodoModal">Title</label>
               <input type="text" class="form-control mb-2" id="titleTodoModal" required>
-              <label class="m-0" data-error="wrong" data-success="right" for="dateTodo">Due Date</label>
-              <input type="date" class="form-control mb-2" id="dateTodo" required>
+              <label class="m-0" data-error="wrong" data-success="right" for="dateTodoModal">Due Date</label>
+              <input type="date" class="form-control mb-2" id="dateTodoModal" required>
 
-              <label class="m-0"  data-error="wrong" data-success="right" for="dificultyTodo">Difficulty</label>
-              <select class="form-control mb-2" id="dificultyTodo">
+              <label class="m-0"  data-error="wrong" data-success="right" for="difficultyTodoModal">Difficulty</label>
+              <select class="form-control mb-2" id="difficultyTodoModal">
                     <option value="trivial">Trivial</option>
                     <option value="easy">Easy</option>
                     <option value="intermediate">Intermediate</option>
                     <option value="hard">Hard</option>
               </select>
-              <label class="m-0 " data-error="wrong" data-success="right" for="TagTodo" >Tag</label>
-              <div class="mb-2 d-flex justify-content-between align-items-center px-4" id="TagTodo">
+              <label class="m-0 " data-error="wrong" data-success="right" for="TagTodoModal" >Tag</label>
+              <div class="mb-2 d-flex justify-content-between align-items-center px-4" id="TagTodoModal">
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="checkbox" id="studyTodoCheckboxModal" value="option1" onclick="onlyOne(this.id,'Todo')">
                   <label class="form-check-label" for="studyTodoCheckboxModal">Study</label>
@@ -341,9 +288,11 @@
               </div>
             </form>
           </div>
-          <div class="modal-footer d-flex justify-content-center .justify-content-end">
-            <a href="#" data-dismiss="modal" data-toggle="modal" id="eliminateTodo" style="color:red !important;">
+          <div class="modal-footer d-flex justify-content-between align-items-center px-4">
+            <a class = "px-4" data-dismiss="modal" data-toggle="modal" id="eliminateTodo" onclick="todoDelete()" style="color:red !important;">
               <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Eliminate Todo</a>
+            <a class = "px-4" data-dismiss="modal" data-toggle="modal" id="restartTodo" onclick="todoUndo()" style="color:green !important;">
+              <i class="fa fa-magic" aria-hidden="true"></i>&nbsp;Undo Todo</a>
           </div>
         </div>
       </div>
@@ -364,8 +313,8 @@
               <span class="d-none" id="DailyId"> </span>
               <label class="m-0" data-error="wrong" data-success="right" for="titleDailyModal">Title</label>
               <input type="text" class="form-control mb-2" id="titleDailyModal" required>
-              <label class="m-0"  data-error="wrong" data-success="right" for="dificultyDailyModal">Difficulty</label>
-              <select class="form-control mb-2" id="dificultyDailyModal">
+              <label class="m-0"  data-error="wrong" data-success="right" for="difficultyDailyModal">Difficulty</label>
+              <select class="form-control mb-2" id="difficultyDailyModal">
                     <option value="trivial">Trivial</option>
                     <option value="easy">Easy</option>
                     <option value="intermediate">Intermediate</option>
@@ -454,19 +403,13 @@
     <!-- JavaScript -->
     <script type="text/javascript" src="static/ajax_handler.js"></script>
     <script type="text/javascript" src="static/utils.js"></script>
-  <!--
-    <script type="text/javascript" src="static/todo.js"></script>
-  -->
     <script type="text/javascript" src="static/user.js"></script>
-    <script type="text/javascript" src="static/reward.js"></script>
-    <script type="text/javascript" src="static/habit.js"></script>
-    <script type="text/javascript" src="static/daily.js"></script>
-
     <script type="text/javascript" src="static/general_utils.js"></script>
     <script type="text/javascript" src="static/reward_utils.js"></script>
     <script type="text/javascript" src="static/user_utils.js"></script>
     <script type="text/javascript" src="static/habit_utils.js"></script>
     <script type="text/javascript" src="static/daily_utils.js"></script>
+    <script type="text/javascript" src="static/todo_utils.js"></script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

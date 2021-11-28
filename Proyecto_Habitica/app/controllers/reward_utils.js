@@ -8,7 +8,7 @@ let expRewardsTab = document.getElementById('expRewardsTab');
 function rewardToHtml(product){
 	return `	
     <div class = "col m-0 p-0">
-      <div class="card reward mb-2" >
+      <div class="card reward mb-2" id="${product._id}" onclick="buyReward(this.id)">
         <span class="d-none"> ${product._id}</span>
         <img class="card-img-top reward_img" src="${product._rewardImg}" alt="Card image cap">
         <div class="card-body reward_body">
@@ -43,6 +43,16 @@ function updateRewardListByType(type){
   }
 }
 
+function buyReward(id){
+  loadCards(rewardsUrl + '/ById/' + id).then(reward => {
+    console.log(reward)
+    //TODO NARDA
+    //obtenemos precio y puntos
+    //quitamos modenas y putnos del usuario
+  })
+
+}
+
 function updateRewardList(){
   
   loadCards(rewardsUrl).then(rewards => {
@@ -54,4 +64,4 @@ function updateRewardList(){
   expRewardsTab.classList.remove("active");
 }
 
-updateRewardList();
+updateRewardList(); 

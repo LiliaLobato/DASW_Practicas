@@ -3,7 +3,7 @@
 let textboxHabit = document.getElementById('textboxHabit');
 let habitcontainer = document.getElementById('habitList');
 let titleHabitModal = document.getElementById('titleHabitModal');
-let dificultyHabitModal = document.getElementById('dificultyHabitModal');
+let difficultyHabitModal = document.getElementById('difficultyHabitModal');
 let studyHabitCheckboxModal = document.getElementById('studyHabitCheckboxModal');
 let workHabitCheckboxModal = document.getElementById('workHabitCheckboxModal');
 let healthHabitCheckboxModal = document.getElementById('healthHabitCheckboxModal');
@@ -55,28 +55,30 @@ textboxHabit.addEventListener("keyup", function(event) {
                 "_userEmail": currentUser._avatarEmail,
                 "_title": textboxHabit.value
             })
+            updateHabitsList();
             textboxHabit.value = '';
         }
 		return false;
     }
 });
 
-function TagSellected(){
+function TagSellectedHabit(){
     if (studyHabitCheckboxModal.checked==true) return 'study';
-    if (workHabitCheckboxModal.checked==true) return 'work';
-    if (healthHabitCheckboxModal.checked==true) return 'health';
-    if (personalHabitCheckboxModal.checked==true) return 'personal';
+    else if (workHabitCheckboxModal.checked==true) return 'work';
+    else if (healthHabitCheckboxModal.checked==true) return 'health';
+    else if (personalHabitCheckboxModal.checked==true) return 'personal';
+    else return ''
 }
 
 
-function noTagSellected(){
+function noTagSellectedHabit(){
     studyHabitCheckboxModal.checked=false;
     workHabitCheckboxModal.checked=false;
     healthHabitCheckboxModal.checked=false;
     personalHabitCheckboxModal.checked=false;
 }
 
-function selectTag(tag){
+function selectTagHabit(tag){
     switch(tag){
         case 'study':
             studyHabitCheckboxModal.checked=true;
@@ -101,10 +103,10 @@ function preloadHabitModal(id){
         //habitListToHtml(habits);
         let currentHabit = habits;
         //obtenemos los valores actuales del habito
-        dificultyHabitModal.value=currentHabit._difficulty;
+        difficultyHabitModal.value=currentHabit._difficulty;
         titleHabitModal.value = currentHabit._title;
-        noTagSellected();
-        selectTag(currentHabit._tag);
+        noTagSellectedHabit();
+        selectTagHabit(currentHabit._tag);
         HabitId.innerText = id;
     })
 }
@@ -114,9 +116,9 @@ function editHabit(){
         //habitListToHtml(habits);
         let currentHabit = habits;
         //solamente cambiamos los atributo que pueden cambiar
-        currentHabit._difficulty = dificultyHabitModal.value;
+        currentHabit._difficulty = difficultyHabitModal.value;
         currentHabit._title = titleHabitModal.value;
-        currentHabit._tag = TagSellected();
+        currentHabit._tag = TagSellectedHabit();
         console.log(currentHabit)
         putCards(habitsUrl+'/ById/'+HabitId.innerText, currentHabit, (msg) => console.log(msg), (err) => console.log(err));
         updateHabitsList();
@@ -136,7 +138,7 @@ function habitPlus(id){
     })
     //TODO NARDA
     //calculamos la cantidad de monedas que gana
-    //updateUser(user); //le sumamos monedas
+    //updateUser(user); //le sumamos monedas y experienca pero revisamos que si sobrepasan el límite, aumente de nivel
 }
 
 function habitDelete(){
@@ -152,26 +154,18 @@ function habitRestart(){
         console.log(currentHabit)
         //adicionalmente cambiamos el atributo de counter
         currentHabit._counter = 0;
-        currentHabit._difficulty = dificultyHabitModal.value;
+        currentHabit._difficulty = difficultyHabitModal.value;
         currentHabit._title = titleHabitModal.value;
-        currentHabit._tag = TagSellected();
+        currentHabit._tag = TagSellectedHabit();
         putCards(habitsUrl+'/ById/'+HabitId.innerText, currentHabit, (msg) => console.log(msg), (err) => console.log(err));
         updateHabitsList();
     })
-}
-
-function createHabit(habit) {
-    postCards(habitsUrl, habit, (msg) => {
-        console.log(msg);
-    }, (err) => console.log(err));
-    updateHabitsList();
 }
 
 function updateHabitsList(){
     currentUser = readUserData();
     loadCards(habitsUrl+'/'+currentUser._avatarEmail).then(habits => {
         habitListToHtml(habits);
-        //console.log(habits)
     })
 
 }

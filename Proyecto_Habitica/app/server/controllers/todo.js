@@ -58,7 +58,7 @@ class Todo{
     		throw new TodoException('tag is not valid.');
     	}
         if(val === undefined){
-            this._tag = '';
+            this._tag = 'personal';
         }else{
             this._tag = val;
         }

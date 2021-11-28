@@ -25,4 +25,15 @@ router.route('/:type')
     }
   });
 
-module.exports = router;
+router.route('/ById/:id')
+  .get((req, res) => {
+    let id = req.params.id;
+    let product = dataHandler.getRewardById(id)
+    if(product != undefined ) {
+      res.status(200).json(product);
+    } else {
+      res.status(404).send(`Reward con id: ${id} no existe!`);
+    }
+  });
+
+module.exports = router; 
