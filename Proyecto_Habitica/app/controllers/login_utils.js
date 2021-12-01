@@ -6,6 +6,7 @@ let loginForm = document.getElementById('login-form');
 let ExistAlert = document.getElementById('userExistAlert');
 let NotExistAlert = document.getElementById('userNotExistAlert');
 let wrongPswAlert = document.getElementById('wrongPswAlert');
+let emailNotValid = document.getElementById('emailNotValid');
 
 document.getElementById('ingresar').onclick = function(){
    console.log("ingresar");
@@ -14,6 +15,7 @@ document.getElementById('ingresar').onclick = function(){
    NotExistAlert.style.display="none";
    ExistAlert.style.display="none";
    wrongPswAlert.style.display="none";
+   emailNotValid.style.display="none";
 }
 
 document.getElementById('createAccount').onclick = function(){
@@ -23,6 +25,7 @@ document.getElementById('createAccount').onclick = function(){
    NotExistAlert.style.display="none";
    ExistAlert.style.display="none";
    wrongPswAlert.style.display="none";
+   emailNotValid.style.display="none";
 }
 
 document.getElementById('createAccount_bnt').onclick = function(){
@@ -46,10 +49,16 @@ document.getElementById('createAccount_bnt').onclick = function(){
          } else {
             //There is no user with that email
             console.log("usuario no existe")
-            addUser(newUser);
-            populateUser(emailCA)
-            console.log("go to home")
-            goToHome(newUser)
+            console.log(ValidateEmail(emailCA))
+            if(ValidateEmail(emailCA)){
+               addUser(newUser);
+               populateUser(emailCA)
+               console.log("go to home")
+               goToHome(newUser)
+            } else {  
+               emailNotValid.style.display="block";
+               document.getElementById('createAccount_email').value = "";
+            }
          }
       })
    } 
@@ -93,6 +102,14 @@ document.getElementById('login_bnt').onclick = function(){
    } 
 }
 
+function ValidateEmail(mail) 
+{
+   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)){
+      return (true)
+   }
+    return (false)
+}
+
 function getRandomAvatar(min, max) {
   return  Math.floor(Math.random() * (max - min) + min);
 }
@@ -111,9 +128,9 @@ function populateUser(userEmail) {
    createDaily({ "_userEmail": userEmail, "_title": 'Clean work area', "_tag": 'work'})
    createDaily({ "_userEmail": userEmail, "_title": 'Brush teeth', "_tag": 'health'})
    createDaily({ "_userEmail": userEmail, "_title": 'Make bed before leaving the house', "_tag": 'personal'})
-   createTodo({  "_userEmail": userEmail, "_title": 'Send Presentation to boss', "_tag": 'work'})
-   createTodo({  "_userEmail": userEmail, "_title": 'Buy concert tickets', "_tag": 'personal'})
-   createTodo({  "_userEmail": userEmail, "_title": 'Spanish Homework', "_tag": 'study'})    
+   easyCreateTodo({  "_userEmail": userEmail, "_title": 'Send Presentation to boss', "_tag": 'work'})
+   easyCreateTodo({  "_userEmail": userEmail, "_title": 'Buy concert tickets', "_tag": 'personal'})
+   easyCreateTodo({  "_userEmail": userEmail, "_title": 'Spanish Homework', "_tag": 'study'})    
 }
 
 let status;

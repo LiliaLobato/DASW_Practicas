@@ -105,7 +105,7 @@ function reduceCoins(amount){
   currentUser = readUserData();
   let reducedCoins = amount; 
   if(currentUser._avatarCoins - reducedCoins < 0){
-    alert('Nice, you triggered this alert message!', 'success')
+    alert('Nice, you triggered this alert message!', 'alert-success')
     return 1;
   }
   else{
@@ -122,6 +122,7 @@ function addExperience(amount){
   let addExperience = amount; 
   //revisamos si sobrepasa de experiencia 
   if(currentUser._avatarExp + addExperience >= 100){
+    alert('LEVEL UP! ', 'alert-success');
     currentUser._avatarExp = currentUser._avatarExp + addExperience - 100;
     currentUser._avatarLevel = currentUser._avatarLevel + 1;
   }
@@ -174,9 +175,10 @@ function reduceHealth(amount){
   currentUser = readUserData();
   let reducedHealth = amount; 
   if(currentUser._avatarHealth - reducedHealth <= 0){
-    if(currentUser._avatarLevel > 1)
+    if(currentUser._avatarLevel > 1) {
+      alert('LEVEL DOWN! ', 'alert-danger');
       currentUser._avatarLevel = currentUser._avatarLevel - 1;
-    else{
+    }else{
       currentUser._avatarLevel = 1;
     }
     currentUser._avatarHealth = 100;

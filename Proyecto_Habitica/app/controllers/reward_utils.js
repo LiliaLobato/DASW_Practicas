@@ -55,9 +55,9 @@ function buyReward(id){
     currentUser = readUserData();
     console.log(currentUser);
     if(currentUser._avatarCoins - price < 0){
-      alert('you do not have enough coins ');
+      alert('You do not have enough coins ', 'alert-danger');
     }else if(currentUser._avatarHealth == 100 && category =='life'){
-      alert('your life is full');
+      alert('Your life is full!', 'alert-primary');
     }else{
       redeem(category, price, points);
     }
@@ -81,12 +81,18 @@ function updateRewardList(){
   expRewardsTab.classList.remove("active");
 }
 
-function alert(message) {
+function alert(message, type) {
   var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
-  var wrapper = document.createElement('div')
-  wrapper.innerHTML = '<div class="alert alert-danger alert-dismissible" role="alert">' + message + ' <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">x</button></div>'
-  
-  alertPlaceholder.append(wrapper)
+  //var wrapper = document.createElement('div')
+  alertPlaceholder.innerHTML = '<div class="alert ' +  type + ' alert-dismissible" role="alert">' + message + 
+  ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button></div>';
+  console.log (alertPlaceholder.innerHTML)
+}
+
+function alertClose(){
+  var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+  alertPlaceholder.innerHTML = ""
 }
 
 updateRewardList(); 
+alertClose();

@@ -93,7 +93,11 @@ function createTodo(todo) {
     }, (err) => console.log(err));
     cleanTodoFilter();
     allTodosFilter.classList.add('active');
-
+}
+function easyCreateTodo(todo) {
+    postCards(todoUrl, todo, (msg) => {
+        console.log(msg);
+    }, (err) => console.log(err));
 }
 
 //FILTERS

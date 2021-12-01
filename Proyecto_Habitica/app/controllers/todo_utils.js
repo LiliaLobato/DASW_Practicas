@@ -69,8 +69,10 @@ textboxTodo.addEventListener("keyup", function(event) {
             let filter = readTagFilter();
             if(filter.filter == 'all'){
                 updateTodoList();
+                updateTodoList();
             }
             else{
+                updateTodosFilterList(filter.filter);
                 updateTodosFilterList(filter.filter);
             }
             textboxTodo.value = '';
@@ -140,8 +142,10 @@ function editTodo(){
         let filter = readTagFilter();
         if(filter.filter == 'all'){
             updateTodoList();
+            updateTodoList();
         }
         else{
+            updateTodosFilterList(filter.filter);
             updateTodosFilterList(filter.filter);
         }
     })
@@ -163,15 +167,19 @@ function todoUndo(){
         if(filter.filter == 'all'){
             if(status.status == 'active'){
                 updateTodosStatusList('active');
+                updateTodosStatusList('active');
             }
             else if (status.status == 'complete'){
+                updateTodosStatusList('complete');
                 updateTodosStatusList('complete');
             }
             else{
                 updateTodoList();
+                updateTodoList();
             }
         }
         else{
+            updateTodosFilterList(filter.filter);
             updateTodosFilterList(filter.filter);
         }
     })
@@ -229,8 +237,10 @@ function todoDone(id){
         if(filter.filter == 'all'){
             if(status.status == 'active'){
                 updateTodosStatusList('active');
+                updateTodosStatusList('active');
             }
             else if (status.status == 'complete'){
+                updateTodosStatusList('complete');
                 updateTodosStatusList('complete');
             }
             else{

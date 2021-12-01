@@ -58,8 +58,10 @@ textboxHabit.addEventListener("keyup", function(event) {
             let filter = readTagFilter();
             if(filter.filter == 'all'){
                 updateHabitsList();
+                updateHabitsList();
             }
             else{
+                updateHabitsFilterList(filter.filter);
                 updateHabitsFilterList(filter.filter);
             }
             textboxHabit.value = '';
@@ -130,8 +132,10 @@ function editHabit(){
         let filter = readTagFilter();
         if(filter.filter == 'all'){
             updateHabitsList();
+            updateHabitsList();
         }
         else{
+            updateHabitsFilterList(filter.filter);
             updateHabitsFilterList(filter.filter);
         }
     })
@@ -149,8 +153,10 @@ function habitPlus(id){
         let filter = readTagFilter();
         if(filter.filter == 'all'){
             updateHabitsList();
+            updateHabitsList();
         }
         else{
+            updateHabitsFilterList(filter.filter);
             updateHabitsFilterList(filter.filter);
         }
         console.log(gainedPoints);
@@ -165,6 +171,7 @@ function habitPlus(id){
 
 function habitDelete(){
     deleteCards(habitsUrl+'/ById/'+HabitId.innerText, (msg) => console.log(msg), (err) => console.log(err));
+    updateHabitsList();
     updateHabitsList();
 }
 
@@ -183,8 +190,10 @@ function habitRestart(){
         let filter = readTagFilter();
         if(filter.filter == 'all'){
             updateHabitsList();
+            updateHabitsList();
         }
         else{
+            updateHabitsFilterList(filter.filter);
             updateHabitsFilterList(filter.filter);
         }
     })

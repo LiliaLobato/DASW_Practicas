@@ -65,8 +65,10 @@ textboxDaily.addEventListener("keyup", function(event) {
             let filter = readTagFilter();
             if(filter.filter == 'all'){
                 updateDailyList();
+                updateDailyList();
             }
             else{
+                updateDailyFilterList(filter.filter);
                 updateDailyFilterList(filter.filter);
             }
             textboxDaily.value = '';
@@ -183,8 +185,10 @@ function editDaily(){
         let filter = readTagFilter();
         if(filter.filter == 'all'){
             updateDailyList();
+            updateDailyList();
         }
         else{
+            updateDailyFilterList(filter.filter);
             updateDailyFilterList(filter.filter);
         }
     })
@@ -248,8 +252,10 @@ function dailyDelete(){
     let filter = readTagFilter();
     if(filter.filter == 'all'){
         updateDailyList();
+        updateDailyList();
     }
     else{
+        updateDailyFilterList(filter.filter);
         updateDailyFilterList(filter.filter);
     }
 }
@@ -287,8 +293,10 @@ function dailyDone(id){
         let filter = readTagFilter();
         if(filter.filter == 'all'){
             updateDailyList();
+            updateDailyList();
         }
         else{
+            updateDailyFilterList(filter.filter);
             updateDailyFilterList(filter.filter);
         }
 

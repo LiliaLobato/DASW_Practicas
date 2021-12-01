@@ -15,13 +15,13 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="style" media="all">
     <script src="https://kit.fontawesome.com/fee3aa343d.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 
   </head>
 
 
   <body>
-    <!--ALERTS-->
-    <div id="liveAlertPlaceholder"></div>
+
     <nav class="navbar navbar-expand-md navbar-dark justify-content-center  mb-0" style="background-color: #432874;">
       <a class="navbar-brand" href="habitica"><img class="banner" src="avatar/whiteBanner.png" alt="Card image cap" style="height:35px;"></a> 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,10 @@
       </div>
     </nav>
 
+
     <div class="top_body" >
+    <!--ALERTS-->
+      <div id="liveAlertPlaceholder"> </div>
       <div class="card mb-0" style="max-width: 750px;" data-toggle="modal" data-target="#user_modal" onclick="preloadUserModal()">
         <div class="row no-gutters" style="background-color: #edecee;">
           <div class="col-md-4 avatar" style="width: auto; height: 100%">
@@ -48,7 +51,7 @@
                 <li class="list-group-item avatar_progress d-flex align-items-center py-2">
                     <span class="m-0 p-0 current_coins" id="avatarCoins">342876423</span>
                     <span class="m-0 p-0 current_coins">&nbsp;&nbsp;COINS</span>
-                </li> 
+                </li>
               </ul>
 
               <ul class="list-group list-group-horizontal pb-1">
