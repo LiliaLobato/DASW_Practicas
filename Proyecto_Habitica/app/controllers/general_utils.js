@@ -93,6 +93,8 @@ function createTodo(todo) {
     }, (err) => console.log(err));
     cleanTodoFilter();
     allTodosFilter.classList.add('active');
+    let todoStatus = {status: "all"};
+    writeTodoStatus(todoStatus);
 }
 function easyCreateTodo(todo) {
     postCards(todoUrl, todo, (msg) => {

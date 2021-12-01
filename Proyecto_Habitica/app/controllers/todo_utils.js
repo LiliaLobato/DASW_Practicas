@@ -236,6 +236,7 @@ function todoDone(id){
         let status = readTodoStatus();
         if(filter.filter == 'all'){
             if(status.status == 'active'){
+        
                 updateTodosStatusList('active');
                 updateTodosStatusList('active');
             }
