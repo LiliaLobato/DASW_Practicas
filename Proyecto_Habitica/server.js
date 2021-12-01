@@ -16,7 +16,7 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 })
 
-mongoose.connect('mongodb://localhost:27017/dailybee');
+mongoose.connect('mongodb+srv://crypticHabit:hello@dailybee.sqbyt.mongodb.net/dailybee?retryWrites=true&w=majority');
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open',()=>{
