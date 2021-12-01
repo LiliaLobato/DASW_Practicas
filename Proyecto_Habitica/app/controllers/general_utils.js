@@ -13,6 +13,16 @@ let healthFilter = document.getElementById('healthFilter');
 let personalFilter = document.getElementById('personalFilter');
 let allFilter = document.getElementById('allFilter');
 
+
+function readTodoStatus(){
+    let tagFilter = JSON.parse(sessionStorage.getItem('todoStatus'));
+    return tagFilter;
+}
+function readTagFilter(){
+    let tagFilter = JSON.parse(sessionStorage.getItem('tagFilter'));
+    return tagFilter;
+}
+
 function readUserData(){
 	let user = JSON.parse(sessionStorage.getItem('userData'));
 	let i = User.createFromObject(user);
@@ -22,6 +32,15 @@ function readUserData(){
 function writeUserData(user){
 	sessionStorage.setItem('userData',JSON.stringify(user));
 }
+
+function writeTagFilter(filter){
+    sessionStorage.setItem('tagFilter', JSON.stringify(filter));
+}
+
+function writeTodoStatus(status){
+    sessionStorage.setItem('todoStatus', JSON.stringify(status));
+}
+
 
 function cleanUserData(){
 	sessionStorage.removeItem('userData');
@@ -72,6 +91,9 @@ function createTodo(todo) {
     postCards(todoUrl, todo, (msg) => {
         console.log(msg);
     }, (err) => console.log(err));
+    cleanTodoFilter();
+    allTodosFilter.classList.add('active');
+
 }
 
 //FILTERS
@@ -80,21 +102,40 @@ function filterCards(id){
     cleanFilter()
     currentFilter.classList.remove("btn-light");
     currentFilter.classList.add("btn-purple");
+    let filter;
     switch(id){
     	case 'studyFilter':
-    		console.log("only get cards with class study");
-    		break;
+            filter = {filter: "study"};
+            writeTagFilter(filter);
+            updateDailyFilterList('study');
+            updateHabitsFilterList('study');
+            updateTodosFilterList('study');
+           // console.log("hello");
+            break;
     	case 'workFilter':
-    		console.log("only get cards with class work");
+            filter = {filter: "work"};
+            writeTagFilter(filter);
+            updateDailyFilterList('work');
+            updateHabitsFilterList('work');
+            updateTodosFilterList('work');
     		break;
     	case 'healthFilter':
-    		console.log("only get cards with class health");
+            filter = {filter: "health"};
+            writeTagFilter(filter);
+            updateDailyFilterList('health');
+            updateHabitsFilterList('health');
+            updateTodosFilterList('health');
     		break;
     	case 'personalFilter':
-    		console.log("only get cards with class personal");
+            filter = {filter: "personal"};
+            writeTagFilter(filter);
+            updateDailyFilterList('personal');
+            updateHabitsFilterList('personal');
+            updateTodosFilterList('personal');
     		break;
     	case 'allFilter':
-    		console.log("get all cards");
+            filter = {filter: "all"};
+            writeTagFilter(filter);
     		updateDailyList();
     		updateHabitsList();
     		updateTodoList();

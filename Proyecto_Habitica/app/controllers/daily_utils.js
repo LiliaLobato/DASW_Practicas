@@ -62,7 +62,13 @@ textboxDaily.addEventListener("keyup", function(event) {
                 "_userEmail": currentUser._avatarEmail,
                 "_title": textboxDaily.value
             })
-            updateDailyList();
+            let filter = readTagFilter();
+            if(filter.filter == 'all'){
+                updateDailyList();
+            }
+            else{
+                updateDailyFilterList(filter.filter);
+            }
             textboxDaily.value = '';
         }
 		return false;
@@ -174,7 +180,13 @@ function editDaily(){
         console.log(currentDaily)
         currentDaily._validOn = validOnModal;
         putCards(dailyUrl+'/ById/'+DailyId.innerText, currentDaily, (msg) => console.log(msg), (err) => console.log(err));
-        updateDailyList();
+        let filter = readTagFilter();
+        if(filter.filter == 'all'){
+            updateDailyList();
+        }
+        else{
+            updateDailyFilterList(filter.filter);
+        }
     })
 }
 
@@ -208,6 +220,8 @@ function updateDate(daily){
         daily._completed = false; 
         putCards(dailyUrl+'/ById/'+daily._id, daily, (msg) => console.log(msg), (err) => console.log(err));
         //TODO NARDA
+        let lostCoins = calculatePoints(currentDaily._difficulty);
+        reduceCoins(lostCoins);
         //calculamos la cantidad de monedas que pierde
         //updateUser(user); //le restamos vida
     }
@@ -231,12 +245,26 @@ function updateDates(){
 
 function dailyDelete(){
     deleteCards(dailyUrl+'/ById/'+DailyId.innerText, (msg) => console.log(msg), (err) => console.log(err));
-    updateDailyList();
+    let filter = readTagFilter();
+    if(filter.filter == 'all'){
+        updateDailyList();
+    }
+    else{
+        updateDailyFilterList(filter.filter);
+    }
 }
 
 function updateDailyList(){
     currentUser = readUserData();
     loadCards(dailyUrl+'/'+currentUser._avatarEmail).then(daily => {
+        dailyListToHtml(daily);
+        //console.log(daily)
+    })
+}
+
+function updateDailyFilterList(tag){
+    currentUser = readUserData();
+    loadCards(dailyUrl+'/filter/'+tag+'/'+currentUser._avatarEmail).then(daily => {
         dailyListToHtml(daily);
         //console.log(daily)
     })
@@ -255,12 +283,21 @@ function dailyDone(id){
         currentDaily._validOn = validOnArray;
         console.log(currentDaily)
         putCards(dailyUrl+'/ById/'+id, daily, (msg) => console.log(msg), (err) => console.log(err));
-        updateDailyList();
-    })
-    //TODO NARDA
-    //calculamos la cantidad de monedas que gana
-    //updateUser(user); //le sumamos monedas 
-}
+        
+        let filter = readTagFilter();
+        if(filter.filter == 'all'){
+            updateDailyList();
+        }
+        else{
+            updateDailyFilterList(filter.filter);
+        }
 
+        let gainedPoints = calculatePoints(currentDaily._difficulty);
+        addCoins(gainedPoints);
+    })
+}
+function filterDailies(id){
+    console.log(id);
+}
 
 updateDailyList();

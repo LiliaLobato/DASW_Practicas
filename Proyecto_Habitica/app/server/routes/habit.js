@@ -57,5 +57,11 @@ router.route('/ById/:id')
     res.send(`User was deleted!`);
     
   });
+  router.route('/filter/:tag/:email')
+  .get((req, res) => {
+    let tag = req.params.tag;
+    let email = req.params.email;
+    dataHandler.getHabitsFromTag(tag, email, res);
+  });
 
 module.exports = router;

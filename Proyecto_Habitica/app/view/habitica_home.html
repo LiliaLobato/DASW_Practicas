@@ -20,7 +20,8 @@
 
 
   <body>
-
+    <!--ALERTS-->
+    <div id="liveAlertPlaceholder"></div>
     <nav class="navbar navbar-expand-md navbar-dark justify-content-center  mb-0" style="background-color: #432874;">
       <a class="navbar-brand" href="habitica"><img class="banner" src="avatar/whiteBanner.png" alt="Card image cap" style="height:35px;"></a> 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,13 +118,13 @@
             <div class="card-header">
               <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                  <a class="nav-link tab_filter active" href="#">DAILIES</a>
+                  <a class="nav-link tab_filter active" href="#" onclick="filterDailies(this.id);event.preventDefault();" id="allDailies">DAILIES</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link tab_filter" href="#">ACTIVE</a>
+                  <a class="nav-link tab_filter" href="#" onclick="filterDailies(this.id);event.preventDefault();" id="activeDailies">ACTIVE</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link tab_filter" href="#">NOT ACTIVE</a>
+                  <a class="nav-link tab_filter" href="#" onclick="filterDailies(this.id);event.preventDefault();" id="notActiveDailies">NOT ACTIVE</a>
                 </li>
               </ul>
             </div>
@@ -141,13 +142,13 @@
             <div class="card-header">
               <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                  <a class="nav-link tab_filter active" href="#">TO DO</a>
+                  <a class="nav-link tab_filter active" href="#" onclick="event.preventDefault();filterTodos(this.id); " id="allTodos">TO DO</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link tab_filter" href="#">ACTIVE</a>
+                  <a class="nav-link tab_filter" href="#" onclick="filterTodos(this.id); event.preventDefault();" id="activeTodos">ACTIVE</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link tab_filter" href="#">COMPLETE</a>
+                  <a class="nav-link tab_filter" href="#" onclick="filterTodos(this.id); event.preventDefault();" id="completeTodos">COMPLETE</a>
                 </li>
               </ul>
             </div>
@@ -409,7 +410,7 @@
     <script type="text/javascript" src="static/user_utils.js"></script>
     <script type="text/javascript" src="static/habit_utils.js"></script>
     <script type="text/javascript" src="static/daily_utils.js"></script>
-    <script type="text/javascript" src="static/todo_utils.js"></script>
+    <script type="text/javascript" src="static/todo_utils.js"></script>   
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

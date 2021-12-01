@@ -58,6 +58,12 @@ router.route('/ById/:id')
     res.send(`Daily was deleted!`);
     
   });
+router.route('/filter/:tag/:email')
+  .get((req, res) => {
+    let tag = req.params.tag;
+    let email = req.params.email;
+    dataHandler.getDailiesFromTag(tag, email, res);
+  });
 
 module.exports = router;
 

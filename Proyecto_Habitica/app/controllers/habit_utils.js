@@ -55,7 +55,13 @@ textboxHabit.addEventListener("keyup", function(event) {
                 "_userEmail": currentUser._avatarEmail,
                 "_title": textboxHabit.value
             })
-            updateHabitsList();
+            let filter = readTagFilter();
+            if(filter.filter == 'all'){
+                updateHabitsList();
+            }
+            else{
+                updateHabitsFilterList(filter.filter);
+            }
             textboxHabit.value = '';
         }
 		return false;
@@ -121,7 +127,13 @@ function editHabit(){
         currentHabit._tag = TagSellectedHabit();
         console.log(currentHabit)
         putCards(habitsUrl+'/ById/'+HabitId.innerText, currentHabit, (msg) => console.log(msg), (err) => console.log(err));
-        updateHabitsList();
+        let filter = readTagFilter();
+        if(filter.filter == 'all'){
+            updateHabitsList();
+        }
+        else{
+            updateHabitsFilterList(filter.filter);
+        }
     })
 }
 
@@ -130,13 +142,23 @@ function habitPlus(id){
     loadCards(habitsUrl+'/ById/'+id).then(habits => {
         //habitListToHtml(habits);
         let currentHabit = habits;
-        console.log(currentHabit)
+        let gainedPoints = calculatePoints(currentHabit._difficulty);
         //solamente cambiamos el atributo de counter
         currentHabit._counter = habits._counter + 1;
         putCards(habitsUrl+'/ById/'+id, currentHabit, (msg) => console.log(msg), (err) => console.log(err));
-        updateHabitsList();
+        let filter = readTagFilter();
+        if(filter.filter == 'all'){
+            updateHabitsList();
+        }
+        else{
+            updateHabitsFilterList(filter.filter);
+        }
+        console.log(gainedPoints);
+        addExperience(gainedPoints);
+        addCoins(gainedPoints);
     })
     //TODO NARDA
+
     //calculamos la cantidad de monedas y experiencia que gana
     //updateUser(user); //le sumamos monedas y experienca pero revisamos que si sobrepasan el límite, aumente de nivel
 }
@@ -158,7 +180,13 @@ function habitRestart(){
         currentHabit._title = titleHabitModal.value;
         currentHabit._tag = TagSellectedHabit();
         putCards(habitsUrl+'/ById/'+HabitId.innerText, currentHabit, (msg) => console.log(msg), (err) => console.log(err));
-        updateHabitsList();
+        let filter = readTagFilter();
+        if(filter.filter == 'all'){
+            updateHabitsList();
+        }
+        else{
+            updateHabitsFilterList(filter.filter);
+        }
     })
 }
 
@@ -168,6 +196,13 @@ function updateHabitsList(){
         habitListToHtml(habits);
     })
 
+}
+
+function updateHabitsFilterList(tag){
+    currentUser = readUserData();
+    loadCards(habitsUrl+'/filter/'+tag+'/'+currentUser._avatarEmail).then(habit => {
+        habitListToHtml(habit);
+    })
 }
 
 updateHabitsList();

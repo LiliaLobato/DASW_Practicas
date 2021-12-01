@@ -133,7 +133,15 @@ function validateUser(email){
 }
 
 function goToHome(user){
+   let filter = {filter: "all"};
+   writeTagFilter(filter);
+   let todoStatus = {status: "all"};
+   writeTodoStatus(todoStatus);
    writeUserData(user);
    readUserData();
    window.location.href = "habitica"
+   updateDailyList();
+   updateHabitsList();
+   updateTodoList();
+
 }

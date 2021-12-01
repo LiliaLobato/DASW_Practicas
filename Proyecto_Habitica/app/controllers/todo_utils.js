@@ -10,6 +10,9 @@ let workTodoCheckboxModal = document.getElementById('workTodoCheckboxModal');
 let healthTodoCheckboxModal = document.getElementById('healthTodoCheckboxModal');
 let personalTodoCheckboxModal = document.getElementById('personalTodoCheckboxModal');
 
+let allTodosFilter = document.getElementById('allTodos');
+let activeTodosFilter = document.getElementById('activeTodos');
+let completeTodosFilter = document.getElementById('completeTodos');
 
 function todoToHtml(todo){
     let statusBnt = "good";
@@ -63,7 +66,13 @@ textboxTodo.addEventListener("keyup", function(event) {
                 "_userEmail": currentUser._avatarEmail,
                 "_title": textboxTodo.value
             })
-            updateTodoList();
+            let filter = readTagFilter();
+            if(filter.filter == 'all'){
+                updateTodoList();
+            }
+            else{
+                updateTodosFilterList(filter.filter);
+            }
             textboxTodo.value = '';
         }
 		return false;
@@ -128,7 +137,13 @@ function editTodo(){
         currentTodo._tag = TagSellectedTodo();
         currentTodo._date = getStringDate(dateTodoModal.valueAsDate);
         putCards(todoUrl+'/ById/'+TodoId.innerText, currentTodo, (msg) => console.log(msg), (err) => console.log(err));
-        updateTodoList();
+        let filter = readTagFilter();
+        if(filter.filter == 'all'){
+            updateTodoList();
+        }
+        else{
+            updateTodosFilterList(filter.filter);
+        }
     })
 }
 
@@ -143,15 +158,39 @@ function todoUndo(){
         currentTodo._date = getStringDate(dateTodoModal.valueAsDate);
         currentTodo._completed = false;
         putCards(todoUrl+'/ById/'+TodoId.innerText, currentTodo, (msg) => console.log(msg), (err) => console.log(err));
-        updateTodoList();
+        let filter = readTagFilter();
+        let status = readTodoStatus();
+        if(filter.filter == 'all'){
+            if(status.status == 'active'){
+                updateTodosStatusList('active');
+            }
+            else if (status.status == 'complete'){
+                updateTodosStatusList('complete');
+            }
+            else{
+                updateTodoList();
+            }
+        }
+        else{
+            updateTodosFilterList(filter.filter);
+        }
     })
     //TODO NARDA
+    reduceHealth(10);
     //updateUser(user); //le restamos vida
 }
 
 function todoDelete(){
     deleteCards(todoUrl+'/ById/'+TodoId.innerText, (msg) => console.log(msg), (err) => console.log(err));
-    updateTodoList();
+    let filter = readTagFilter();
+    if(filter.filter == 'all'){
+        updateTodoList();
+        updateTodoList();
+    }
+    else{
+        updateTodosFilterList(filter.filter);
+        updateTodosFilterList(filter.filter);
+    }
 }
 
 function updateTodoList(){
@@ -161,6 +200,22 @@ function updateTodoList(){
         //console.log(todo)
     })
 }
+function updateTodosFilterList(tag){
+    currentUser = readUserData();
+    loadCards(todoUrl+'/filter/'+tag+'/'+currentUser._avatarEmail).then(todo => {
+        todoListToHtml(todo);
+    })
+    cleanTodoFilter()
+    allTodosFilter.classList.add("active");
+}
+function updateTodosStatusList(status){
+    currentUser = readUserData();
+    loadCards(todoUrl+'/filterStatus/'+status+'/'+currentUser._avatarEmail).then(todo => {
+        todoListToHtml(todo);
+    })
+
+
+}
 
 function todoDone(id){
     //obtenemos la información del todoo
@@ -169,9 +224,29 @@ function todoDone(id){
         let currentTodo = todo;
         currentTodo._completed = true;
         putCards(todoUrl+'/ById/'+id, currentTodo, (msg) => console.log(msg), (err) => console.log(err));
-        updateTodoList();
+        let filter = readTagFilter();
+        let status = readTodoStatus();
+        if(filter.filter == 'all'){
+            if(status.status == 'active'){
+                updateTodosStatusList('active');
+            }
+            else if (status.status == 'complete'){
+                updateTodosStatusList('complete');
+            }
+            else{
+                updateTodoList();
+                updateTodoList();
+            }
+        }
+        else{
+            updateTodosFilterList(filter.filter);
+            updateTodosFilterList(filter.filter);
+        }
+        let gainedPoints = calculatePoints(currentTodo._difficulty);
+        addExperience(gainedPoints);
     })
     //TODO NARDA
+
     //calculamos la cantidad de experiencia que gana
     //updateUser(user); //le sumamos experienca pero revisamos que si sobrepasan el límite, aumente de nivel
 }
@@ -214,6 +289,41 @@ function dueInPast(todo){
 		period = (today_Date.getDate() - todo_Date.getDate())
 		return "Due " + period + ((period == 1)?" day":" days") + " ago"
 	}
+}
+
+function filterTodos(id){
+
+    let currentFilter = document.getElementById(id);
+    cleanTodoFilter()
+    currentFilter.classList.add("active");
+    filterCards('allFilter');
+    let filter = {filter: "all"};
+    writeTagFilter(filter);
+    if(id == 'activeTodos'){
+        updateTodosStatusList('active');
+        updateTodosStatusList('active');
+        let todoStatus = {status: "active"};
+        writeTodoStatus(todoStatus);
+        
+    }else if(id == 'completeTodos'){
+        updateTodosStatusList('complete');
+        updateTodosStatusList('complete');
+        let todoStatus = {status: "complete"};
+        writeTodoStatus(todoStatus);
+    }
+    else{
+        updateTodoList();
+        updateTodoList();
+        let todoStatus = {status: "all"};
+        writeTodoStatus(todoStatus);
+    }
+
+}
+
+function cleanTodoFilter(){
+    allTodosFilter.classList.remove("active");
+    activeTodosFilter.classList.remove("active");
+    completeTodosFilter.classList.remove("active");
 }
 
 updateTodoList();

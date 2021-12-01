@@ -58,6 +58,18 @@ router.route('/ById/:id')
     res.send(`Todo was deleted!`);
     
   });
+  router.route('/filter/:tag/:email')
+  .get((req, res) => {
+    let tag = req.params.tag;
+    let email = req.params.email;
+    dataHandler.getTodosFromTag(tag, email, res);
+  });
+  router.route('/filterStatus/:status/:email')
+  .get((req, res) => {
+    let status = req.params.status;
+    let email = req.params.email;
+    dataHandler.getTodosFromStatus(email, status, res);
+  });
 
 module.exports = router;
 

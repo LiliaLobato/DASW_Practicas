@@ -74,4 +74,133 @@ function logout(){
   window.location.href = "login"
 }
 
+function calculatePoints(difficulty){
+  let points = 0;
+  if (difficulty == 'trivial'){
+    points = 1;
+  }
+  else if (difficulty == 'easy'){
+    points = 2;
+  }
+  else if (difficulty == 'intermediate'){
+    points = 3;
+  }
+  else {
+    points = 4;
+  }
+  return points;
+}
+
+
+function addCoins(amount){
+  currentUser = readUserData();
+  let addCoins = amount; 
+  currentUser._avatarCoins = currentUser._avatarCoins + addCoins;
+  writeUserData(currentUser);
+  updateUser(currentUser);
+  updateAvatar();
+}
+
+function reduceCoins(amount){
+  currentUser = readUserData();
+  let reducedCoins = amount; 
+  if(currentUser._avatarCoins - reducedCoins < 0){
+    alert('Nice, you triggered this alert message!', 'success')
+    return 1;
+  }
+  else{
+    currentUser._avatarCoins = currentUser._avatarCoins - reducedCoins;
+  }
+  writeUserData(currentUser);
+  updateUser(currentUser);
+  updateAvatar();
+}
+
+
+function addExperience(amount){
+  currentUser = readUserData();
+  let addExperience = amount; 
+  //revisamos si sobrepasa de experiencia 
+  if(currentUser._avatarExp + addExperience >= 100){
+    currentUser._avatarExp = currentUser._avatarExp + addExperience - 100;
+    currentUser._avatarLevel = currentUser._avatarLevel + 1;
+  }
+  else{
+    currentUser._avatarExp = currentUser._avatarExp + addExperience;
+  }
+  writeUserData(currentUser);
+  updateUser(currentUser);
+  updateAvatar();
+
+}
+
+function reduceExperience(amount){
+  currentUser = readUserData();
+  let reducedExperience = amount; 
+  //revisamos si sobrepasa de experiencia 
+  if(currentUser._avatarExp - reducedExperience <= 0){
+    if(currentUser._avatarLevel > 1)
+      currentUser._avatarLevel = currentUser._avatarLevel - 1;
+    else{
+      currentUser._avatarLevel = 1;
+    }
+  currentUser._avatarExperience = currentUser._avatarExp - reducedExperience + 100;
+  }
+  else{
+    currentUser._avatarExp = currentUser._avatarExp - reducedExperience;
+  }
+  writeUserData(currentUser);
+  updateUser(currentUser);
+  updateAvatar();
+
+}
+
+function addHealth(amount){
+  currentUser = readUserData();
+  let addHealth = amount; 
+  if(currentUser._avatarHealth + addHealth >= 100 ){
+    currentUser._avatarHealth = 100;
+  }
+  else{
+    currentUser._avatarHealth = currentUser._avatarHealth + addHealth;
+  }
+  writeUserData(currentUser);
+  updateUser(currentUser);
+  updateAvatar();
+
+}
+
+function reduceHealth(amount){
+  currentUser = readUserData();
+  let reducedHealth = amount; 
+  if(currentUser._avatarHealth - reducedHealth <= 0){
+    if(currentUser._avatarLevel > 1)
+      currentUser._avatarLevel = currentUser._avatarLevel - 1;
+    else{
+      currentUser._avatarLevel = 1;
+    }
+    currentUser._avatarHealth = 100;
+  }
+  else{
+    currentUser._avatarHealth = currentUser._avatarHealth - reducedHealth;
+  }
+  writeUserData(currentUser);
+  updateUser(currentUser);
+  updateAvatar();
+
+}
+function redeem(category, price, points){
+  currentUser = readUserData();
+    reduceCoins(price);
+    if(category == 'exp'){
+      addExperience(points);
+    }
+    else{
+      addHealth(points);
+    }
+
+}
+
+
 updateAvatar();
+

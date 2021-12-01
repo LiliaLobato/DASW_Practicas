@@ -91,7 +91,7 @@ class User{
         if(val === undefined){
             this._avatarCoins = 1000;
         } else {
-            if(typeof val !== "number" || val < 1){
+            if(typeof val !== "number" || val < 0){
             throw new userDataException('level cannot be less than 1 or not number.');
             }
             this._avatarCoins = val;

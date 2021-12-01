@@ -158,6 +158,15 @@ async function updateHabit(id, updatedHabit){
 	console.log(habit)
 	await Habit.findByIdAndUpdate(id,habit);
 }
+async function getHabitsFromTag(tag,email,res){
+	Habit.find({_tag:tag, _userEmail: email}).then(function (dailies){
+		if(dailies != undefined ) {
+			res.status(200).json(dailies);
+		} else {
+			res.status(404).send(`Daily no existe!`);
+		}
+	});
+}
 //Dailies 
 async function getDailies(res){	
 	Daily.find({}).then(function (dailies) {
@@ -221,6 +230,15 @@ async function updateDaily(id, updatedDaily){
 	await Daily.findByIdAndUpdate(id,daily);
 }
 
+async function getDailiesFromTag(tag,email,res){
+	Daily.find({_tag:tag, _userEmail: email}).then(function (dailies){
+		if(dailies != undefined ) {
+			res.status(200).json(dailies);
+		} else {
+			res.status(404).send(`Daily no existe!`);
+		}
+	});
+}
 //Todos
 async function getTodos(res){	
 	Todo.find({}).then(function (todos) {
@@ -248,13 +266,13 @@ async function deleteTodo(id){
 	await Todo.findByIdAndDelete(id);
 }
 async function getTodoFromUser(Email,res){
-	Todo.find({_userEmail:Email}).then(function (todos) {
-	    if(todos != undefined ) {
-	      res.status(200).json(todos);
-	    } else {
-	      res.status(404).send(`Todo no existe!`);
-	    }
-	 });
+		Todo.find({_userEmail:Email}).then(function (todos) {
+			if(todos != undefined ) {
+			  res.status(200).json(todos);
+			} else {
+			  res.status(404).send(`Todo no existe!`);
+			}
+		 });
 }
 async function updateTodo(id, updatedTodo){
 	let todoObj = Todojs.createFromObject(updatedTodo);
@@ -278,6 +296,47 @@ async function getTodoFromId(id,res){
 	    }
 	 });
 }
+async function getTodosFromTag(tag,email, res){
+		Todo.find({_tag:tag, _userEmail: email}).then(function (todo){
+			if(todo != undefined ) {
+				return res.status(200).json(todo);
+			} else {
+				return res.status(404).send(`Todo no existe!`);
+			}
+		});
+}
+async function getTodosFromStatus(email, status, res){
+	if(status == 'all'){
+		Todo.find({_userEmail: email}).then(function (todo){
+			if(todo != undefined ) {
+				return res.status(200).json(todo);
+			} else {
+				return res.status(404).send(`Todo no existe!`);
+			}
+		});
+	}
+	else if(status == 'active'){
+		Todo.find({_completed:false, _userEmail: email}).then(function (todo){
+			if(todo != undefined ) {
+				return res.status(200).json(todo);
+			} else {
+				return res.status(404).send(`Todo no existe!`);
+			}
+		});
+	}
+	else if(status == 'complete'){
+		Todo.find({_completed:true, _userEmail: email}).then(function (todo){
+			if(todo != undefined ) {
+				return res.status(200).json(todo);
+			} else {
+				return res.status(404).send(`Todo no existe!`);
+			}
+		});
+		
+	}
+
+}
+
 
 
 exports.getRewards = getRewards;
@@ -297,6 +356,7 @@ exports.deleteHabit = deleteHabit;
 exports.updateHabit = updateHabit;
 exports.getHabitFromUser = getHabitFromUser;
 exports.getHabitFromId = getHabitFromId;
+exports.getHabitsFromTag = getHabitsFromTag;
 
 exports.getDailies = getDailies;
 exports.createDaily = createDaily;
@@ -304,6 +364,7 @@ exports.deleteDaily = deleteDaily;
 exports.updateDaily = updateDaily;
 exports.getDailyFromUser= getDailyFromUser;
 exports.getDailyFromId = getDailyFromId;
+exports.getDailiesFromTag = getDailiesFromTag;
 
 exports.getTodos = getTodos;
 exports.createTodo = createTodo;
@@ -311,3 +372,5 @@ exports.deleteTodo = deleteTodo;
 exports.updateTodo = updateTodo;
 exports.getTodoFromUser= getTodoFromUser;
 exports.getTodoFromId = getTodoFromId;
+exports.getTodosFromTag = getTodosFromTag;
+exports.getTodosFromStatus = getTodosFromStatus;
