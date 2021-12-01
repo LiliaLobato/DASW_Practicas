@@ -10,7 +10,7 @@ const User = require ('../../model/user');
 const Habit = require ('../../model/habit');
 const Daily = require ('../../model/daily'); 
 const Todo = require ('../../model/todo');  
-
+const utils = require ('./utils');  
 
 let contentReward = fs.readFileSync('./app/server/data/rewards.js');
 
@@ -239,6 +239,38 @@ async function getDailiesFromTag(tag,email,res){
 		}
 	});
 }
+async function getDailiesFromStatus(email, status, res){
+	let day = utils.getTodayWeekDay();
+	if(status == 'all'){
+		Daily.find({_userEmail: email}).then(function (todo){
+			if(todo != undefined ) {
+				return res.status(200).json(todo);
+			} else {
+				return res.status(404).send(`Todo no existe!`);
+			}
+		});
+	}
+	else if(status == 'active'){
+		Daily.find({_userEmail: email, _validOn: {$regex : `${day}`}}).then(function (todo){
+			if(todo != undefined ) {
+				return res.status(200).json(todo);
+			} else {
+				return res.status(404).send(`Todo no existe!`);
+			}
+		});
+	}
+	else if(status == 'notActive'){
+		Daily.find({_userEmail: email, _validOn:{ $not: {$regex:`${day}`}}}).then(function (todo){
+			if(todo != undefined ) {
+				return res.status(200).json(todo);
+			} else {
+				return res.status(404).send(`Todo no existe!`);
+			}
+		});
+		
+	}
+
+}
 //Todos
 async function getTodos(res){	
 	Todo.find({}).then(function (todos) {
@@ -365,6 +397,7 @@ exports.updateDaily = updateDaily;
 exports.getDailyFromUser= getDailyFromUser;
 exports.getDailyFromId = getDailyFromId;
 exports.getDailiesFromTag = getDailiesFromTag;
+exports.getDailiesFromStatus = getDailiesFromStatus;
 
 exports.getTodos = getTodos;
 exports.createTodo = createTodo;

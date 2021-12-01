@@ -23,25 +23,25 @@ function getTodayWeekDay(){
 	let day = d.getDay()
 	switch(day){
 		case 0:
-			return 'mon';
+			return 'sun';
 			break;
 		case 1:
-			return 'tue';
+			return 'mon';
 			break;
 		case 2:
-			return 'wed';
+			return 'tue';
 			break;
 		case 3:
-			return 'thu';
+			return 'wed';
 			break;
 		case 4:
-			return 'fri';
+			return 'thu';
 			break;
 		case 5:
-			return 'sat';
+			return 'fri';
 			break;
 		case 6:
-			return 'sun';
+			return 'sat';
 			break;
 
 	}

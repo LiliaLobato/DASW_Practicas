@@ -18,6 +18,10 @@ let satDaily = document.getElementById('satDaily');
 let sunDaily = document.getElementById('sunDaily');
 let validOnModal = [];
 
+let allDailiesFilter = document.getElementById('allDailies');
+let activeDailiesFilter = document.getElementById('activeDailies');
+let notActiveDailiesFilter = document.getElementById('notActiveDailies');
+
 function dailyToHtml(daily){
     let statusBnt = "good";
     let statusBadge = "badge-info";
@@ -183,13 +187,24 @@ function editDaily(){
         currentDaily._validOn = validOnModal;
         putCards(dailyUrl+'/ById/'+DailyId.innerText, currentDaily, (msg) => console.log(msg), (err) => console.log(err));
         let filter = readTagFilter();
+        let status = readDailyStatus();
         if(filter.filter == 'all'){
-            updateDailyList();
-            updateDailyList();
+            if(status.status == 'active'){
+                updateDailyStatusList('active');
+
+            }
+            else if (status.status == 'notActive'){
+                updateDailyStatusList('notActive');
+
+            }
+            else{
+                updateDailyList();
+
+            }
         }
         else{
             updateDailyFilterList(filter.filter);
-            updateDailyFilterList(filter.filter);
+
         }
     })
 }
@@ -275,6 +290,12 @@ function updateDailyFilterList(tag){
         //console.log(daily)
     })
 }
+function updateDailyStatusList(status){
+    currentUser = readUserData();
+    loadCards(dailyUrl+'/filterStatus/'+status+'/'+currentUser._avatarEmail).then(daily => {
+        dailyListToHtml(daily);
+    })
+}
 
 function dailyDone(id){
     //obtenemos la información del habito
@@ -291,21 +312,60 @@ function dailyDone(id){
         putCards(dailyUrl+'/ById/'+id, daily, (msg) => console.log(msg), (err) => console.log(err));
         
         let filter = readTagFilter();
+        let status = readDailyStatus();
         if(filter.filter == 'all'){
-            updateDailyList();
-            updateDailyList();
+            if(status.status == 'active'){
+                updateDailyStatusList('active');
+
+            }
+            else if (status.status == 'notActive'){
+                updateDailyStatusList('notActive');
+
+            }
+            else{
+                updateDailyList();
+
+            }
         }
         else{
             updateDailyFilterList(filter.filter);
-            updateDailyFilterList(filter.filter);
+
         }
 
         let gainedPoints = calculatePoints(currentDaily._difficulty);
         addCoins(gainedPoints);
     })
 }
+
 function filterDailies(id){
-    console.log(id);
+    let currentFilter = document.getElementById(id);
+    cleanDailyFilter()
+    currentFilter.classList.add("active");
+    filterCards('allFilter');
+    let filter = {filter: "all"};
+    writeTagFilter(filter);
+    if(id == 'activeDailies'){
+        updateDailyStatusList('active');
+        let dailyStatus = {status: "active"};
+        writeDailyStatus(dailyStatus);
+        
+    }else if(id == 'notActiveDailies'){
+        updateDailyStatusList('notActive');
+        let dailyStatus = {status: "notActive"};
+        writeDailyStatus(dailyStatus);
+    }
+    else{
+        updateDailyList();
+        let dailyStatus = {status: "all"};
+        writeDailyStatus(dailyStatus);
+    }
+
+}
+
+function cleanDailyFilter(){
+    allDailiesFilter.classList.remove("active");
+    activeDailiesFilter.classList.remove("active");
+    notActiveDailiesFilter.classList.remove("active");
 }
 
 updateDailyList();

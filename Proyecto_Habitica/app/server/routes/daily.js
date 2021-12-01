@@ -64,7 +64,12 @@ router.route('/filter/:tag/:email')
     let email = req.params.email;
     dataHandler.getDailiesFromTag(tag, email, res);
   });
-
+router.route('/filterStatus/:status/:email')
+  .get((req, res) => {
+    let status = req.params.status;
+    let email = req.params.email;
+    dataHandler.getDailiesFromStatus(email, status, res);
+  });
 module.exports = router;
 
 //hasta aca 

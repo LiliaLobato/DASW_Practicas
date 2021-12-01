@@ -13,10 +13,13 @@ let healthFilter = document.getElementById('healthFilter');
 let personalFilter = document.getElementById('personalFilter');
 let allFilter = document.getElementById('allFilter');
 
-
+function readDailyStatus(){
+    let dailyFilter = JSON.parse(sessionStorage.getItem('dailyStatus'));
+    return dailyFilter;
+}
 function readTodoStatus(){
-    let tagFilter = JSON.parse(sessionStorage.getItem('todoStatus'));
-    return tagFilter;
+    let todoStatus = JSON.parse(sessionStorage.getItem('todoStatus'));
+    return todoStatus;
 }
 function readTagFilter(){
     let tagFilter = JSON.parse(sessionStorage.getItem('tagFilter'));
@@ -39,6 +42,9 @@ function writeTagFilter(filter){
 
 function writeTodoStatus(status){
     sessionStorage.setItem('todoStatus', JSON.stringify(status));
+}
+function writeDailyStatus(status){
+    sessionStorage.setItem('dailyStatus', JSON.stringify(status));
 }
 
 
@@ -82,6 +88,15 @@ function createHabit(habit) {
 }
 
 function createDaily(daily) {
+    postCards(dailyUrl, daily, (msg) => {
+        console.log(msg);
+    }, (err) => console.log(err));
+    cleanDailyFilter();
+    allDailiesFilter.classList.add('active');
+    let dailyStatus = {status: "all"};
+    writeDailyStatus(dailyStatus);
+}
+function easyCreateDaily(daily) {
     postCards(dailyUrl, daily, (msg) => {
         console.log(msg);
     }, (err) => console.log(err));
