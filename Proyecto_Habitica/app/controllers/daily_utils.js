@@ -345,16 +345,19 @@ function filterDailies(id){
     let filter = {filter: "all"};
     writeTagFilter(filter);
     if(id == 'activeDailies'){
-        updateDailyStatusList('active');
         let dailyStatus = {status: "active"};
         writeDailyStatus(dailyStatus);
+        updateDailyStatusList('active');
+        updateDailyStatusList('active');
         
     }else if(id == 'notActiveDailies'){
-        updateDailyStatusList('notActive');
         let dailyStatus = {status: "notActive"};
         writeDailyStatus(dailyStatus);
+        updateDailyStatusList('notActive');  
+        updateDailyStatusList('notActive');   
     }
     else{
+        updateDailyList();
         updateDailyList();
         let dailyStatus = {status: "all"};
         writeDailyStatus(dailyStatus);
